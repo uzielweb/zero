@@ -1,0 +1,109 @@
+/* OFFLINE
+   ========================================================================== */
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+	color: #111;
+	font-family: Arial,Sans Serif;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+img {
+	border: 0 none;
+}
+
+#frame {
+	margin: 0 auto;
+	padding: 20px;
+	max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  #frame {
+    padding-top: 32vh;
+    max-width: 400px;
+  }
+}
+
+.inputbox {
+	width: 130px;
+}
+
+form {
+	margin: auto;
+}
+
+form p {
+	margin: 0;
+	padding: 0;
+}
+
+form fieldset {
+	border: 0 none;
+	margin: 0;
+	padding: 0.2em;
+}
+
+input {
+	padding: 5px;
+  font-size: 1rem;
+}
+
+input.button {
+	cursor: pointer;
+	width: auto;
+}
+
+form p {
+	padding: 0.3em 0;
+}
+
+label[for="remember"] {
+  font-size: .85rem;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: inherit;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+
+.close:focus,
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}

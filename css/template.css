@@ -1,0 +1,29 @@
+/*CSS EXAMPLE*/
+/*body{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+*{
+    box-sizing: border-box;
+}
+.side-left{
+    float: left;
+    display: table-cell;
+}
+.main-section{
+    display: table;
+    float: none;
+    clear: both;
+}
+
+.main-content{
+    float: left;
+    display: table-cell;
+
+}
+.side-right{
+    float: right;
+    display: table-cell;
+}
+*/
