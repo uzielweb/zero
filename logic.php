@@ -13,17 +13,17 @@ $this->setGenerator(null);
 
 // CSS
 $doc->addStyleSheet($tpath.'/css/template.css');
-$doc->addStyleSheet($tpath . '/css/custom.css');
-$doc->addStyleSheet($tpath.'/css/animate.css');
-$doc->addStyleSheet($tpath.'/css/bootstrap.css');
-$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
+//$doc->addStyleSheet($tpath . '/css/custom.css');
+//$doc->addStyleSheet($tpath.'/css/animate.css');
+//$doc->addStyleSheet($tpath.'/css/bootstrap.css');
+//$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
 
 // JS
-$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
-$doc->addScript($tpath.'/js/bootstrap.min.js');
-$doc->addScript($tpath.'/js/fontawesome-all.min.js');
-$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
-$doc->addScript($tpath.'/js/popper.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.min.js');
+//$doc->addScript($tpath.'/js/fontawesome-all.min.js');
+//$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
+//$doc->addScript($tpath.'/js/popper.min.js');
 
 
 $config                   = JFactory::getConfig();
@@ -31,22 +31,26 @@ $col_side                 = $this->params->get('col_side');
 $footer_side              = $this->params->get('footer_side');
 $logo                     = $this->params->get('logo');
 $col_middle_style ='';
-  $app =JFactory::getApplication('site');
+$app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);  
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 
-$col_bootversion = 'col-';
-if ($bootstrap_version == '2'){
-$col_bootversion = 'span-';
-}
-if ($bootstrap_version == '3'){
-$col_bootversion = 'col-md-';
-}
-if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
-}
-}
+
+
+switch ($col_bootversion):
+    case ($bootstrap_version == '2'):
+       $col_bootversion = 'span';
+        break;
+    case ($bootstrap_version == '3'):
+        $col_bootversion = 'col-md-';
+        break;
+    case ($bootstrap_version == '4'):
+        $col_bootversion = 'col-';
+        break;
+    default:
+        $col_bootversion = 'col-';
+endswitch;
 
 $col_side_boot_width = ' '.$col_bootversion.$col_side;
 	// Default width - for one column
