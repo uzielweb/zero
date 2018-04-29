@@ -50,7 +50,6 @@ switch ($col_bootversion){
         break;
     default:
         $col_bootversion = 'col-';
-endswitch;
 }
    
 
