@@ -38,8 +38,8 @@ $bootstrap_version = $template->params->get('bootstrap_version');
 
 
 
-switch ($col_bootversion):
-    case ($bootstrap_version == '2'):
+switch ($col_bootversion){
+	case ($bootstrap_version == '2'):
        $col_bootversion = 'span';
         break;
     case ($bootstrap_version == '3'):
@@ -51,6 +51,8 @@ switch ($col_bootversion):
     default:
         $col_bootversion = 'col-';
 endswitch;
+}
+   
 
 $col_side_boot_width = ' '.$col_bootversion.$col_side;
 	// Default width - for one column
