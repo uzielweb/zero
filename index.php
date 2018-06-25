@@ -6,18 +6,17 @@
 * @copyright   Copyright (C) 2018 Uziel Almeida Oliveira via Ponto Mega, Inc. All rights reserved.
 * @license     GNU General Public License version 2 or later; see LICENSE.txt
 */
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
 include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" >
-  <head>
-    <jdoc:include type="head" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  </head>
-  <body>
-    <body>
-      <header class="pm-header">
+    <head>
+        <jdoc:include type="head" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+</head>
+<body>
+   <header class="pm-header">
         <div class="pm-top">
           <jdoc:include type="modules" name="top" style="zero_none" />
         </div>
@@ -37,8 +36,8 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
             </nav>
           </div>
         </div>
-      </header>
-      <?php if ($this->countModules('slideshow')) : ?>
+</header>
+  <?php if ($this->countModules('slideshow')) : ?>
       <section class="slideshow">
         <div class="row">
           <?php echo positions(array('above1'), 'zero_xhtml'); ?>
@@ -75,7 +74,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <?php endif; ?>
       <?php if ($this->countModules('breadcrumbs')): ?>
       <section class="breadcrumbs">
-        <div class="container">  
+        <div class="container">
           <div class="row">
             <jdoc:include type="modules" name="breadcrumbs" style="xhtml" />
           </div>
@@ -181,5 +180,5 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 </footer>
 <jdoc:include type="modules" name="debug" />
 </body>
-</body>
+
 </html>
