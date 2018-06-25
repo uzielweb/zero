@@ -160,6 +160,7 @@ $col_bootversion = 'col-';
 		}
 	}
 }
+}
 // For Bootstrap use the grid divisions by 12 in the width keys like this: 1,2,3,4,5,6,7,8,9,10,11
 // Then use the code like this bellow
 // echo positions(array('menu' => 4, 'login' => 6, 'nada' => 2), 'block');
