@@ -15,7 +15,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         <jdoc:include type="head" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 </head>
-<body>
+<body class="<?php echo $active->alias . ' ' . $pageclass.' page-'.$active->id;?>">
    <header class="pm-header">
         <div class="pm-top">
           <jdoc:include type="modules" name="top" style="zero_none" />
@@ -180,5 +180,6 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 </footer>
 <jdoc:include type="modules" name="debug" />
 </body>
+</html>
 
 </html>
