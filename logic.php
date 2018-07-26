@@ -11,12 +11,6 @@ $tpath     = $this->baseurl.'/templates/'.$this->template;
 // generator tag
 $this->setGenerator(null);
 
-// CSS
-$doc->addStyleSheet($tpath.'/css/template.css');
-//$doc->addStyleSheet($tpath . '/css/custom.css');
-//$doc->addStyleSheet($tpath.'/css/animate.css');
-//$doc->addStyleSheet($tpath.'/css/bootstrap.css');
-//$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
 
 // JS
 //$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
@@ -25,6 +19,12 @@ $doc->addStyleSheet($tpath.'/css/template.css');
 //$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
 //$doc->addScript($tpath.'/js/popper.min.js');
 
+// CSS
+//$doc->addStyleSheet($tpath.'/css/animate.css');
+//$doc->addStyleSheet($tpath.'/css/bootstrap.css');
+//$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
+$doc->addStyleSheet($tpath.'/css/template.css');
+//$doc->addStyleSheet($tpath . '/css/custom.css');
 
 $config                   = JFactory::getConfig();
 $col_side                 = $this->params->get('col_side');
