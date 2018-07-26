@@ -1,5 +1,5 @@
 # Zero
-Zero - Joomla Template - A very basic Joomla Template without any CSS or JS with special positions codes
+Zero - Joomla Template - A very basic Joomla Template without any aditional CSS or JS with special positions codes
 
 ## HOW TO USE :
 
