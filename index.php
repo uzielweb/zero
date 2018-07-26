@@ -40,7 +40,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('slideshow')) : ?>
       <section class="slideshow">
         <div class="row">
-          <?php echo positions(array('above1'), 'zero_xhtml'); ?>
+          <jdoc:include type="modules" name="slideshow" style="zero_xhtml" />
         </div>
       </section>
       <?php endif; ?>
@@ -49,7 +49,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="above-a">
         <div class="container">
           <div class="row">
-            <?php echo positions(array('above1'), 'zero_xhtml'); ?>
+            <jdoc:include type="modules" name="above1" style="zero_xhtml" />
           </div>
         </div>
       </section>
@@ -67,7 +67,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="above-c">
         <div class="container">
           <div class="row">
-            <?php echo positions(array('above5'), 'zero_xhtml'); ?>
+            <?php echo positions(array('slideshow') => 12, 'zero_xhtml'); ?>
           </div>
         </div>
       </section>
@@ -76,7 +76,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="breadcrumbs">
         <div class="container">
           <div class="row">
-            <jdoc:include type="modules" name="breadcrumbs" style="xhtml" />
+            <?php echo positions(array('breadcrumbs') => 12, 'zero_xhtml'); ?>
           </div>
         </div>
       </section>
@@ -104,13 +104,13 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php endif; ?>
           <?php if ($this->countModules('inner-top5')) : ?>
           <div class="inner-top-c">
-            <?php echo positions(array('inner-top5'), 'zero_xhtml'); ?>
+          <?php echo positions(array('inner-top5') => 12, 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
           <jdoc:include type="component" />
           <?php if ($this->countModules('inner-bottom1')) : ?>
           <div class="inner-bottom-a">
-            <?php echo positions(array('inner-bottom1'), 'zero_xhtml'); ?>
+            <?php echo positions(array('inner-bottom1') => 12, 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
           <?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
@@ -120,7 +120,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php endif; ?>
           <?php if ($this->countModules('inner-bottom5')) : ?>
           <div class="inner-bottom-c">
-            <?php echo positions(array('inner-bottom5'), 'zero_xhtml'); ?>
+            <?php echo positions(array('inner-bottom5') => 12, 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
         </div>
@@ -136,7 +136,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <?php if ($this->countModules('bellow1')) : ?>
 <section class="bellow-a">
   <div class="container">
-    <?php echo positions(array('bellow1'), 'zero_xhtml'); ?>
+    <?php echo positions(array('bellow1') => 12, 'zero_xhtml'); ?>
   </div>
 </section>
 <?php endif; ?>
@@ -150,7 +150,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <?php if ($this->countModules('bellow5')) : ?>
 <section class="bellow-c">
   <div class="container">
-    <?php echo positions(array('bellow5'), 'zero_xhtml'); ?>
+   <?php echo positions(array('bellow5') => 12, 'zero_xhtml'); ?>
   </div>
 </section>
 <?php endif; ?>
@@ -158,7 +158,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('inner-footer1')) : ?>
   <div class="inner-footer-a">
     <div class="container">
-      <?php echo positions(array('inner-footer1'), 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-footer1') => 12, 'zero_xhtml'); ?>
     </div>
   </div>
   <?php endif; ?>
@@ -172,7 +172,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('inner-footer5')) : ?>
   <div class="inner-footer-c">
     <div class="container">
-      <?php echo positions(array('inner-footer5'), 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-footer5') => 12, 'zero_xhtml'); ?>
     </div>
   </div>
   <?php endif; ?>
