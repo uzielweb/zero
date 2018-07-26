@@ -39,7 +39,8 @@
         <position>left</position>
         <position>right</position>
         <position>top</position>
-         <position>menu</position>
+	<position>menu</position>
+        <position>login</position>
         <position>above1</position>
          <position>above2</position>
          <position>above3</position>
