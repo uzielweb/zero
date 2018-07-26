@@ -11,6 +11,24 @@ $tpath     = $this->baseurl.'/templates/'.$this->template;
 // generator tag
 $this->setGenerator(null);
 
+//unset scripts
+$headData = $doc->getHeadData();
+$scripts = $headData['scripts'];
+
+//scripts to remove, customise as required
+
+//unset($scripts[JUri::root(true) . '/media/system/js/mootools-core.js']);
+//unset($scripts[JUri::root(true) . '/media/system/js/mootools-more.js']);
+//unset($scripts[JUri::root(true) . '/media/system/js/core.js']);
+//unset($scripts[JUri::root(true) . '/media/system/js/modal.js']);
+//unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
+//unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
+//unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
+//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
+//unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
+
+$headData['scripts'] = $scripts;
+$doc->setHeadData($headData);
 
 // JS
 //$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
