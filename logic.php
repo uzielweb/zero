@@ -17,32 +17,36 @@ $scripts = $headData['scripts'];
 
 //scripts to remove, customise as required
 
-//unset($scripts[JUri::root(true) . '/media/system/js/mootools-core.js']);
-//unset($scripts[JUri::root(true) . '/media/system/js/mootools-more.js']);
+unset($scripts[JUri::root(true) . '/media/system/js/mootools-core.js']);
+unset($scripts[JUri::root(true) . '/media/system/js/mootools-more.js']);
 //unset($scripts[JUri::root(true) . '/media/system/js/core.js']);
 //unset($scripts[JUri::root(true) . '/media/system/js/modal.js']);
 //unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
+unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 
 $headData['scripts'] = $scripts;
 $doc->setHeadData($headData);
 
+
 // JS
-//$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
-//$doc->addScript($tpath.'/js/bootstrap.min.js');
-//$doc->addScript($tpath.'/js/fontawesome-all.min.js');
-//$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
-//$doc->addScript($tpath.'/js/popper.min.js');
+$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
+$doc->addScript($tpath.'/js/bootstrap.min.js');
+$doc->addScript($tpath.'/js/fontawesome-all.min.js');
+$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
+$doc->addScript($tpath.'/js/popper.min.js');
+
 
 // CSS
-//$doc->addStyleSheet($tpath.'/css/animate.css');
-//$doc->addStyleSheet($tpath.'/css/bootstrap.css');
-//$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
+
+
+$doc->addStyleSheet($tpath.'/css/animate.css');
+$doc->addStyleSheet($tpath.'/css/bootstrap.css');
+$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
 $doc->addStyleSheet($tpath.'/css/template.css');
-//$doc->addStyleSheet($tpath . '/css/custom.css');
+$doc->addStyleSheet($tpath . '/css/custom.css');
 
 $config                   = JFactory::getConfig();
 $col_side                 = $this->params->get('col_side');
@@ -64,10 +68,10 @@ switch ($col_bootversion){
         $col_bootversion = 'col-md-';
         break;
     case ($bootstrap_version == '4'):
-        $col_bootversion = 'col-md-';
+        $col_bootversion = 'col-';
         break;
     default:
-        $col_bootversion = 'col-md-';
+        $col_bootversion = 'col-';
 }
    
 
@@ -122,7 +126,11 @@ $col_bootversion = 'col-';
 		if(JFactory::getDocument()->countModules($name)){
 			// Increase active positions count
 			$countOfActivePositions++;
+
+
+            if($countOfActivePositions > 1){
 			$totalWidth = $totalWidth + $value;
+            }
 		}
 	}
 	if($countOfActivePositions > 0){
@@ -141,16 +149,30 @@ $col_bootversion = 'col-';
 			// For custom with equal widths add / uncomment the $width bellow
 			// For custom with proportional widths add / uncomment the $width bellow
 			if((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")){
-				$width = round($value * 100 / $totalWidth);
+                if ($countOfActivePositions == '1'){
+                    $width = round(100 / $totalWidth);
+                    }
+                else{
+                  $width = round($value * 100 / $totalWidth);
+                }
+
 			}
 			// For Bootstrap with proportional widths add / uncomment the $width bellow
 			// For Bootstrap with equal widths remove / comment the $width bellow
 			if((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")){
-				$width = $col_bootversion . round($value * 12 / $totalWidth);
+             if ($countOfActivePositions == '1'){
+                  $width = $col_bootversion . round( 12 / $totalWidth);
+             }
+             else{
+              $width = $col_bootversion . round($value * 12 / $totalWidth);
+             }
+
+
 			}
 			if((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")){
 				// For Bootstrap with proportional widths remove / comment the IF bellow
 				// For Custom with with more then 1 position add / uncomment the IF bellow
+
 				if(($value > 0) and ($countOfActivePositions == 2) and (count($position) > 2)){
 					$width = 100 / 2;
 				}
