@@ -46,10 +46,10 @@ switch ($col_bootversion){
         $col_bootversion = 'col-md-';
         break;
     case ($bootstrap_version == '4'):
-        $col_bootversion = 'col-';
+        $col_bootversion = 'col-md-';
         break;
     default:
-        $col_bootversion = 'col-';
+        $col_bootversion = 'col-md-';
 }
    
 
