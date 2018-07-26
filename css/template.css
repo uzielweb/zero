@@ -1,5 +1,9 @@
 /*CSS EXAMPLE*/
-/*body{
+/*
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Roboto+Condensed');
+body{
+    font-family: "Open Sans";
+    font-size: 13px;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
