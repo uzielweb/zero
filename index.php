@@ -23,7 +23,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         <div class="container">
           <div class="row">
             <?php if (!empty($logo)) { ?>
-            <div class="logo col-2">
+            <div class="logo col-md-2 col-6">
               <h1>
                 <a href="<?php echo $this->baseurl; ?>">
                   <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -31,7 +31,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
               </h1>
             </div>
             <?php } ?>
-            <nav class="navigation col-10">
+            <nav class="navigation col-md-10 col-6">
               <jdoc:include type="modules" name="menu" style="zero_none" />
             </nav>
           </div>
