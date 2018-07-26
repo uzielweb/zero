@@ -107,25 +107,9 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
             <?php echo positions(array('inner-top5' => 12), 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
-          <?php if (JFactory::getUser()->id == 0) : ?>
-                            <?php if ($this->countModules('bem-vindo-home') or $this->countModules('bem-vindo-home-direito')): ?>
-                            <div class="row bem-vindo-top">
-                                <?php if ($this->countModules('bem-vindo-home')): ?>
-                                        <div class="col-sm-9 bem-vindo-home">
-                                            <jdoc:include type="modules" name="bem-vindo-home" style="xhtml" />
-                                        </div>
-                                <?php endif;?>
-                                <?php if ($this->countModules('bem-vindo-home-direito')): ?>
-                                        <div class="col-sm-3 bem-vindo-home-direito">
-                                            <jdoc:include type="modules" name="bem-vindo-home-direito" style="xhtml" />
-                                        </div>
-                                <?php endif;?>
-                            </div>
-                        <?php endif;?>
-                        <?php endif;?>
-           <?php if ($activemenu->query["option"] !=  'com_community' && JFactory::getUser()->id == 0) : ?>
+          
                              <jdoc:include type="component" />
-                           <?php endif; ?>
+                       
           <?php if ($this->countModules('inner-bottom1')) : ?>
           <div class="inner-bottom-a">
             <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
