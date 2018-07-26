@@ -23,7 +23,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         <div class="container">
           <div class="row">
             <?php if (!empty($logo)) { ?>
-            <div class="logo col-md-2">
+            <div class="logo col-2">
               <h1>
                 <a href="<?php echo $this->baseurl; ?>">
                   <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -31,7 +31,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
               </h1>
             </div>
             <?php } ?>
-            <nav class="navigation  col-md-10">
+            <nav class="navigation col-10">
               <jdoc:include type="modules" name="menu" style="zero_none" />
             </nav>
           </div>
@@ -40,7 +40,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('slideshow')) : ?>
       <section class="slideshow">
         <div class="row">
-          <jdoc:include type="modules" name="slideshow" style="zero_xhtml" />
+          <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
         </div>
       </section>
       <?php endif; ?>
@@ -49,7 +49,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="above-a">
         <div class="container">
           <div class="row">
-            <jdoc:include type="modules" name="above1" style="zero_xhtml" />
+            <?php echo positions(array('above1' => 12), 'zero_xhtml'); ?>
           </div>
         </div>
       </section>
@@ -67,7 +67,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="above-c">
         <div class="container">
           <div class="row">
-            <?php echo positions(array('slideshow') => 12, 'zero_xhtml'); ?>
+            <?php echo positions(array('above5' => 12), 'zero_xhtml'); ?>
           </div>
         </div>
       </section>
@@ -76,7 +76,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <section class="breadcrumbs">
         <div class="container">
           <div class="row">
-            <?php echo positions(array('breadcrumbs') => 12, 'zero_xhtml'); ?>
+            <jdoc:include type="modules" name="breadcrumbs" style="xhtml" />
           </div>
         </div>
       </section>
@@ -104,13 +104,31 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php endif; ?>
           <?php if ($this->countModules('inner-top5')) : ?>
           <div class="inner-top-c">
-          <?php echo positions(array('inner-top5') => 12, 'zero_xhtml'); ?>
+            <?php echo positions(array('inner-top5' => 12), 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
-          <jdoc:include type="component" />
+          <?php if (JFactory::getUser()->id == 0) : ?>
+                            <?php if ($this->countModules('bem-vindo-home') or $this->countModules('bem-vindo-home-direito')): ?>
+                            <div class="row bem-vindo-top">
+                                <?php if ($this->countModules('bem-vindo-home')): ?>
+                                        <div class="col-sm-9 bem-vindo-home">
+                                            <jdoc:include type="modules" name="bem-vindo-home" style="xhtml" />
+                                        </div>
+                                <?php endif;?>
+                                <?php if ($this->countModules('bem-vindo-home-direito')): ?>
+                                        <div class="col-sm-3 bem-vindo-home-direito">
+                                            <jdoc:include type="modules" name="bem-vindo-home-direito" style="xhtml" />
+                                        </div>
+                                <?php endif;?>
+                            </div>
+                        <?php endif;?>
+                        <?php endif;?>
+           <?php if ($activemenu->query["option"] !=  'com_community' && JFactory::getUser()->id == 0) : ?>
+                             <jdoc:include type="component" />
+                           <?php endif; ?>
           <?php if ($this->countModules('inner-bottom1')) : ?>
           <div class="inner-bottom-a">
-            <?php echo positions(array('inner-bottom1') => 12, 'zero_xhtml'); ?>
+            <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
           <?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
@@ -120,7 +138,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php endif; ?>
           <?php if ($this->countModules('inner-bottom5')) : ?>
           <div class="inner-bottom-c">
-            <?php echo positions(array('inner-bottom5') => 12, 'zero_xhtml'); ?>
+            <?php echo positions(array('inner-bottom5' => 12), 'zero_xhtml'); ?>
           </div>
           <?php endif; ?>
         </div>
@@ -136,7 +154,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <?php if ($this->countModules('bellow1')) : ?>
 <section class="bellow-a">
   <div class="container">
-    <?php echo positions(array('bellow1') => 12, 'zero_xhtml'); ?>
+    <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
   </div>
 </section>
 <?php endif; ?>
@@ -150,7 +168,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <?php if ($this->countModules('bellow5')) : ?>
 <section class="bellow-c">
   <div class="container">
-   <?php echo positions(array('bellow5') => 12, 'zero_xhtml'); ?>
+    <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
   </div>
 </section>
 <?php endif; ?>
@@ -158,7 +176,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('inner-footer1')) : ?>
   <div class="inner-footer-a">
     <div class="container">
-      <?php echo positions(array('inner-footer1') => 12, 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
     </div>
   </div>
   <?php endif; ?>
@@ -172,7 +190,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
   <?php if ($this->countModules('inner-footer5')) : ?>
   <div class="inner-footer-c">
     <div class="container">
-      <?php echo positions(array('inner-footer5') => 12, 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
     </div>
   </div>
   <?php endif; ?>
