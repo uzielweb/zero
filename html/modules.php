@@ -10,13 +10,12 @@ defined('_JEXEC') or die;
 /*
 * none (output raw module content)
 */
-function module_widths(){
-}
+
 function modChrome_zero_none($module, &$params, &$attribs)
 {
 $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 if ($bootstrap_version == '2'){
@@ -26,7 +25,7 @@ if ($bootstrap_version == '3'){
 $col_bootversion = 'col-md-';
 }
 if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 }
 }
 $moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
@@ -41,7 +40,7 @@ $col_module_width = '';
 }
 // Temporarily store header class in variable
 $headerClass    = $params->get('header_class');
-$headerClass    = !empty($headerClass) ? ' class="' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : '';
+$headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
 <<?php echo $moduleTag; ?> class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) :?>
@@ -59,7 +58,7 @@ function modChrome_zero_html5($module, &$params, &$attribs)
 {
 $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 if ($bootstrap_version == '2'){
@@ -69,7 +68,7 @@ if ($bootstrap_version == '3'){
 $col_bootversion = 'col-md-';
 }
 if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 }
 }
 $moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
@@ -84,7 +83,7 @@ $col_module_width = '';
 }
 // Temporarily store header class in variable
 $headerClass    = $params->get('header_class');
-$headerClass    = !empty($headerClass) ? ' class="' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : '';
+$headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
 <<?php echo $moduleTag; ?> class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) :?>
@@ -102,7 +101,7 @@ function modChrome_zero_table($module, &$params, &$attribs)
 {
 $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 if ($bootstrap_version == '2'){
@@ -112,7 +111,7 @@ if ($bootstrap_version == '3'){
 $col_bootversion = 'col-md-';
 }
 if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 }
 }
 $bootstrapSize  = (int) $params->get('bootstrap_size', 0);
@@ -128,7 +127,7 @@ if (!empty ($module->content)) :
 <table cellpadding="0" cellspacing="0" class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8'); ?><?php echo $moduleClass;?>"<?php echo $col_module_width; ?>>
 <?php if ((bool) $module->showtitle) : ?>
 <tr>
-  <th>
+  <th class="module-title">
     <?php echo $module->title; ?>
   </th>
 </tr>
@@ -165,7 +164,7 @@ function modChrome_zero_xhtml($module, &$params, &$attribs)
 {
 $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 if ($bootstrap_version == '2'){
@@ -175,7 +174,7 @@ if ($bootstrap_version == '3'){
 $col_bootversion = 'col-md-';
 }
 if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 }
 }
 $moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
@@ -190,7 +189,7 @@ $col_module_width = '';
 }
 // Temporarily store header class in variable
 $headerClass    = $params->get('header_class');
-$headerClass    = $headerClass ? ' class="' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : '';
+$headerClass    = $headerClass ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
 <<?php echo $moduleTag; ?> class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) : ?>
@@ -208,7 +207,7 @@ function modChrome_zero_rounded($module, &$params, &$attribs)
 {
 $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 if ($bootstrap_version == '2'){
@@ -218,7 +217,7 @@ if ($bootstrap_version == '3'){
 $col_bootversion = 'col-md-';
 }
 if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+$col_bootversion = 'col-md-';
 }
 }
 $bootstrapSize  = (int) $params->get('bootstrap_size', 0);
@@ -236,7 +235,7 @@ if (!empty ($module->content)) :
   <div>
     <div>
       <?php if ((bool) $module->showtitle) : ?>
-      <h3>
+      <h3 class="module-title">
         <?php echo $module->title; ?>
       </h3>
       <?php endif; ?>
