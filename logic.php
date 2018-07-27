@@ -68,10 +68,10 @@ switch ($col_bootversion){
         $col_bootversion = 'col-md-';
         break;
     case ($bootstrap_version == '4'):
-        $col_bootversion = 'col-';
+        $col_bootversion = 'col-md-';
         break;
     default:
-        $col_bootversion = 'col-';
+        $col_bootversion = 'col-md-';
 }
    
 
@@ -94,15 +94,18 @@ $template = $app->getTemplate(true);
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 
-$col_bootversion = 'col-';
-if ($bootstrap_version == '2'){
-$col_bootversion = 'span-';
-}
-if ($bootstrap_version == '3'){
-$col_bootversion = 'col-md-';
-}
-if ($bootstrap_version == '4'){
-$col_bootversion = 'col-';
+switch ($col_bootversion){
+	case ($bootstrap_version == '2'):
+       $col_bootversion = 'span';
+        break;
+    case ($bootstrap_version == '3'):
+        $col_bootversion = 'col-md-';
+        break;
+    case ($bootstrap_version == '4'):
+        $col_bootversion = 'col-md-';
+        break;
+    default:
+        $col_bootversion = 'col-md-';
 }
 }
 	// Default width - for one column
@@ -120,7 +123,7 @@ $col_bootversion = 'col-';
 	$countOfActivePositions = 0;
 	// Positions to search modules in
 	// Loop over every position
-	$totalWidth  = 1;
+	$totalWidth  = 0;
 	foreach($position as $name => $value){
 		// If position has modules
 		if(JFactory::getDocument()->countModules($name)){
@@ -128,9 +131,9 @@ $col_bootversion = 'col-';
 			$countOfActivePositions++;
 
 
-            if($countOfActivePositions > 1){
+           
 			$totalWidth = $totalWidth + $value;
-            }
+            
 		}
 	}
 	if($countOfActivePositions > 0){
@@ -149,25 +152,17 @@ $col_bootversion = 'col-';
 			// For custom with equal widths add / uncomment the $width bellow
 			// For custom with proportional widths add / uncomment the $width bellow
 			if((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")){
-                if ($countOfActivePositions == '1'){
-                    $width = round(100 / $totalWidth);
-                    }
-                else{
+
                   $width = round($value * 100 / $totalWidth);
-                }
+                
 
 			}
 			// For Bootstrap with proportional widths add / uncomment the $width bellow
 			// For Bootstrap with equal widths remove / comment the $width bellow
 			if((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")){
-             if ($countOfActivePositions == '1'){
-                  $width = $col_bootversion . round( 12 / $totalWidth);
-             }
-             else{
-              $width = $col_bootversion . round($value * 12 / $totalWidth);
-             }
-
-
+             
+              	$width = $col_bootversion . round($value * 12 / $totalWidth);
+             
 			}
 			if((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")){
 				// For Bootstrap with proportional widths remove / comment the IF bellow
