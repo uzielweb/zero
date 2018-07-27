@@ -138,44 +138,56 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <?php if ($this->countModules('bellow1')) : ?>
 <section class="bellow-a">
   <div class="container">
-    <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
-  </div>
+      <div class="row">
+          <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
+      </div>
+   </div>  
 </section>
 <?php endif; ?>
 <?php if ($this->countModules('bellow2') or $this->countModules('bellow3') or $this->countModules('bellow4')) : ?>
 <section class="bellow-b">
   <div class="container">
-    <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
+    <div class="row">
+        <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
+    </div>
   </div>
 </section>
 <?php endif; ?>
 <?php if ($this->countModules('bellow5')) : ?>
 <section class="bellow-c">
   <div class="container">
+    <div class="row">
     <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
-  </div>
+     </div>
+    </div>        
 </section>
 <?php endif; ?>
 <footer class="pm-footer">
   <?php if ($this->countModules('inner-footer1')) : ?>
   <div class="inner-footer-a">
     <div class="container">
+     <div class="row">
       <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
-    </div>
+     </div>
+    </div>        
   </div>
   <?php endif; ?>
   <?php if ($this->countModules('inner-footer2') or $this->countModules('inner-footer3') or $this->countModules('inner-footer4')) : ?>
   <div class="inner-footer-b">
     <div class="container">
+     <div class="row">
       <?php echo positions(array('inner-footer2' => 4, 'inner-footer3' => 4, 'inner-footer4' => 4), 'zero_xhtml'); ?>
-    </div>
+     </div>
+    </div>        
   </div>
   <?php endif; ?>
   <?php if ($this->countModules('inner-footer5')) : ?>
   <div class="inner-footer-c">
     <div class="container">
+     <div class="row">
       <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
-    </div>
+     </div>
+    </div>        
   </div>
   <?php endif; ?>
   <jdoc:include type="modules" name="foooter" style="zero_none" />
