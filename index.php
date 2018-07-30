@@ -1,199 +1,249 @@
 <?php
 /**
 * @package     Joomla.Site
-* @subpackage  Templates.zero
+* @subpackage  Template.system
 *
-* @copyright   Copyright (C) 2018 Uziel Almeida Oliveira via Ponto Mega, Inc. All rights reserved.
+* @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
 * @license     GNU General Public License version 2 or later; see LICENSE.txt
 */
-defined('_JEXEC') or die('Restricted access');
-include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
+defined('_JEXEC') or die;
+/*
+* none (output raw module content)
+*/
+function module_widths(){
+}
+function modChrome_zero_none($module, &$params, &$attribs)
+{
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);
+$col_bootversion = 'col-md';
+if ($template->params->get('type_of_layout') == 'bootstrap') {
+$bootstrap_version = $template->params->get('bootstrap_version');
+if ($bootstrap_version == '2'){
+$col_bootversion = 'span-';
+}
+if ($bootstrap_version == '3'){
+$col_bootversion = 'col-md-';
+}
+if ($bootstrap_version == '4'){
+$col_bootversion = 'col-md-';
+}
+}
+$moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
+$headerTag      = htmlspecialchars($params->get('header_tag', 'h3'), ENT_QUOTES, 'UTF-8');
+$bootstrapSize  = (int) $params->get('bootstrap_size', 0);
+$moduleClass    = $bootstrapSize !== 0 ? ' '. $col_bootversion . $bootstrapSize : '';
+if ($template->params->get('type_of_layout') == 'custom') {
+$col_module_width = ' style="float:left; width:'.(100/12*$bootstrapSize).'%;"';
+}
+else{
+$col_module_width = '';
+}
+// Temporarily store header class in variable
+$headerClass    = $params->get('header_class');
+$headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
+if (!empty ($module->content)) : ?>
+<<?php echo $moduleTag; ?> class="moduletable<?php echo $module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<?php if ((bool) $module->showtitle) :?>
+<<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
+</<?php echo $headerTag; ?>>
+<?php endif; ?>
+<?php echo $module->content; ?>
+</<?php echo $moduleTag; ?>>
+<?php endif;
+}
+/*
+* html5 (chosen html5 tag and font header tags)
+*/
+function modChrome_zero_html5($module, &$params, &$attribs)
+{
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);
+$col_bootversion = 'col-md-';
+if ($template->params->get('type_of_layout') == 'bootstrap') {
+$bootstrap_version = $template->params->get('bootstrap_version');
+if ($bootstrap_version == '2'){
+$col_bootversion = 'span-';
+}
+if ($bootstrap_version == '3'){
+$col_bootversion = 'col-md-';
+}
+if ($bootstrap_version == '4'){
+$col_bootversion = 'col-md-';
+}
+}
+$moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
+$headerTag      = htmlspecialchars($params->get('header_tag', 'h3'), ENT_QUOTES, 'UTF-8');
+$bootstrapSize  = (int) $params->get('bootstrap_size', 0);
+$moduleClass    = $bootstrapSize !== 0 ? ' '.$col_bootversion . $bootstrapSize : '';
+if ($template->params->get('type_of_layout') == 'custom') {
+$col_module_width = ' style="float:left; width:'.(100/12*$bootstrapSize).'%;"';
+}
+else{
+$col_module_width = '';
+}
+// Temporarily store header class in variable
+$headerClass    = $params->get('header_class');
+$headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
+if (!empty ($module->content)) : ?>
+<<?php echo $moduleTag; ?> class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<?php if ((bool) $module->showtitle) :?>
+<<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
+</<?php echo $headerTag; ?>>
+<?php endif; ?>
+<?php echo $module->content; ?>
+</<?php echo $moduleTag; ?>>
+<?php endif;
+}
+/*
+* Module chrome that wraps the module in a table
+*/
+function modChrome_zero_table($module, &$params, &$attribs)
+{
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);
+$col_bootversion = 'col-md-';
+if ($template->params->get('type_of_layout') == 'bootstrap') {
+$bootstrap_version = $template->params->get('bootstrap_version');
+if ($bootstrap_version == '2'){
+$col_bootversion = 'span-';
+}
+if ($bootstrap_version == '3'){
+$col_bootversion = 'col-md-';
+}
+if ($bootstrap_version == '4'){
+$col_bootversion = 'col-md-';
+}
+}
+$bootstrapSize  = (int) $params->get('bootstrap_size', 0);
+$moduleClass    = $bootstrapSize !== 0 ? ' '.$col_bootversion . $bootstrapSize : '';
+if ($template->params->get('type_of_layout') == 'custom') {
+$col_module_width = ' style="float:left; width:'.(100/12*$bootstrapSize).'%;"';
+}
+else{
+$col_module_width = '';
+}
+if (!empty ($module->content)) :
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" >
-    <head>
-        <jdoc:include type="head" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-</head>
-<body class="<?php echo $active->alias . ' ' . $pageclass.' page-'.$active->id;?>">
-   <header class="pm-header">
-        <div class="pm-top">
-          <jdoc:include type="modules" name="top" style="zero_none" />
-        </div>
-        <div class="container">
-          <div class="row">
-            <?php if (!empty($logo)) { ?>
-            <div class="logo col-6 col-md-2">
-              <h1>
-                <a href="<?php echo $this->baseurl; ?>">
-                  <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
-                </a>
-              </h1>
-            </div>
-            <?php } ?>
-            <nav class="navigation col-6 col-md-10">
-              <jdoc:include type="modules" name="menu" style="zero_none" />
-            </nav>
-          </div>
-        </div>
-</header>
-  <?php if ($this->countModules('slideshow')) : ?>
-      <section class="slideshow">
-        <div class="row">
-          <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
-        </div>
-      </section>
-      <?php endif; ?>
-      <jdoc:include type="message" />
-      <?php if ($this->countModules('above1')) : ?>
-      <section class="above-a">
-        <div class="container">
-          <div class="row">
-            <?php echo positions(array('above1' => 12), 'zero_xhtml'); ?>
-          </div>
-        </div>
-      </section>
-      <?php endif; ?>
-      <?php if ($this->countModules('above2') or $this->countModules('above3') or $this->countModules('above4')) : ?>
-      <section class="above-b">
-        <div class="container">
-          <div class="row">
-            <?php echo positions(array('above2' => 4, 'above3' => 4, 'above4' => 4), 'zero_xhtml'); ?>
-          </div>
-        </div>
-      </section>
-      <?php endif; ?>
-      <?php if ($this->countModules('above5')) : ?>
-      <section class="above-c">
-        <div class="container">
-          <div class="row">
-            <?php echo positions(array('above5' => 12), 'zero_xhtml'); ?>
-          </div>
-        </div>
-      </section>
-      <?php endif; ?>
-      <?php if ($this->countModules('breadcrumbs')): ?>
-      <section class="breadcrumbs">
-        <div class="container">
-          <div class="row">
-            <jdoc:include type="modules" name="breadcrumbs" style="xhtml" />
-          </div>
-        </div>
-      </section>
-      <?php endif; ?>
-      <section class="main-section">
-        <div class="container">
-          <div class="row">
-            <?php if ($this->countModules('left')): ?>
-            <div class="side-left<?php echo $col_side_boot_width; ?>"
-                 <?php echo $col_side_style; ?>>
-            <jdoc:include type="modules" name="left" style="xhtml" />
-          </div>
-          <?php endif; ?>
-          <div class="main-content<?php echo $col_middle_boot_width; ?>"
-               <?php echo $col_middle_style; ?>>
-          <?php if ($this->countModules('inner-top1')) : ?>
-          <div class="inner-top-a">
-            <?php echo positions(array('inner-top1' => 12), 'zero_xhtml' ); ?>
-          </div>
-          <?php endif; ?>
-          <?php if ($this->countModules('inner-top2') or $this->countModules('inner-top3') or $this->countModules('inner-top4')) : ?>
-          <div class="inner-top-b">
-            <?php echo positions(array('inner-top2' => 4, 'inner-top3' => 4, 'inner-top4' => 4), 'zero_xhtml'); ?>
-          </div>
-          <?php endif; ?>
-          <?php if ($this->countModules('inner-top5')) : ?>
-          <div class="inner-top-c">
-            <?php echo positions(array('inner-top5' => 12), 'zero_xhtml'); ?>
-          </div>
-          <?php endif; ?>
-          
-                             <jdoc:include type="component" />
-                       
-          <?php if ($this->countModules('inner-bottom1')) : ?>
-          <div class="inner-bottom-a">
-            <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
-          </div>
-          <?php endif; ?>
-          <?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
-          <div class="inner-bottom-b">
-            <?php echo positions(array('inner-bottom2' => 4, 'inner-bottom3' => 4, 'inner-bottom4' => 4), 'zero_xhtml'); ?>
-          </div>
-          <?php endif; ?>
-          <?php if ($this->countModules('inner-bottom5')) : ?>
-          <div class="inner-bottom-c">
-            <?php echo positions(array('inner-bottom5' => 12), 'zero_xhtml'); ?>
-          </div>
-          <?php endif; ?>
-        </div>
-        <?php if ($this->countModules('right')): ?>
-        <div class="side-right<?php echo $col_side_boot_width; ?>"
-             <?php echo $col_side_style; ?>>
-        <jdoc:include type="modules" name="right" style="xhtml" />
-        </div>
-      <?php endif; ?>
-      </div>
-    </div>
-  </section>
-<?php if ($this->countModules('bellow1')) : ?>
-<section class="bellow-a">
-  <div class="container">
-      <div class="row">
-          <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
-      </div>
-   </div>  
-</section>
+<table cellpadding="0" cellspacing="0" class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8'); ?><?php echo $moduleClass;?>"<?php echo $col_module_width; ?>>
+<?php if ((bool) $module->showtitle) : ?>
+<tr>
+  <th>
+    <?php echo $module->title; ?>
+  </th>
+</tr>
 <?php endif; ?>
-<?php if ($this->countModules('bellow2') or $this->countModules('bellow3') or $this->countModules('bellow4')) : ?>
-<section class="bellow-b">
-  <div class="container">
-    <div class="row">
-        <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
+<tr>
+  <td>
+    <?php echo $module->content; ?>
+  </td>
+</tr>
+</table>
+<?php  endif;
+}
+/*
+* Module chrome that wraps the tabled module output in a <td> tag of another table
+*/
+function modChrome_zero_horz($module, &$params, &$attribs)
+{
+if (!empty ($module->content)) :
+?>
+<table cellspacing="1" cellpadding="0" width="100%">
+  <tr>
+    <td>
+      <?php modChrome_zero_table($module, $params, $attribs); ?>
+    </td>
+  </tr>
+</table>
+<?php endif;
+}
+/*
+* xhtml (divs and font header tags)
+* With the new advanced parameter it does the same as the html5 chrome
+*/
+function modChrome_zero_xhtml($module, &$params, &$attribs)
+{
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);
+$col_bootversion = 'col-md-';
+if ($template->params->get('type_of_layout') == 'bootstrap') {
+$bootstrap_version = $template->params->get('bootstrap_version');
+if ($bootstrap_version == '2'){
+$col_bootversion = 'span-';
+}
+if ($bootstrap_version == '3'){
+$col_bootversion = 'col-md-';
+}
+if ($bootstrap_version == '4'){
+$col_bootversion = 'col-md-';
+}
+}
+$moduleTag      = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
+$headerTag      = htmlspecialchars($params->get('header_tag', 'h3'), ENT_QUOTES, 'UTF-8');
+$bootstrapSize  = (int) $params->get('bootstrap_size', 0);
+$moduleClass    = $bootstrapSize !== 0 ? ' '.$col_bootversion . $bootstrapSize : '';
+if ($template->params->get('type_of_layout') == 'custom') {
+$col_module_width = ' style="float:left; width:'.(100/12*$bootstrapSize).'%;"';
+}
+else{
+$col_module_width = '';
+}
+// Temporarily store header class in variable
+$headerClass    = $params->get('header_class');
+$headerClass    = $headerClass ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
+if (!empty ($module->content)) : ?>
+<<?php echo $moduleTag; ?> class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<?php if ((bool) $module->showtitle) : ?>
+<<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
+</<?php echo $headerTag; ?>>
+<?php endif; ?>
+<?php echo $module->content; ?>
+</<?php echo $moduleTag; ?>>
+<?php endif;
+}
+/*
+* Module chrome that allows for rounded corners by wrapping in nested div tags
+*/
+function modChrome_zero_rounded($module, &$params, &$attribs)
+{
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);
+$col_bootversion = 'col-md-';
+if ($template->params->get('type_of_layout') == 'bootstrap') {
+$bootstrap_version = $template->params->get('bootstrap_version');
+if ($bootstrap_version == '2'){
+$col_bootversion = 'span-';
+}
+if ($bootstrap_version == '3'){
+$col_bootversion = 'col-md-';
+}
+if ($bootstrap_version == '4'){
+$col_bootversion = 'col-md-';
+}
+}
+$bootstrapSize  = (int) $params->get('bootstrap_size', 0);
+$moduleClass    = $bootstrapSize !== 0 ? ' '.$col_bootversion . $bootstrapSize : '';
+if ($template->params->get('type_of_layout') == 'custom') {
+$col_module_width = ' style="float:left; width:'.(100/12*$bootstrapSize).'%;"';
+}
+else{
+$col_module_width = '';
+}
+if (!empty ($module->content)) :
+?>
+<div class="module<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width; ?>>
+<div>
+  <div>
+    <div>
+      <?php if ((bool) $module->showtitle) : ?>
+      <h3>
+        <?php echo $module->title; ?>
+      </h3>
+      <?php endif; ?>
+      <?php echo $module->content; ?>
     </div>
   </div>
-</section>
-<?php endif; ?>
-<?php if ($this->countModules('bellow5')) : ?>
-<section class="bellow-c">
-  <div class="container">
-    <div class="row">
-    <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
-     </div>
-    </div>        
-</section>
-<?php endif; ?>
-<footer class="pm-footer">
-  <?php if ($this->countModules('inner-footer1')) : ?>
-  <div class="inner-footer-a">
-    <div class="container">
-     <div class="row">
-      <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
-     </div>
-    </div>        
-  </div>
-  <?php endif; ?>
-  <?php if ($this->countModules('inner-footer2') or $this->countModules('inner-footer3') or $this->countModules('inner-footer4')) : ?>
-  <div class="inner-footer-b">
-    <div class="container">
-     <div class="row">
-      <?php echo positions(array('inner-footer2' => 4, 'inner-footer3' => 4, 'inner-footer4' => 4), 'zero_xhtml'); ?>
-     </div>
-    </div>        
-  </div>
-  <?php endif; ?>
-  <?php if ($this->countModules('inner-footer5')) : ?>
-  <div class="inner-footer-c">
-    <div class="container">
-     <div class="row">
-      <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
-     </div>
-    </div>        
-  </div>
-  <?php endif; ?>
-  <jdoc:include type="modules" name="foooter" style="zero_none" />
-</footer>
-<jdoc:include type="modules" name="debug" />
-</body>
-</html>
-
-</html>
+</div>
+</div>
+<?php  endif;
+}
