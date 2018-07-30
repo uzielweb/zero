@@ -117,7 +117,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <section class="breadcrumbs">
       <div class="container">
         <div class="row">
-          <jdoc:include type="modules" name="breadcrumbs" style="xhtml" />
+          <jdoc:include type="modules" name="breadcrumbs" style="zero_xhtml" />
         </div>
       </div>
     </section>
@@ -137,7 +137,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php if ($this->countModules('left')): ?>
           <div class="side-left<?php echo $col_side_boot_width; ?>"
                <?php echo $col_side_style; ?>>
-          <jdoc:include type="modules" name="left" style="xhtml" />
+          <jdoc:include type="modules" name="left" style="zero_xhtml" />
         </div>
         <?php endif; ?>
         <div class="main-content<?php echo $col_middle_boot_width; ?>"
