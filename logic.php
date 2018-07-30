@@ -8,6 +8,10 @@ $active    = $app->getMenu()->getActive();
 $params    = $app->getParams();
 $pageclass = $params->get('pageclass_sfx');
 $tpath     = $this->baseurl.'/templates/'.$this->template;
+$jinput = JFactory::getApplication()->input;
+$option =  $jinput->get('option');
+$view = $jinput->get('view');
+$task= $jinput->get('task'); 
 // generator tag
 $this->setGenerator(null);
 
