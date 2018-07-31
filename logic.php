@@ -47,7 +47,7 @@ $doc->setHeadData($headData);
 //$doc->addStyleSheet($tpath.'/css/animate.css');
 //$doc->addStyleSheet($tpath.'/css/bootstrap.css');
 //$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
-//$doc->addStyleSheet($tpath.'/css/template.css');
+$doc->addStyleSheet($tpath.'/css/template.css');
 //$doc->addStyleSheet($tpath . '/css/custom.css');
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
