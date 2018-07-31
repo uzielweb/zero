@@ -47,7 +47,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <div class="container">
         <div class="row">
           <?php if (!empty($logo)) { ?>
-          <div class="logo col-md-3 col-6">
+          <div class="logo <?php echo $col_bootversion;?>3 col-6">
             <h1>
               <a href="<?php echo $this->baseurl; ?>">
                 <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -57,7 +57,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php } ?>
           
           <?php if ($this->countModules('login')) : ?>
-          <div class="login col-12 col-md-3 float-right ml-auto">
+          <div class="login col-12 <?php echo $col_bootversion;?>3 float-right ml-auto">
             <jdoc:include type="modules" name="login" style="zero_xhtml" />
           </div>
           <?php endif; ?>
