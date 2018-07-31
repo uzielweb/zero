@@ -55,20 +55,19 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
             </h1>
           </div>
           <?php } ?>
-          
+          <?php if ($this->countModules('menu')) : ?>
+          <div class="row menu-row">
+            <nav class="navigation col d-md-block d-none">
+              <jdoc:include type="modules" name="menu" style="zero_none" />
+            </nav>
+          </div>
+          <?php endif; ?>
           <?php if ($this->countModules('login')) : ?>
           <div class="login col-12 <?php echo $col_bootversion;?>3 float-right ml-auto">
             <jdoc:include type="modules" name="login" style="zero_xhtml" />
           </div>
           <?php endif; ?>
         </div>
-        <?php if ($this->countModules('menu')) : ?>
-        <div class="row menu-row">
-          <nav class="navigation col-12 d-md-block d-none">
-            <jdoc:include type="modules" name="menu" style="zero_none" />
-          </nav>
-        </div>
-        <?php endif; ?>
       </div>
     </header>
     <?php if ($this->countModules('slideshow')) : ?>
@@ -133,7 +132,8 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <jdoc:include type="modules" name="left" style="zero_xhtml" />
         </div>
         <?php endif; ?>
-        <div class="main-content<?php echo $col_middle_boot_width; ?>" <?php echo $col_middle_style; ?>>
+        <div class="main-content<?php echo $col_middle_boot_width; ?>" 
+             <?php echo $col_middle_style; ?>>
         <?php if ($this->countModules('inner-top1')) : ?>
         <div class="inner-top-a">
           <?php echo positions(array('inner-top1' => 12), 'zero_xhtml' ); ?>
