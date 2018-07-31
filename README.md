@@ -1,6 +1,9 @@
 # Zero
 Zero - Joomla Template - A very basic Joomla Template without any aditional CSS or JS with special positions codes
 
+## ADVISE
+It's included now a sample.php file with an example of a custom template. Please use the content of this sample to star a template, but you need to replace the code of inclusion in index.php to create a new custom template, at this way you can update this template without problems.
+
 ## HOW TO USE :
 
 ### For Bootstrap
