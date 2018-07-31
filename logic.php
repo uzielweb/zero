@@ -11,8 +11,17 @@ $jinput = JFactory::getApplication()->input;
 $option =  $jinput->get('option');
 $view = $jinput->get('view');
 $task= $jinput->get('task'); 
+$config                   = JFactory::getConfig();
+$col_side                 = $this->params->get('col_side');
+$footer_side              = $this->params->get('footer_side');
+$logo                     = $this->params->get('logo');
+$col_middle_style ='';
+$app =JFactory::getApplication('site');
+$template = $app->getTemplate(true);  
 // generator tag
 $this->setGenerator(null);
+//custom favicon
+$this->addFavicon( $this->baseurl.'/'.$template->params->get('favicon'));
 //unset scripts
 $headData = $doc->getHeadData();
 $scripts = $headData['scripts'];
@@ -40,13 +49,6 @@ $doc->addStyleSheet($tpath.'/css/bootstrap.css');
 $doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
 $doc->addStyleSheet($tpath.'/css/template.css');
 $doc->addStyleSheet($tpath . '/css/custom.css');
-$config                   = JFactory::getConfig();
-$col_side                 = $this->params->get('col_side');
-$footer_side              = $this->params->get('footer_side');
-$logo                     = $this->params->get('logo');
-$col_middle_style ='';
-$app =JFactory::getApplication('site');
-$template = $app->getTemplate(true);  
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 $col_bootversion = "";
