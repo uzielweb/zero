@@ -38,17 +38,17 @@ $scripts = $headData['scripts'];
 $headData['scripts'] = $scripts;
 $doc->setHeadData($headData);
 // JS
-$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
-$doc->addScript($tpath.'/js/bootstrap.min.js');
-$doc->addScript($tpath.'/js/fontawesome-all.min.js');
-$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
-$doc->addScript($tpath.'/js/popper.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.min.js');
+//$doc->addScript($tpath.'/js/fontawesome-all.min.js');
+//$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
+//$doc->addScript($tpath.'/js/popper.min.js');
 // CSS
-$doc->addStyleSheet($tpath.'/css/animate.css');
-$doc->addStyleSheet($tpath.'/css/bootstrap.css');
-$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
-$doc->addStyleSheet($tpath.'/css/template.css');
-$doc->addStyleSheet($tpath . '/css/custom.css');
+//$doc->addStyleSheet($tpath.'/css/animate.css');
+//$doc->addStyleSheet($tpath.'/css/bootstrap.css');
+//$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
+//$doc->addStyleSheet($tpath.'/css/template.css');
+//$doc->addStyleSheet($tpath . '/css/custom.css');
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
 $col_bootversion = "";
