@@ -11,5 +11,5 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 ?>
 <?php 
 //replace this code with sample.php content to create a new custom template.
-include_once JPAT_THEMES . '/' . $this->template . '/sample.php';
+include_once JPATH_THEMES . '/' . $this->template . '/sample.php';
 ?>
