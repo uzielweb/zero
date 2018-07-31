@@ -49,6 +49,7 @@ $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);  
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
+$col_bootversion = "";
 switch ($col_bootversion){
 case ($bootstrap_version == '2'):
 $col_bootversion = 'span';
@@ -77,6 +78,7 @@ $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);  
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
+$col_bootversion = "";
 switch ($col_bootversion){
 case ($bootstrap_version == '2'):
 $col_bootversion = 'span';
