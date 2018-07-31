@@ -51,7 +51,7 @@ $doc->addStyleSheet($tpath.'/css/template.css');
 //$doc->addStyleSheet($tpath . '/css/custom.css');
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
-$col_bootversion = "";
+$col_bootversion = 'col-md-';
 switch ($col_bootversion){
 case ($bootstrap_version == '2'):
 $col_bootversion = 'span';
@@ -62,8 +62,7 @@ break;
 case ($bootstrap_version == '4'):
 $col_bootversion = 'col-md-';
 break;
-default:
-$col_bootversion = 'col-md-';
+default: $col_bootversion = 'col-md-';
 }
 $col_side_boot_width = ' '.$col_bootversion.$col_side;
 // Default width - for one column
@@ -80,7 +79,7 @@ $app =JFactory::getApplication('site');
 $template = $app->getTemplate(true);  
 if ($template->params->get('type_of_layout') == 'bootstrap') {
 $bootstrap_version = $template->params->get('bootstrap_version');
-$col_bootversion = "";
+
 switch ($col_bootversion){
 case ($bootstrap_version == '2'):
 $col_bootversion = 'span';
