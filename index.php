@@ -72,8 +72,10 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </header>
     <?php if ($this->countModules('slideshow')) : ?>
     <section id="pm-slideshow" class="pm-slideshow">
+      <div class="container">
       <div class="row">
         <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
+      </div>
       </div>
     </section>
     <?php endif; ?>
