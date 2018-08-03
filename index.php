@@ -16,7 +16,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   </head>
   <body class="<?php echo $active->alias . ' page-'.str_replace('com_','',$option) .($pageclass? ' '.$pageclass : '').' page-'.$active->id;?>">
-    <header id="pm-header" class="pm-header">
+   <header id="pm-header" class="pm-header">
       <?php if ($this->countModules('above-header-top1') or $this->countModules('above-header-top2') or $this->countModules('above-header-top3')) : ?>
       <div id="pm-above-header-top" class="pm-above-header-top">
         <div class="container">
@@ -78,33 +78,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <jdoc:include type="message" />
-    <?php if ($this->countModules('above1')) : ?>
-    <section id="pm-above-a" class="pm-above-a">
-      <div class="container">
-        <div class="row">
-          <?php echo positions(array('above1' => 12), 'zero_xhtml'); ?>
-        </div>
-      </div>
-    </section>
-    <?php endif; ?>
-    <?php if ($this->countModules('above2') or $this->countModules('above3') or $this->countModules('above4')) : ?>
-    <section id="pm-above-b" class="pm-above-b">
-      <div class="container">
-        <div class="row">
-          <?php echo positions(array('above2' => 4, 'above3' => 4, 'above4' => 4), 'zero_xhtml'); ?>
-        </div>
-      </div>
-    </section>
-    <?php endif; ?>
-    <?php if ($this->countModules('above5')) : ?>
-    <section id="pm-above-c" class="pm-above-c">
-      <div class="container">
-        <div class="row">
-          <?php echo positions(array('above5' => 12), 'zero_xhtml'); ?>
-        </div>
-      </div>
-    </section>
-    <?php endif; ?>
+    
     <?php if ($this->countModules('breadcrumbs')): ?>
     <section id="pm-breadcrumbs" class="pm-breadcrumbs">
       <div class="container">
@@ -114,109 +88,177 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       </div>
     </section>
     <?php endif; ?>
+    <?php if ($this->countModules('above1')) : ?>
+    <section id="pm-above-a" class="pm-above-a">
+      <div class="container">
+        <div class="row">
+          <?php echo positions(array('above1' => 12), 'zero_xhtml'); ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
 
+    <?php if ($this->countModules('above2') or $this->countModules('above3') or $this->countModules('above4')) : ?>
+    <section id="pm-above-b" class="pm-above-b">
+      <div class="container">
+        <div class="row">
+          <?php echo positions(array('above2' => 4, 'above3' => 4, 'above4' => 4), 'zero_xhtml'); ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
+
+    <?php if ($this->countModules('above5')) : ?>
+    <section id="pm-above-c" class="pm-above-c">
+      <div class="container">
+        <div class="row">
+          <?php echo positions(array('above5' => 12), 'zero_xhtml'); ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
     <section id="pm-main-section" class="pm-main-section">
       <div class="container">
         <div class="row">
+
           <?php if ($this->countModules('left')): ?>
-          <div id="pm-side-left" class="pm-side-left<?php echo $col_side_boot_width; ?>"
+          <div id="pm-side-left" class="pm-side-left <?php echo $col_side_boot_width; ?>"
                <?php echo $col_side_style; ?>>
           <jdoc:include type="modules" name="left" style="zero_xhtml" />
-        </div>
+          </div>
         <?php endif; ?>
-        <div id="pm-main-content" class="pm-main-content<?php echo $col_middle_boot_width; ?>" <?php echo $col_middle_style; ?>>
-        <?php if ($this->countModules('inner-top1')) : ?>
-        <div id="pm-inner-top-a" class="pm-inner-top-a">
-          <?php echo positions(array('inner-top1' => 12), 'zero_xhtml' ); ?>
-        </div>
-        <?php endif; ?>
-        <?php if ($this->countModules('inner-top2') or $this->countModules('inner-top3') or $this->countModules('inner-top4')) : ?>
-        <div id="pm-inner-top-b" class="pm-inner-top-b">
-          <?php echo positions(array('inner-top2' => 4, 'inner-top3' => 4, 'inner-top4' => 4), 'zero_xhtml'); ?>
-        </div>
-        <?php endif; ?>
-        <jdoc:include type="component" />
-        <?php if ($this->countModules('inner-bottom1')) : ?>
-        <div id="pm-inner-bottom-a" class="pm-inner-bottom-a">
-          <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
-        </div>
-        <?php endif; ?>
-        <?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
-        <div id="pm-inner-bottom-b" class="pm-inner-bottom-b">
-          <?php echo positions(array('inner-bottom2' => 4, 'inner-bottom3' => 4, 'inner-bottom4' => 4), 'zero_xhtml'); ?>
-        </div>
-        <?php endif; ?>
-        <?php if ($this->countModules('inner-bottom5')) : ?>
-        <div id="pm-inner-bottom-c" class="pm-inner-bottom-c">
-          <?php echo positions(array('inner-bottom5' => 12), 'zero_xhtml'); ?>
-        </div>
-        <?php endif; ?>
-      </div>
-      <?php if ($this->countModules('right')): ?>
-      <div id="pm-side-right" class="pm-side-right<?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
-      <jdoc:include type="modules" name="right" style="xhtml" />
-      </div>
-    <?php endif; ?>
-    </div>
-  </div>
-</section>
-<?php if ($this->countModules('bellow1')) : ?>
-<section id="pm-bellow-a" class="pm-bellow-a">
-  <div class="container">
+        <div id="pm-main-content" class="pm-main-content <?php echo $col_middle_boot_width; ?>">
+          <?php if ($this->countModules('inner-top1')) : ?>
+          <div id="pm-inner-top-a" class="pm-inner-top-a">
+
+              <div class="row">
+                <?php echo positions(array('inner-top1' => 12), 'zero_xhtml'); ?>
+              </div>
+
+          </div>
+          <?php endif; ?>
+
+          <?php if ($this->countModules('inner-top2') or $this->countModules('inner-top3') or $this->countModules('inner-top4')) : ?>
+          <div id="pm-inner-top-b" class="pm-inner-top-b">
+
+              <div class="row">
+                <?php echo positions(array('inner-top2' => 4, 'inner-top3' => 4, 'inner-top4' => 4), 'zero_xhtml'); ?>
+              </div>
+
+          </div>
+          <?php endif; ?>
+
+          <?php if ($this->countModules('inner-top5')) : ?>
+          <div id="pm-inner-top-c" class="pm-inner-top-c">
+
+              <div class="row">
+                <?php echo positions(array('inner-top5' => 12), 'zero_xhtml'); ?>
+              </div>
+
+          </div>
+          <?php endif; ?>
+<div id="pm-main">
+  <jdoc:include type="component" />
+</div>
+<?php if ($this->countModules('inner-bottom1')) : ?>
+<div id="pm-inner-bottom-a" class="pm-inner-bottom-a">
+
     <div class="row">
-      <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
     </div>
-  </div>
-</section>
+
+</div>
 <?php endif; ?>
-<?php if ($this->countModules('bellow2') or $this->countModules('bellow3') or $this->countModules('bellow4')) : ?>
-<section id="pm-bellow-b" class="pm-bellow-b">
-  <div class="container">
+
+<?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
+<div id="pm-inner-bottom-b" class="pm-inner-bottom-b">
+
     <div class="row">
-      <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-bottom2' => 4, 'inner-bottom3' => 4, 'inner-bottom4' => 4), 'zero_xhtml'); ?>
     </div>
-  </div>
-</section>
+
+</div>
 <?php endif; ?>
-<?php if ($this->countModules('bellow5')) : ?>
-<section id="pm-bellow-c" class="pm-bellow-c">
-  <div class="container">
+
+<?php if ($this->countModules('inner-bottom5')) : ?>
+<div id="pm-inner-bottom-c" class="pm-inner-bottom-c">
+
     <div class="row">
-      <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
+      <?php echo positions(array('inner-bottom5' => 12), 'zero_xhtml'); ?>
     </div>
-  </div>
-</section>
+
+</div>
 <?php endif; ?>
-<footer id="pm-footer" class="pm-footer">
-  <?php if ($this->countModules('inner-footer1')) : ?>
-  <div id="pm-inner-footer-a" class="pm-inner-footer-a">
-    <div class="container">
-      <div class="row">
-        <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
+        </div>
+        <?php if ($this->countModules('right')): ?>
+        <div id="pm-side-right" class="pm-side-right <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
+          <jdoc:include type="modules" name="right" style="xhtml" />
+        </div>
+        <?php endif; ?>
+
+        </div>
       </div>
-    </div>
-  </div>
-  <?php endif; ?>
-  <?php if ($this->countModules('inner-footer2') or $this->countModules('inner-footer3') or $this->countModules('inner-footer4')) : ?>
-  <div id="pm-inner-footer-b" class="pm-inner-footer-b">
-    <div class="container">
-      <div class="row">
-        <?php echo positions(array('inner-footer2' => 4, 'inner-footer3' => 4, 'inner-footer4' => 4), 'zero_xhtml'); ?>
+    </section>
+
+        <?php if ($this->countModules('bellow1')) : ?>
+        <section id="pm-bellow-a" class="pm-bellow-a">
+          <div class="container">
+            <div class="row">
+              <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
+            </div>
+          </div>
+        </section>
+        <?php endif; ?>
+
+        <?php if ($this->countModules('bellow2') or $this->countModules('bellow3') or $this->countModules('bellow4')) : ?>
+        <section id="pm-bellow-b" class="pm-bellow-b">
+          <div class="container">
+            <div class="row">
+              <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
+            </div>
+          </div>
+        </section>
+        <?php endif; ?>
+
+        <?php if ($this->countModules('bellow5')) : ?>
+        <section id="pm-bellow-c" class="pm-bellow-c">
+          <div class="container">
+            <div class="row">
+              <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
+            </div>
+          </div>
+        </section>
+        <?php endif; ?>
+
+    <footer id="pm-footer" class="pm-footer">
+      <?php if ($this->countModules('inner-footer1')) : ?>
+      <div id="pm-inner-footer-a" class="pm-inner-footer-a">
+        <div class="container">
+          <div class="row">
+            <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <?php endif; ?>
-  <?php if ($this->countModules('inner-footer5')) : ?>
-  <div id="pm-inner-footer-c" class="pm-inner-footer-c">
-    <div class="container">
-      <div class="row">
-        <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
+      <?php endif; ?>
+      <?php if ($this->countModules('inner-footer2') or $this->countModules('inner-footer3') or $this->countModules('inner-footer4')) : ?>
+      <div id="pm-inner-footer-b" class="pm-inner-footer-b">
+        <div class="container">
+          <div class="row">
+            <?php echo positions(array('inner-footer2' => 4, 'inner-footer3' => 4, 'inner-footer4' => 4), 'zero_xhtml'); ?>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <?php endif; ?>
-  <jdoc:include type="modules" name="footer" style="zero_none" />
-</footer>
-<jdoc:include type="modules" name="debug" />
+      <?php endif; ?>
+      <?php if ($this->countModules('inner-footer5')) : ?>
+      <div id="pm-inner-footer-c" class="pm-inner-footer-c">
+        <div class="container">
+          <div class="row">
+            <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+      <jdoc:include type="modules" name="footer" style="zero_none" />
+    </footer>
+    <jdoc:include type="modules" name="debug" />
 </body>
-</html>
