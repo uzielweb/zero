@@ -126,7 +126,11 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php if ($this->countModules('left')): ?>
           <div id="pm-side-left" class="pm-side-left <?php echo $col_side_boot_width; ?>"
                <?php echo $col_side_style; ?>>
-          <jdoc:include type="modules" name="left" style="zero_xhtml" />
+        
+    <div class="row">
+      <?php echo positions(array('left' => 12), 'zero_xhtml'); ?>
+    </div>
+
           </div>
         <?php endif; ?>
         <div id="pm-main-content" class="pm-main-content <?php echo $col_middle_boot_width; ?>">
@@ -194,7 +198,11 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php if ($this->countModules('right')): ?>
         <div id="pm-side-right" class="pm-side-right <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
-          <jdoc:include type="modules" name="right" style="xhtml" />
+          
+    <div class="row">
+      <?php echo positions(array('right' => 12), 'zero_xhtml'); ?>
+    </div>
+
         </div>
         <?php endif; ?>
 
