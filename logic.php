@@ -44,6 +44,7 @@ $doc->setHeadData($headData);
 //$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
 //$doc->addScript($tpath.'/js/popper.min.js');
 // CSS
+$doc->addStyleSheet($this->baseurl.'/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath.'/css/animate.css');
 //$doc->addStyleSheet($tpath.'/css/bootstrap.css');
 //$doc->addStyleSheet($tpath.'/css/fontawesome-all.min.css');
