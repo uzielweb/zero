@@ -2,9 +2,8 @@
 Zero - Joomla Template - A very basic Joomla Template without any aditional CSS or JS, only the basic, with special positions codes
 
 ## ADVISE
-It's included now a sample.php file with an example of a custom template. Please use the content of this sample to star a template, but you need to replace the code of inclusion in index.php to create a new custom template, at this way you can update this template without problems.
-
-## HOW TO USE :
+It's included now one index.php file with an example of a custom template. Please use the content of this sample to start a template.
+PAY ATTENTION on upgrades. Backup forever.
 
 ### For Bootstrap
 Use the grid divisions by 12 in the width keys like this: 1,2,3,4,5,6,7,8,9,10,11,12
