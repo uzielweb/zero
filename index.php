@@ -15,7 +15,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <jdoc:include type="head" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   </head>
-  <body class="<?php echo $active->alias . ' page-'.str_replace('com_','',$option) .($pageclass? ' '.$pageclass : '').' page-'.$active->id;?>">
+  <body class="<?php echo $active->alias . ' page-'.str_replace('com_','',$option) . ' view-'.$view). ' task-'.$task).($pageclass? ' '.$pageclass : '').' itemid-'.$active->id;?>">
    <header id="pm-header" class="pm-header">
       <?php if ($this->countModules('above-header-top1') or $this->countModules('above-header-top2') or $this->countModules('above-header-top3')) : ?>
       <div id="pm-above-header-top" class="pm-above-header-top">
