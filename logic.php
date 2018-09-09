@@ -37,12 +37,14 @@ $scripts = $headData['scripts'];
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 $headData['scripts'] = $scripts;
 $doc->setHeadData($headData);
+
 // JS
-//$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
-//$doc->addScript($tpath.'/js/bootstrap.min.js');
-//$doc->addScript($tpath.'/js/fontawesome-all.min.js');
 //$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
 //$doc->addScript($tpath.'/js/popper.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.min.js');
+//$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
+//$doc->addScript($tpath.'/js/fontawesome-all.min.js');
+
 // CSS
 $doc->addStyleSheet($this->baseurl.'/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath.'/css/animate.css');
