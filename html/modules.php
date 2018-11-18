@@ -43,7 +43,7 @@ $col_module_width = '';
 $headerClass    = $params->get('header_class');
 $headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
-<<?php echo $moduleTag; ?> class="moduletable<?php echo $module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<<?php echo $moduleTag; ?> class="moduletable <?php echo $module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) :?>
 <<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
 </<?php echo $headerTag; ?>>
@@ -86,7 +86,7 @@ $col_module_width = '';
 $headerClass    = $params->get('header_class');
 $headerClass    = !empty($headerClass) ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
-<<?php echo $moduleTag; ?> class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<<?php echo $moduleTag; ?> class="moduletable <?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) :?>
 <<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
 </<?php echo $headerTag; ?>>
@@ -125,7 +125,7 @@ $col_module_width = '';
 }
 if (!empty ($module->content)) :
 ?>
-<table cellpadding="0" cellspacing="0" class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8'); ?><?php echo $moduleClass;?>"<?php echo $col_module_width; ?>>
+<table cellpadding="0" cellspacing="0" class="moduletable <?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8'); ?><?php echo $moduleClass;?>"<?php echo $col_module_width; ?>>
 <?php if ((bool) $module->showtitle) : ?>
 <tr>
   <th>
@@ -192,7 +192,7 @@ $col_module_width = '';
 $headerClass    = $params->get('header_class');
 $headerClass    = $headerClass ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 if (!empty ($module->content)) : ?>
-<<?php echo $moduleTag; ?> class="moduletable<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
+<<?php echo $moduleTag; ?> class="moduletable <?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width?>>
 <?php if ((bool) $module->showtitle) : ?>
 <<?php echo $headerTag . $headerClass . '>' . $module->title; ?>
 </<?php echo $headerTag; ?>>
@@ -231,7 +231,7 @@ $col_module_width = '';
 }
 if (!empty ($module->content)) :
 ?>
-<div class="module<?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width; ?>>
+<div class="module <?php echo " module-".$module->name." ".$module->name."-".$module->id." ".$module->name."-".$module->position.htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>"<?php echo $col_module_width; ?>>
 <div>
   <div>
     <div>

@@ -47,7 +47,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <div class="container">
         <div class="row">
           <?php if (!empty($logo)) { ?>
-          <div id="pm-logo" class="pm-logo <?php echo $col_bootversion;?>3 col-6">
+          <div id="pm-logo" class="pm-logo <?php echo ($type_of_layout = 'custom' ? '' : $col_bootversion.'3 col-6');?>"<?php echo ($type_of_layout = 'custom' ? ' style="width: 33.33%"' : '');?>>
             <h1>
               <a href="<?php echo $this->baseurl; ?>">
                 <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -80,7 +80,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <jdoc:include type="message" />
-    
+
     <?php if ($this->countModules('breadcrumbs')): ?>
     <section id="pm-breadcrumbs" class="pm-breadcrumbs">
       <div class="container">
@@ -126,7 +126,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
           <?php if ($this->countModules('left')): ?>
           <div id="pm-side-left" class="pm-side-left <?php echo $col_side_boot_width; ?>"
                <?php echo $col_side_style; ?>>
-        
+
     <div class="row">
       <?php echo positions(array('left' => 12), 'zero_xhtml'); ?>
     </div>
@@ -198,7 +198,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php if ($this->countModules('right')): ?>
         <div id="pm-side-right" class="pm-side-right <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
-          
+
     <div class="row">
       <?php echo positions(array('right' => 12), 'zero_xhtml'); ?>
     </div>

@@ -1,12 +1,34 @@
 /*CSS EXAMPLE*/
 /*
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Roboto+Condensed');
-body{
-    font-family: "Open Sans";
-    font-size: 13px;
+body, html{
     padding: 0;
     margin: 0;
     overflow-x: hidden;
+}
+#pm-logo {
+	padding: 5px 0;
+}
+.container{
+  width: 100%;
+  max-width: calc(100% - 30px);
+  display: table;
+  margin: 0 auto;
+}
+.row{
+  display: flex;
+}
+input{
+  border: 0px;
+  padding: 10px;
+  background: #fdfdfd;
+}
+body{
+    font-family: "Open Sans";
+  	font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6{
+  margin: 0px;
 }
 *{
     box-sizing: border-box;
@@ -30,4 +52,5 @@ body{
     float: right;
     display: table-cell;
 }
+
 */
