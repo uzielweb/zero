@@ -39,7 +39,7 @@ $headData['scripts'] = $scripts;
 $doc->setHeadData($headData);
 
 // JS
-//$doc->addScript($tpath.'/js/query-3.2.1.slim.min.js');
+//$doc->addScript($tpath.'/js/jquery-3.2.1.slim.min.js');
 //$doc->addScript($tpath.'/js/popper.min.js');
 //$doc->addScript($tpath.'/js/bootstrap.min.js');
 //$doc->addScript($tpath.'/js/bootstrap.bundle.min.js');
