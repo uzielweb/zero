@@ -47,7 +47,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
       <div class="container">
         <div class="row">
           <?php if (!empty($logo)) { ?>
-          <div id="pm-logo" class="pm-logo <?php echo ($type_of_layout = 'custom' ? '' : $col_bootversion.'3 col-6');?>"<?php echo ($type_of_layout = 'custom' ? ' style="width: 33.33%"' : '');?>>
+          <div id="pm-logo" class="pm-logo <?php echo ($type_of_layout = 'custom' ? $col_bootversion.'3 col-6' : '');?>"<?php echo ($type_of_layout = 'custom' ? '' : ' style="width: 33.33%"');?>>
             <h1>
               <a href="<?php echo $this->baseurl; ?>">
                 <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -73,10 +73,10 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <?php if ($this->countModules('slideshow')) : ?>
     <section id="pm-slideshow" class="pm-slideshow">
       <div class="container">
-      <div class="row">
-        <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
-      </div>
-      </div>
+        <div class="row">
+          <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
+        </div>
+       </div>     
     </section>
     <?php endif; ?>
     <jdoc:include type="message" />
