@@ -2,7 +2,7 @@
 <update>
 <name>Zero - Joomla Template</name>
 <element>zero</element>
-<version>1.3.5</version>
+<version>1.4.0</version>
 <type>template</type>
 <tags>
 <tag>stable</tag>
@@ -16,7 +16,7 @@ https://github.com/uzielweb/zero/archive/zero_template_v1.3.5.zip
 </downloadurl>
 </downloads>
 <description>
-Zero - Joomla Template - A very basic Joomla Template without any CSS or JS with special positions codes
+Zero - Joomla Template - A very basic Joomla Template without any uncecessary CSS or JS with special positions codes
 </description>
 <targetplatform name="joomla" version="3.*"/>
 </update>
