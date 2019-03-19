@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <field name="section" type="list" label="SECTION">
+        <option value="header">header</option>
+        <option value="slideshow">slideshow</option>
+        <option value="main_section">main_section</option>
+        <option value="breadcrumbs">main_section</option>
+        <option value="above-a">above-a</option>
+        <option value="above-b">above-b</option>
+        <option value="above-c">above-</option>
+         <option value="bellow-a">bellow-a</option>
+        <option value="bellow-b">bellow-b</option>
+        <option value="bellow-c">bellow-c</option>
+        <option value="innertop-a">innertop-a</option>
+        <option value="innertop-b">innertop-b</option>
+        <option value="innertop-c">innertop-c</option>
+        <option value="innerbottom-a">innerbottom-a</option>
+        <option value="innerbottom-b">innerbottom-b</option>
+        <option value="innerbottom-c">innerbottom-c</option>
+        <option value="innerfooter-a">innerfooter-a</option>
+        <option value="innerfooter-b">innerfooter-b</option>
+        <option value="innerfooter-c">innerfooter-c</option>
+        <option value="innerfooter-d">innerfooter-c</option>
+        
+    </field>
+    <field name="section_background" type="media" label="BACKGROUND" />
+    <field name="section_background_color" type="color" label="BGCOLOR" />
+    <field name="section_padding" type="text"  default="30px 0" label="PADDING" />
+    <field name="section_margin" type="text"  default="30px 0" label="MARGIN" />
+</form>
+  
