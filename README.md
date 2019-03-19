@@ -16,6 +16,8 @@ echo positions(array('menu' => 4, 'login' => 6, 'other-position' => 2), 'block')
 If You wish to use with custom percentages use the code like this bellow
 
 echo positions(array('menu' => 60, 'login' => 20, 'other-position' => 20), 'block');
+or this
+echo positions(array('menu' => 8, 'login' => 2, 'other-position' => 2), 'block');
 
 ### For equal positions widths in bootstrap or no-bootstrap modes
 If you wish to use with equal widths FOREVER (in bootstrap or custom mode) use the code like this bellow
