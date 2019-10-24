@@ -76,7 +76,6 @@ $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath . '/css/bootstrap.css');
 //$doc->addStyleSheet($tpath . '/css/fontawesome.css');
 //$doc->addStyleSheet($tpath . '/css/animate.css');
-//$doc->addStyleSheet($tpath . '/css/globo_fonts.css');
 $doc->addStyleSheet($tpath . '/css/template.css');
 
 //$doc->addStyleSheet($tpath . '/css/custom.css');
