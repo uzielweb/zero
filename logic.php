@@ -15,6 +15,7 @@ $config           = JFactory::getConfig();
 $col_side         = $this->params->get('col_side');
 $footer_side      = $this->params->get('footer_side');
 $logo             = $this->params->get('logo');
+$type_of_layout = $template->params->get('type_of_layout');
 $col_middle_style = '';
 $app              = JFactory::getApplication('site');
 $template         = $app->getTemplate(true);
