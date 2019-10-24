@@ -75,7 +75,7 @@
 			<fieldset name="advanced">
 				<field name="logo" type="media" label="TPL_LOGO_LABEL" default="images/logo.png" description="TPL_LOGO_DESC" />
 				<field name="favicon" type="media" label="TPL_FAVICON_LABEL" default="images/favicon.png" description="TPL_FAVICON_DESC" />
-				<field name="type_of_layout" type="list" label="TPL_TYPE_OF_LAYOUT_LABEL" default="custom" description="TPL_TYPE_OF_LAYOUT_DESC">
+				<field name="type_of_layout" type="list" label="TPL_TYPE_OF_LAYOUT_LABEL" default="bootstrap" description="TPL_TYPE_OF_LAYOUT_DESC">
 					<option value="bootstrap">TPL_BOOTSTRAP</option>
 					<option value="custom">TPL_CUSTOM</option>
 				</field>
