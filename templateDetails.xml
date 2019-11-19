@@ -102,9 +102,8 @@
 			</fieldset>
 		</fields>
 	</config>
-	<updateservers>
-		<server type="extension" pirority="1" name="ZERO - Template">
-			<![CDATA[https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml]]>
-		</server>
-	</updateservers>
+	 <updateservers>
+        <server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>
+    </updateservers>
+
 </extension>
