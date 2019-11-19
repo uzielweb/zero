@@ -15,10 +15,12 @@ $config           = JFactory::getConfig();
 $col_side         = $this->params->get('col_side');
 $footer_side      = $this->params->get('footer_side');
 $logo             = $this->params->get('logo');
-$type_of_layout = $template->params->get('type_of_layout');
 $col_middle_style = '';
 $app              = JFactory::getApplication('site');
 $template         = $app->getTemplate(true);
+$type_of_layout  = $this->params->get('type_of_layout');
+$bootstrap_version = $template->params->get('bootstrap_version');
+
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections');
 foreach($sections as $skey=>$item){ 
@@ -77,6 +79,7 @@ $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath . '/css/bootstrap.css');
 //$doc->addStyleSheet($tpath . '/css/fontawesome.css');
 //$doc->addStyleSheet($tpath . '/css/animate.css');
+
 $doc->addStyleSheet($tpath . '/css/template.css');
 
 //$doc->addStyleSheet($tpath . '/css/custom.css');
