@@ -70,7 +70,10 @@ $doc->setHeadData($headData);
 $doc->addScript($tpath . '/js/main.js');
 
 //$doc->addScript($tpath.'/js/fontawesome.min.js');
-
+//file modification time 
+$templatecsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/template.css'));
+$customcsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/custom.css'));
+$responsivecsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/responsive.css'));
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath . '/css/bootstrap.css');
