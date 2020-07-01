@@ -32,7 +32,7 @@ foreach($sections as $skey=>$item){
   $item_margin = $item->section_margin == '' ? '' : 'margin: '.$item->section_margin.';';
   
   $doc->addStyleDeclaration('
-      #tppa-'.$item->section.'{'
+      #zero-'.$item->section.'{'
       .$item_background
       .$item_background_color
       .$item_padding
