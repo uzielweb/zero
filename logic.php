@@ -46,7 +46,12 @@ foreach($sections as $skey=>$item){
 $this->setGenerator(null);
 //custom favicon
 $this->addFavicon($this->baseurl . '/' . $template->params->get('favicon'));
+// loading default bootstrap and jquery from Joomla to apply changes
+JHtml::_('bootstrap.framework');
+JHtml::_('jquery.framework');
 //unset scripts
+
+
 $headData = $doc->getHeadData();
 $scripts  = $headData['scripts'];
 //scripts to remove, customise as required like mootools-core.js, mootools-more.js, jquery.min.js,jquery-noconflict.js,bootstrap.min.js,jquery-migrate.min.js
