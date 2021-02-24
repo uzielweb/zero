@@ -30,7 +30,6 @@ foreach($sections as $skey=>$item){
   $item_background_color = $item->section_background_color == '' ? '' : 'background-color: '.$item->section_background_color.';';
   $item_padding = $item->section_padding == '' ? '' : 'padding: '.$item->section_padding.';';
   $item_margin = $item->section_margin == '' ? '' : 'margin: '.$item->section_margin.';';
-  
   $doc->addStyleDeclaration('
       #zero-'.$item->section.'{'
       .$item_background
@@ -40,18 +39,14 @@ foreach($sections as $skey=>$item){
   }
   ');
 }
-
-
 // generator tag
 $this->setGenerator(null);
 //custom favicon
-$this->addFavicon($this->baseurl . '/' . $template->params->get('favicon'));
+$this->addFavicon($this->baseurl . '/' . $template->params->get('favicon'), $tpath.'images/favicon.ico');
 // loading default bootstrap and jquery from Joomla to apply changes
 JHtml::_('bootstrap.framework');
 JHtml::_('jquery.framework');
 //unset scripts
-
-
 $headData = $doc->getHeadData();
 $scripts  = $headData['scripts'];
 //scripts to remove, customise as required like mootools-core.js, mootools-more.js, jquery.min.js,jquery-noconflict.js,bootstrap.min.js,jquery-migrate.min.js
@@ -62,18 +57,16 @@ $scripts  = $headData['scripts'];
 //unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
+unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 $headData['scripts'] = $scripts;
 $doc->setHeadData($headData);
-
 // JS
 //$doc->addScript($tpath.'/js/jquery-3.3.1.min.js');
 //$doc->addScript($tpath . '/js/popper.min.js');
 //$doc->addScript($tpath . '/js/bootstrap.min.js');
 //$doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
 $doc->addScript($tpath . '/js/main.js');
-
 //$doc->addScript($tpath.'/js/fontawesome.min.js');
 //file modification time 
 $templatecsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/template.css'));
@@ -84,15 +77,12 @@ $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath . '/css/bootstrap.css');
 //$doc->addStyleSheet($tpath . '/css/fontawesome.css');
 //$doc->addStyleSheet($tpath . '/css/animate.css');
-$doc->addStyleSheet($tpath . '/css/template.css');
-
-//$doc->addStyleSheet($tpath . '/css/custom.css');
-//$doc->addStyleSheet($tpath . '/css/responsive.css');
-
-
+$doc->addStyleSheet($tpath . '/css/template.css?v='.$templatecsstime);
+//$doc->addStyleSheet($tpath . '/css/custom.css?v='.$customcsstime);
+//$doc->addStyleSheet($tpath . '/css/responsive.css?v='.$responsivecsstime);
 if ($template->params->get('type_of_layout') == 'bootstrap') {
     $bootstrap_version = $template->params->get('bootstrap_version');
-    $col_bootversion   = '';
+    $col_bootversion   = 'col-md-';
     if ($bootstrap_version == '2') {
         $col_bootversion = 'span-';
     }
@@ -112,15 +102,13 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
         $col_middle_boot_width = ' ' . $col_bootversion . (12 - $col_side);
     }
 }
-
-
     function positions($position, $style)
     {
         $app      = JFactory::getApplication('site');
         $template = $app->getTemplate(true);
         if ($template->params->get('type_of_layout') == 'bootstrap') {
             $bootstrap_version = $template->params->get('bootstrap_version');
-            $col_bootversion   = '';
+            $col_bootversion   = 'col-md-';
             if ($bootstrap_version == '2') {
                 $col_bootversion = 'span-';
             }
@@ -208,7 +196,6 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
             }
         }
     }
-
 // For Bootstrap use the grid divisions by 12 in the width keys like this: 1,2,3,4,5,6,7,8,9,10,11
 // Then use the code like this bellow
 // echo positions(array('menu' => 4, 'login' => 6, 'nada' => 2), 'block');

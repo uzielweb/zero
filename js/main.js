@@ -1,7 +1,7 @@
 jQuery(function($) {
 
     //caches a jQuery object containing the header element
-    var header = $("#tppa-header");
+    var header = $(".header");
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
 

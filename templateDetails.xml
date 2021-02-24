@@ -7,9 +7,9 @@
 	<authorUrl>https://www.pontomega.com.br</authorUrl>
 	<copyright>Ponto Mega - 2018</copyright>
 	<license>GNU/GPL</license>
-	<version>3.2</version>
+	<version>3.3</version>
 	<description>
-		<![CDATA[ <h1>ZERO Joomla Template - version 3.1</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
+		<![CDATA[ <h1>ZERO Joomla Template - version 3.3</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
 	</description>
 	<updateservers>
         <server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>

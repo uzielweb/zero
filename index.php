@@ -26,7 +26,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 <jdoc:include type="modules" name="menu" />
 </div>
 
-    <header id="zero-header" class="zero-header">
+    <header id="zero-header" class="zero-header header">
         <?php if ($this->countModules('above-header-top1') or $this->countModules('above-header-top2') or $this->countModules('above-header-top3')) : ?>
         <div id="zero-above-header-top" class="zero-above-header-top">
             <div class="container">
