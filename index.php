@@ -58,7 +58,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
             <div class="row">
                 <?php if (!empty($logo)) { ?>
                 <div id="zero-logo"
-                    class="zero-logo <?php echo ($type_of_layout == 'bootstrap' ? '' : $col_bootversion.'3 col-6');?>"
+                    class="zero-logo <?php echo ($type_of_layout == 'bootstrap' ? '' : $default_column.'3 col-6');?>"
                     <?php echo ($type_of_layout == 'custom' ? ' style="width: 25%"' : '');?>>
                     <h1>
                         <a href="<?php echo $this->baseurl; ?>">
@@ -80,7 +80,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
 
                 <?php endif; ?>
                 <?php if ($this->countModules('login')) : ?>
-                <div id="zero-login" class="zero-login col-12 <?php echo $col_bootversion;?>3 float-right ml-auto">
+                <div id="zero-login" class="zero-login col-12 <?php echo $default_column;?>3 float-right ml-auto">
                     <jdoc:include type="modules" name="login" style="zero_xhtml" />
                 </div>
                 <?php endif; ?>

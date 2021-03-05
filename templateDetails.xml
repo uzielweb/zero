@@ -7,9 +7,9 @@
 	<authorUrl>https://www.pontomega.com.br</authorUrl>
 	<copyright>Ponto Mega - 2018</copyright>
 	<license>GNU/GPL</license>
-	<version>3.3</version>
+	<version>3.4</version>
 	<description>
-		<![CDATA[ <h1>ZERO Joomla Template - version 3.3</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
+		<![CDATA[ <h1>ZERO Joomla Template - version 3.4</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
 	</description>
 	<updateservers>
         <server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>
@@ -82,10 +82,11 @@
 					<option value="bootstrap">TPL_BOOTSTRAP</option>
 					<option value="custom">TPL_CUSTOM</option>
 				</field>
-				<field name="bootstrap_version" type="list" label="TPL_BOOSTRAP_VERSION_LABEL" default="4" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_VERSION_DESC">
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+				<field name="default_column" type="list" label="TPL_BOOSTRAP_LIMIT_LABEL" default="col-md-" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_LIMIT_DESC">
+					<option value="col-xl-">XL</option>
+					<option value="col-lg-">LG</option>
+					<option value="col-md-">MD</option>
+					<option value="col-sm-">SM</option>
 				</field>
 				<field name="proportional_equal" type="list" label="TPL_PROPORTIONAL_LABEL" default="proportional" description="TPL_PROPORTIONAL_DESC">
 					<option value="proportional">TPL_PROPORTIONAL</option>

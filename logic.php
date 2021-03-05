@@ -81,50 +81,28 @@ $doc->addStyleSheet($tpath . '/css/template.css?v='.$templatecsstime);
 //$doc->addStyleSheet($tpath . '/css/custom.css?v='.$customcsstime);
 //$doc->addStyleSheet($tpath . '/css/responsive.css?v='.$responsivecsstime);
 if ($template->params->get('type_of_layout') == 'bootstrap') {
-    $bootstrap_version = $template->params->get('bootstrap_version');
-    $col_bootversion   = 'col-md-';
-    if ($bootstrap_version == '2') {
-        $col_bootversion = 'span-';
-    }
-    if ($bootstrap_version == '3') {
-        $col_bootversion = 'col-md-';
-    }
-    if ($bootstrap_version == '4') {
-        $col_bootversion = 'col-md-';
-    }
-    $col_side_boot_width   = ' ' . $col_bootversion . $col_side;
+    $default_column = $template->params->get('default_column', 'col-md-');
+    $col_side_boot_width   = ' ' . $default_column . $col_side;
     // Default width - for one column
-    $col_middle_boot_width = ' ' . $col_bootversion . '12';
+    $col_middle_boot_width = ' ' . $default_column . '12';
     if (($this->countModules('left')) and ($this->countModules('right'))) {
-        $col_middle_boot_width = ' ' . $col_bootversion . (12 - (2 * $col_side));
+        $col_middle_boot_width = ' ' . $default_column . (12 - (2 * $col_side));
     }
     if ((($this->countModules('left')) and !($this->countModules('right'))) or (!($this->countModules('left')) and ($this->countModules('right')))) {
-        $col_middle_boot_width = ' ' . $col_bootversion . (12 - $col_side);
+        $col_middle_boot_width = ' ' . $default_column . (12 - $col_side);
     }
 }
     function positions($position, $style)
     {
         $app      = JFactory::getApplication('site');
         $template = $app->getTemplate(true);
-        if ($template->params->get('type_of_layout') == 'bootstrap') {
-            $bootstrap_version = $template->params->get('bootstrap_version');
-            $col_bootversion   = 'col-md-';
-            if ($bootstrap_version == '2') {
-                $col_bootversion = 'span-';
-            }
-            if ($bootstrap_version == '3') {
-                $col_bootversion = 'col-md-';
-            }
-            if ($bootstrap_version == '4') {
-                $col_bootversion = 'col-md-';
-            }
-        }
+        $default_column   = $template->params->get('default_column ','col-md-');
         // Default width - for one column
-        $col_middle_boot_width = $col_bootversion . '12';
+        $col_middle_boot_width = $default_column . '12';
         // This gets new value, if there is more than one active position
         // For Bootstrap use
         if (JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") {
-            $width = $col_bootversion . '12';
+            $width = $default_column . '12';
         }
         // For Custom width use
         if (JFactory::getDocument()->params->get('type_of_layout') == "custom") {
@@ -146,7 +124,7 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
         if ($countOfActivePositions > 0) {
             // For Bootstrap with equal widths use
             if ((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
-                $width = $col_bootversion . (12 / $countOfActivePositions);
+                $width = $default_column . (12 / $countOfActivePositions);
             }
             // For Custom with equal widths use
             if ((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
@@ -164,7 +142,7 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
                 // For Bootstrap with proportional widths add / uncomment the $width bellow
                 // For Bootstrap with equal widths remove / comment the $width bellow
                 if ((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")) {
-                    $width = $col_bootversion . round($value * 12 / $totalWidth);
+                    $width = $default_column . round($value * 12 / $totalWidth);
                 }
                 if ((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
                     // For Bootstrap with proportional widths remove / comment the IF bellow
