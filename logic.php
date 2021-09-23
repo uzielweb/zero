@@ -4,7 +4,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
-
 $app              = Factory::getApplication();
 $doc              = Factory::getDocument();
 $menu             = $app->getMenu();
@@ -23,6 +22,7 @@ $logo             = $this->params->get('logo');
 $col_middle_style = '';
 $app              = Factory::getApplication('site');
 $template         = $app->getTemplate(true);
+$defaultmode    = $template->params->get('type_of_layout', 'bootstrap');
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
 if ($sections) {
@@ -62,30 +62,50 @@ $scripts  = $headData['scripts'];
 //unset($scripts[JUri::root(true) . '/media/system/js/core.js']);
 //unset($scripts[JUri::root(true) . '/media/system/js/modal.js']);
 //unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
+
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
 unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
+
 $headData['scripts'] = $scripts;
+
 $doc->setHeadData($headData);
 // JS
-//$doc->addScript($tpath.'/js/jquery-3.3.1.min.js');
-//$doc->addScript($tpath . '/js/popper.min.js');
-//$doc->addScript($tpath . '/js/bootstrap.min.js');
-//$doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
+ // if load jquery from template, remove jquery from Joomla
+if ($this->params->get('jquery_from_template', 0) == 1) {
+    $doc->addScript($tpath.'/js/jquery-3.3.1.min.js');
+    unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
+}
+
+// if ($defaultmode == 'bootstrap') {
+//     // if load bootstrap from template   
+//     $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
+// }
 $doc->addScript($tpath . '/js/main.js');
 //$doc->addScript($tpath.'/js/fontawesome.min.js');
-
-
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
-//$doc->addStyleSheet($tpath . '/css/bootstrap.css');
-//$doc->addStyleSheet($tpath . '/css/fontawesome.css');
-//$doc->addStyleSheet($tpath . '/css/animate.css');
+// if ($defaultmode == 'bootstrap') {
+// $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
+// }
+// if load fontawesome from template
+if ($params->get('fontawesome_from_template', 0) == 1){
+$doc->addStyleSheet($tpath . '/css/all.min.css');
+}
+// load animate css from template
+if ($params->get('animate_css_from_template', 0) == 1) {
+$doc->addStyleSheet($tpath . '/css/animate.css');
+}
 $doc->addStyleSheet($tpath . '/css/template.css');
-//$doc->addStyleSheet($tpath . '/css/custom.css');
-//$doc->addStyleSheet($tpath . '/css/responsive.css';
-if ($template->params->get('type_of_layout') == 'bootstrap') {
+// check if custom.css exists
+if (file_exists($tpath . '/css/custom.css')) {
+    $doc->addStyleSheet($tpath . '/css/custom.css');
+}
+// check if responsive.css exists
+if (file_exists($tpath . '/css/responsive.css')) {
+    $doc->addStyleSheet($tpath . '/css/responsive.css');
+}
+if ($defaultmode == 'bootstrap') {
     $default_column = $template->params->get('default_column', 'col-md-');
     $col_side_boot_width   = ' ' . $default_column . $col_side;
     // Default width - for one column
@@ -106,11 +126,11 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
         $col_middle_boot_width = $default_column . '12';
         // This gets new value, if there is more than one active position
         // For Bootstrap use
-        if (Factory::getDocument()->params->get('type_of_layout') == "bootstrap") {
+        if ($defaultmode == "bootstrap") {
             $width = $default_column . '12';
         }
         // For Custom width use
-        if (Factory::getDocument()->params->get('type_of_layout') == "custom") {
+        if ($defaultmode == "custom") {
             $width = "100";
         }
         // Number of positions, which have modules

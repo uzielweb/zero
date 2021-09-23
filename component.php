@@ -1,38 +1,27 @@
-<?php 
+<?php
 /**
  * @package     Joomla.Site
- * @subpackage  Templates.zero
+ * @subpackage  Template.system
  *
- * @copyright   Copyright (C) 2018 Uziel Almeida Oliveira via Ponto Mega, Inc. All rights reserved.
+ * @copyright   (C) 2005 Open Source Matters, Inc. <https://www.joomla.org>
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-// variables
-$doc = JFactory::getDocument();
-$tpath = $this->baseurl.'/templates/'.$this->template;
+/** @var Joomla\CMS\Document\HtmlDocument $this */
 
-// generator tag
-$this->setGenerator(null);
+// Styles
+$this->getWebAssetManager()->registerAndUseStyle('template.system.general', 'templates/system/css/general.css');
 
-// load sheets and scripts
-$doc->addStyleSheet($tpath.'/css/print.css?v=1');
-
-?><!doctype html>
-
-<html lang="<?php echo $this->language; ?>">
-
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
-    <jdoc:include type="head" />
+	<jdoc:include type="head" />
 </head>
-
-<body id="print">
-    <div id="overall">
-        <jdoc:include type="message" />
-        <jdoc:include type="component" />
-    </div>
-    <?php if ($_GET['print'] == '1') echo '<script type="text/javascript">window.print();</script>'; ?>
+<body class="contentpane">
+	<jdoc:include type="message" />
+	<jdoc:include type="component" />
 </body>
-
 </html>
