@@ -21,6 +21,8 @@
 		<folder>fonts</folder>
 		<folder>js</folder>
 		<folder>html</folder>
+		<folder>svgs</folder>
+		<folder>webfonts</folder>
 		<filename>component.php</filename>
 		<filename>error.php</filename>
 		<filename>index.php</filename>

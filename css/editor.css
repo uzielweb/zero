@@ -1,13 +1,19 @@
-/* EDITOR
-   ========================================================================== */
+/* bootstrap css */
 
-/**
-* This file is for backend editors like JCE.
-* It will be used for print style, too.
-*/
+@import url('../css/bootstrap.min.css');
 
-body {
-    background-color: #fff;
-    color: #000;
-    font: normal normal normal 75%/125% arial,sans-serif;
-}
+/* fontawesome css */
+
+@import url('../css/all.min.css');
+
+/* animate css */
+
+@import url('../css/animate.css');
+
+/* template css */
+
+@import url('../css/template.css');
+
+/* custom css */
+
+@import url('../css/custom.css');

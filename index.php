@@ -1,5 +1,6 @@
 <?php
-/**
+/*
+
 * @package     Joomla.Site
 * @subpackage  Templates.zero
 *
@@ -53,7 +54,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         <div class="container">
             <div class="row">
                 <?php if (!empty($logo)) { ?>
-                <div id="zero-logo" class="zero-logo <?php echo ($type_of_layout == 'bootstrap' ? '' : $default_column.'3 col-6');?>" <?php echo ($type_of_layout == 'custom' ? ' style="width: 25%"' : '');?>>
+                <div id="zero-logo" class="zero-logo <?php echo ($defaultmode == 'bootstrap' ? '' : $default_column.'3 col-6');?>" <?php echo ($defaultmode == 'custom' ? ' style="width: 25%"' : '');?>>
                     <h1>
                         <a href="<?php echo $this->baseurl; ?>">
                             <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
