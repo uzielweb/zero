@@ -24,7 +24,8 @@ $col_middle_style = '';
 $app              = Factory::getApplication('site');
 $template         = $app->getTemplate(true);
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
-$sections = $template->params->get('sections');
+$sections = $template->params->get('sections', '');
+if ($sections) {
 foreach($sections as $skey=>$item){ 
   //$item->section;
   //$item->section_background;
@@ -43,6 +44,7 @@ foreach($sections as $skey=>$item){
       .$item_margin.'
   }
   ');
+}
 }
 // generator tag
 $this->setGenerator(null);
@@ -73,18 +75,16 @@ $doc->setHeadData($headData);
 //$doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
 $doc->addScript($tpath . '/js/main.js');
 //$doc->addScript($tpath.'/js/fontawesome.min.js');
-//file modification time 
-$templatecsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/template.css'));
-$customcsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/custom.css'));
-$responsivecsstime = date('dmYHis',filemtime($_SERVER['DOCUMENT_ROOT'].'/templates/'.$this->template.'/css/responsive.css'));
+
+
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 //$doc->addStyleSheet($tpath . '/css/bootstrap.css');
 //$doc->addStyleSheet($tpath . '/css/fontawesome.css');
 //$doc->addStyleSheet($tpath . '/css/animate.css');
-$doc->addStyleSheet($tpath . '/css/template.css?v='.$templatecsstime);
-//$doc->addStyleSheet($tpath . '/css/custom.css?v='.$customcsstime);
-//$doc->addStyleSheet($tpath . '/css/responsive.css?v='.$responsivecsstime);
+$doc->addStyleSheet($tpath . '/css/template.css');
+//$doc->addStyleSheet($tpath . '/css/custom.css');
+//$doc->addStyleSheet($tpath . '/css/responsive.css';
 if ($template->params->get('type_of_layout') == 'bootstrap') {
     $default_column = $template->params->get('default_column', 'col-md-');
     $col_side_boot_width   = ' ' . $default_column . $col_side;
