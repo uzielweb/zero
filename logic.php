@@ -85,9 +85,9 @@ $doc->addScript($tpath . '/js/main.js');
 //$doc->addScript($tpath.'/js/fontawesome.min.js');
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
-if ($defaultmode == 'bootstrap') {
-$doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
-}
+// if ($defaultmode == 'bootstrap') {
+// $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
+// }
 // if load fontawesome from template
 if ($params->get('fontawesome_from_template', 0) == 1){
 $doc->addStyleSheet($tpath . '/css/all.min.css');
