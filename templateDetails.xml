@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.0" type="template" method="upgrade">
+<extension type="template" client="site" version="4.0" type="template" method="upgrade">
 	<name>Zero</name>
-	<creationDate>2018-03-01</creationDate>
+	<creationDate>2021-09-23</creationDate>
 	<author>Uziel Almeida Oliveira by Ponto Mega</author>
 	<authorEmail>contato@pontomega.com.br</authorEmail>
 	<authorUrl>https://www.pontomega.com.br</authorUrl>
-	<copyright>Ponto Mega - 2018</copyright>
+	<copyright>Ponto Mega - 2021</copyright>
 	<license>GNU/GPL</license>
-	<version>3.4</version>
+	<version>4</version>
 	<description>
-		<![CDATA[ <h1>ZERO Joomla Template - version 3.4</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
+		<![CDATA[ <h1>ZERO Joomla Template - version 4</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
 	</description>
 	<updateservers>
         <server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>
@@ -33,10 +33,10 @@
 		<filename>sections.xml</filename>
 	</files>
 	<languages folder="language">
-		<language tag="en-GB">en-GB.tpl_zero.ini</language>
-		<language tag="en-GB">en-GB.tpl_zero.sys.ini</language>
-		<language tag="pt-BR">pt-BR.tpl_zero.ini</language>
-		<language tag="pt-BR">pt-BR.tpl_zero.sys.ini</language>
+		<language tag="en-GB">en-GB/tpl_zero.ini</language>
+		<language tag="en-GB">en-GB/tpl_zero.sys.ini</language>
+		<language tag="pt-BR">pt-BR/tpl_zero.ini</language>
+		<language tag="pt-BR">pt-BR/pl_zero.sys.ini</language>
 	</languages>
 	<positions>
 		<position>breadcrumb</position>

@@ -1,22 +1,27 @@
 <?php
 // variables
-$app              = JFactory::getApplication();
-$doc              = JFactory::getDocument();
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
+
+$app              = Factory::getApplication();
+$doc              = Factory::getDocument();
 $menu             = $app->getMenu();
 $active           = $app->getMenu()->getActive();
 $params           = $app->getParams();
 $pageclass        = $params->get('pageclass_sfx');
 $tpath            = $this->baseurl . '/templates/' . $this->template;
-$jinput           = JFactory::getApplication()->input;
+$jinput           = Factory::getApplication()->input;
 $option           = $jinput->get('option');
 $view             = $jinput->get('view');
 $task             = $jinput->get('task');
-$config           = JFactory::getConfig();
+$config           = Factory::getConfig();
 $col_side         = $this->params->get('col_side');
 $footer_side      = $this->params->get('footer_side');
 $logo             = $this->params->get('logo');
 $col_middle_style = '';
-$app              = JFactory::getApplication('site');
+$app              = Factory::getApplication('site');
 $template         = $app->getTemplate(true);
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections');
@@ -94,18 +99,18 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
 }
     function positions($position, $style)
     {
-        $app      = JFactory::getApplication('site');
+        $app      = Factory::getApplication('site');
         $template = $app->getTemplate(true);
         $default_column   = $template->params->get('default_column ','col-md-');
         // Default width - for one column
         $col_middle_boot_width = $default_column . '12';
         // This gets new value, if there is more than one active position
         // For Bootstrap use
-        if (JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") {
+        if (Factory::getDocument()->params->get('type_of_layout') == "bootstrap") {
             $width = $default_column . '12';
         }
         // For Custom width use
-        if (JFactory::getDocument()->params->get('type_of_layout') == "custom") {
+        if (Factory::getDocument()->params->get('type_of_layout') == "custom") {
             $width = "100";
         }
         // Number of positions, which have modules
@@ -115,7 +120,7 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
         $totalWidth             = 0;
         foreach ($position as $name => $value) {
             // If position has modules
-            if (JFactory::getDocument()->countModules($name)) {
+            if (Factory::getDocument()->countModules($name)) {
                 // Increase active positions count
                 $countOfActivePositions++;
                 $totalWidth = $totalWidth + $value;
@@ -123,11 +128,11 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
         }
         if ($countOfActivePositions > 0) {
             // For Bootstrap with equal widths use
-            if ((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
+            if ((Factory::getDocument()->params->get('type_of_layout') == "bootstrap") and (Factory::getDocument()->params->get('proportional_equal') == "equal")) {
                 $width = $default_column . (12 / $countOfActivePositions);
             }
             // For Custom with equal widths use
-            if ((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
+            if ((Factory::getDocument()->params->get('type_of_layout') == "custom") and (Factory::getDocument()->params->get('proportional_equal') == "equal")) {
                 $width = (100 / $countOfActivePositions);
             }
         }
@@ -136,15 +141,15 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
                 // For Bootstrap remove / comment the $width bellow
                 // For custom with equal widths add / uncomment the $width bellow
                 // For custom with proportional widths add / uncomment the $width bellow
-                if ((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")) {
+                if ((Factory::getDocument()->params->get('type_of_layout') == "custom") and (Factory::getDocument()->params->get('proportional_equal') == "proportional")) {
                     $width = round($value * 100 / $totalWidth);
                 }
                 // For Bootstrap with proportional widths add / uncomment the $width bellow
                 // For Bootstrap with equal widths remove / comment the $width bellow
-                if ((JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") and (JFactory::getDocument()->params->get('proportional_equal') == "proportional")) {
+                if ((Factory::getDocument()->params->get('type_of_layout') == "bootstrap") and (Factory::getDocument()->params->get('proportional_equal') == "proportional")) {
                     $width = $default_column . round($value * 12 / $totalWidth);
                 }
-                if ((JFactory::getDocument()->params->get('type_of_layout') == "custom") and (JFactory::getDocument()->params->get('proportional_equal') == "equal")) {
+                if ((Factory::getDocument()->params->get('type_of_layout') == "custom") and (Factory::getDocument()->params->get('proportional_equal') == "equal")) {
                     // For Bootstrap with proportional widths remove / comment the IF bellow
                     // For Custom with with more then 1 position add / uncomment the IF bellow
                     if (($value > 0) and ($countOfActivePositions == 2) and (count($position) > 2)) {
@@ -162,13 +167,13 @@ if ($template->params->get('type_of_layout') == 'bootstrap') {
                     }
                 }
             }
-            if (JFactory::getDocument()->countModules($name)) {
+            if (Factory::getDocument()->countModules($name)) {
                 // For Bootstrap use
-                if (JFactory::getDocument()->params->get('type_of_layout') == "bootstrap") {
+                if (Factory::getDocument()->params->get('type_of_layout') == "bootstrap") {
                     echo '<div class="' . $name . ' ' . $width . '"><jdoc:include type="modules" name="' . $name . '" style="' . $style . '" /></div>';
                 }
                 // For Custom Width use
-                if (JFactory::getDocument()->params->get('type_of_layout') == "custom") {
+                if (Factory::getDocument()->params->get('type_of_layout') == "custom") {
                     echo '<div class="' . $name . ' ' . '" style="float:left; width:' . $width . '%"><jdoc:include type="modules" name="' . $name . '" style="' . $style . '" /></div>';
                 }
             }
