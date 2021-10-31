@@ -3,6 +3,11 @@
 use Joomla\CMS\Factory;
 $app = Factory::getApplication();
 $doc = Factory::getDocument();
+
+$app = Factory::getApplication('site');
+$template = $app->getTemplate(true);
+$defaultmode = $template->params->get('type_of_layout', 'bootstrap');
+
 $menu = $app->getMenu();
 $active = $app->getMenu()->getActive();
 $params = $app->getParams();
@@ -17,9 +22,6 @@ $col_side = $this->params->get('col_side');
 $footer_side = $this->params->get('footer_side');
 $logo = $this->params->get('logo');
 $col_middle_style = '';
-$app = Factory::getApplication('site');
-$template = $app->getTemplate(true);
-$defaultmode = $template->params->get('type_of_layout', 'bootstrap');
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
 if ($sections) {
@@ -61,7 +63,7 @@ $scripts = $headData['scripts'];
 //unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
 
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
+unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 
 $headData['scripts'] = $scripts;
@@ -74,12 +76,12 @@ if ($this->params->get('jquery_from_template', 0) == 1) {
     unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
 }
 
-// if ($defaultmode == 'bootstrap') {
-//     // if load bootstrap from template
-//     $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
-// }
+if ($defaultmode == 'bootstrap') {
+    // if load bootstrap from template
+    $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
+}
 $doc->addScript($tpath . '/js/main.js');
-//$doc->addScript($tpath.'/js/fontawesome.min.js');
+$doc->addScript($tpath . '/js/fontawesome.min.js');
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 if ($defaultmode == 'bootstrap') {
