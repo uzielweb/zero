@@ -23,9 +23,9 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </button>
         <jdoc:include type="modules" name="menu" />
     </div>
-    <header id="zero-header" class="zero-header header">
+    <header id="{$this->template}-header" class="{$this->template}-header header">
         <?php if ($this->countModules('above-header-top1') or $this->countModules('above-header-top2') or $this->countModules('above-header-top3')) : ?>
-        <div id="zero-above-header-top" class="zero-above-header-top">
+        <div id="{$this->template}-above-header-top" class="{$this->template}-above-header-top">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('above-header-top1' => 4, 'above-header-top2' => 4, 'above-header-top3' => 4), 'zero_xhtml'); ?>
@@ -34,7 +34,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php endif; ?>
         <?php if ($this->countModules('header-top1') or $this->countModules('header-top2') or $this->countModules('header-top3')) : ?>
-        <div id="zero-header-top" class="zero-header-top">
+        <div id="{$this->template}-header-top" class="{$this->template}-header-top">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('header-top1' => 4, 'header-top2' => 4, 'header-top3' => 4), 'zero_none'); ?>
@@ -43,7 +43,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php endif; ?>
         <?php if ($this->countModules('bellow-header-top1') or $this->countModules('bellow-header-top2') or $this->countModules('bellow-header-top3')) : ?>
-        <div id="zero-bellow-header-top" class="zero-bellow-header-top">
+        <div id="{$this->template}-bellow-header-top" class="{$this->template}-bellow-header-top">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('bellow-header-top1' => 4, 'bellow-header-top2' => 4, 'bellow-header-top3' => 4), 'zero_xhtml'); ?>
@@ -54,7 +54,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         <div class="container">
             <div class="row">
                 <?php if (!empty($logo)) { ?>
-                <div id="zero-logo" class="zero-logo <?php echo ($defaultmode == 'bootstrap' ? '' : $default_column.'3 col-6');?>" <?php echo ($defaultmode == 'custom' ? ' style="width: 25%"' : '');?>>
+                <div id="{$this->template}-logo" class="{$this->template}-logo <?php echo ($defaultmode == 'bootstrap' ? '' : $default_column.'3 col-6');?>" <?php echo ($defaultmode == 'custom' ? ' style="width: 25%"' : '');?>>
                     <h1>
                         <a href="<?php echo $this->baseurl; ?>">
                             <img src="<?php echo $this->params->get('logo'); ?>" alt="<?php echo $config->get('sitename'); ?>" />
@@ -63,17 +63,17 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
                 </div>
                 <?php } ?>
                 <?php if ($this->countModules('menu')) : ?>
-                <div id="button-canvas" class="zero-navigation-button col d-block d-lg-none">
+                <div id="button-canvas" class="{$this->template}-navigation-button col d-block d-lg-none">
                     <button id="offcanvas_button" style="float:right;" class="btn button offCanvas_trigger float-right ml-auto">
                         <i class="fa fa-bars"></i>
                     </button>
                 </div>
-                <nav id="zero-navigation" class="zero-navigation navbar col d-lg-block d-none">
+                <nav id="{$this->template}-navigation" class="{$this->template}-navigation navbar col d-lg-block d-none">
                     <jdoc:include type="modules" name="menu" style="zero_none" />
                 </nav>
                 <?php endif; ?>
                 <?php if ($this->countModules('login')) : ?>
-                <div id="zero-login" class="zero-login col-12 <?php echo $default_column;?>3 float-right ml-auto">
+                <div id="{$this->template}-login" class="{$this->template}-login col-12 <?php echo $default_column;?>3 float-right ml-auto">
                     <jdoc:include type="modules" name="login" style="zero_xhtml" />
                 </div>
                 <?php endif; ?>
@@ -81,7 +81,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
     </header>
     <?php if ($this->countModules('slideshow')) : ?>
-    <section id="zero-slideshow" class="zero-slideshow">
+    <section id="{$this->template}-slideshow" class="{$this->template}-slideshow">
         <div class="row">
             <?php echo positions(array('slideshow' => 12), 'zero_xhtml'); ?>
         </div>
@@ -89,7 +89,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <?php endif; ?>
     <jdoc:include type="message" />
     <?php if ($this->countModules('breadcrumbs')): ?>
-    <section id="zero-breadcrumbs" class="zero-breadcrumbs">
+    <section id="{$this->template}-breadcrumbs" class="{$this->template}-breadcrumbs">
         <div class="container">
             <div class="row">
                 <jdoc:include type="modules" name="breadcrumbs" style="zero_xhtml" />
@@ -98,7 +98,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <?php if ($this->countModules('above1')) : ?>
-    <section id="zero-above-a" class="zero-above-a">
+    <section id="{$this->template}-above-a" class="{$this->template}-above-a">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('above1' => 12), 'zero_xhtml'); ?>
@@ -107,7 +107,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <?php if ($this->countModules('above2') or $this->countModules('above3') or $this->countModules('above4')) : ?>
-    <section id="zero-above-b" class="zero-above-b">
+    <section id="{$this->template}-above-b" class="{$this->template}-above-b">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('above2' => 4, 'above3' => 4, 'above4' => 4), 'zero_xhtml'); ?>
@@ -116,7 +116,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <?php if ($this->countModules('above5')) : ?>
-    <section id="zero-above-c" class="zero-above-c">
+    <section id="{$this->template}-above-c" class="{$this->template}-above-c">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('above5' => 12), 'zero_xhtml'); ?>
@@ -124,57 +124,57 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
     </section>
     <?php endif; ?>
-    <section id="zero-main-section" class="zero-main-section">
+    <section id="{$this->template}-main-section" class="{$this->template}-main-section">
         <div class="container">
             <div class="row">
                 <?php if ($this->countModules('left')): ?>
-                <div id="zero-side-left" class="zero-side-left <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
+                <div id="{$this->template}-side-left" class="{$this->template}-side-left <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
                     <div class="row">
                         <?php echo positions(array('left' => 12), 'zero_xhtml'); ?>
                     </div>
                 </div>
                 <?php endif; ?>
-                <div id="zero-main-content" class="zero-main-content <?php echo $col_middle_boot_width; ?>">
+                <div id="{$this->template}-main-content" class="{$this->template}-main-content <?php echo $col_middle_boot_width; ?>">
                     <?php if ($this->countModules('inner-top1')) : ?>
-                    <div id="zero-inner-top-a" class="zero-inner-top-a">
+                    <div id="{$this->template}-inner-top-a" class="{$this->template}-inner-top-a">
                         <div class="row">
                             <?php echo positions(array('inner-top1' => 12), 'zero_xhtml'); ?>
                         </div>
                     </div>
                     <?php endif; ?>
                     <?php if ($this->countModules('inner-top2') or $this->countModules('inner-top3') or $this->countModules('inner-top4')) : ?>
-                    <div id="zero-inner-top-b" class="zero-inner-top-b">
+                    <div id="{$this->template}-inner-top-b" class="{$this->template}-inner-top-b">
                         <div class="row">
                             <?php echo positions(array('inner-top2' => 4, 'inner-top3' => 4, 'inner-top4' => 4), 'zero_xhtml'); ?>
                         </div>
                     </div>
                     <?php endif; ?>
                     <?php if ($this->countModules('inner-top5')) : ?>
-                    <div id="zero-inner-top-c" class="zero-inner-top-c">
+                    <div id="{$this->template}-inner-top-c" class="{$this->template}-inner-top-c">
                         <div class="row">
                             <?php echo positions(array('inner-top5' => 12), 'zero_xhtml'); ?>
                         </div>
                     </div>
                     <?php endif; ?>
-                    <div id="zero-main">
+                    <div id="{$this->template}-main">
                         <jdoc:include type="component" />
                     </div>
                     <?php if ($this->countModules('inner-bottom1')) : ?>
-                    <div id="zero-inner-bottom-a" class="zero-inner-bottom-a">
+                    <div id="{$this->template}-inner-bottom-a" class="{$this->template}-inner-bottom-a">
                         <div class="row">
                             <?php echo positions(array('inner-bottom1' => 12), 'zero_xhtml'); ?>
                         </div>
                     </div>
                     <?php endif; ?>
                     <?php if ($this->countModules('inner-bottom2') or $this->countModules('inner-bottom3') or $this->countModules('inner-bottom4')) : ?>
-                    <div id="zero-inner-bottom-b" class="zero-inner-bottom-b">
+                    <div id="{$this->template}-inner-bottom-b" class="{$this->template}-inner-bottom-b">
                         <div class="row">
                             <?php echo positions(array('inner-bottom2' => 4, 'inner-bottom3' => 4, 'inner-bottom4' => 4), 'zero_xhtml'); ?>
                         </div>
                     </div>
                     <?php endif; ?>
                     <?php if ($this->countModules('inner-bottom5')) : ?>
-                    <div id="zero-inner-bottom-c" class="zero-inner-bottom-c">
+                    <div id="{$this->template}-inner-bottom-c" class="{$this->template}-inner-bottom-c">
                         <div class="row">
                             <?php echo positions(array('inner-bottom5' => 12), 'zero_xhtml'); ?>
                         </div>
@@ -182,7 +182,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
                     <?php endif; ?>
                 </div>
                 <?php if ($this->countModules('right')): ?>
-                <div id="zero-side-right" class="zero-side-right <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
+                <div id="{$this->template}-side-right" class="{$this->template}-side-right <?php echo $col_side_boot_width; ?>" <?php echo $col_side_style; ?>>
                     <div class="row">
                         <?php echo positions(array('right' => 12), 'zero_xhtml'); ?>
                     </div>
@@ -192,7 +192,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
     </section>
     <?php if ($this->countModules('bellow1')) : ?>
-    <section id="zero-bellow-a" class="zero-bellow-a">
+    <section id="{$this->template}-bellow-a" class="{$this->template}-bellow-a">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('bellow1' => 12), 'zero_xhtml'); ?>
@@ -201,7 +201,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <?php if ($this->countModules('bellow2') or $this->countModules('bellow3') or $this->countModules('bellow4')) : ?>
-    <section id="zero-bellow-b" class="zero-bellow-b">
+    <section id="{$this->template}-bellow-b" class="{$this->template}-bellow-b">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('bellow2' => 4, 'bellow3' => 4, 'bellow4' => 4), 'zero_xhtml'); ?>
@@ -210,7 +210,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     </section>
     <?php endif; ?>
     <?php if ($this->countModules('bellow5')) : ?>
-    <section id="zero-bellow-c" class="zero-bellow-c">
+    <section id="{$this->template}-bellow-c" class="{$this->template}-bellow-c">
         <div class="container">
             <div class="row">
                 <?php echo positions(array('bellow5' => 12), 'zero_xhtml'); ?>
@@ -218,9 +218,9 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
     </section>
     <?php endif; ?>
-    <footer id="zero-footer" class="zero-footer">
+    <footer id="{$this->template}-footer" class="{$this->template}-footer">
         <?php if ($this->countModules('inner-footer1')) : ?>
-        <div id="zero-inner-footer-a" class="zero-inner-footer-a">
+        <div id="{$this->template}-inner-footer-a" class="{$this->template}-inner-footer-a">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('inner-footer1' => 12), 'zero_xhtml'); ?>
@@ -229,7 +229,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php endif; ?>
         <?php if ($this->countModules('inner-footer2') or $this->countModules('inner-footer3') or $this->countModules('inner-footer4')) : ?>
-        <div id="zero-inner-footer-b" class="zero-inner-footer-b">
+        <div id="{$this->template}-inner-footer-b" class="{$this->template}-inner-footer-b">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('inner-footer2' => 4, 'inner-footer3' => 4, 'inner-footer4' => 4), 'zero_xhtml'); ?>
@@ -238,7 +238,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
         </div>
         <?php endif; ?>
         <?php if ($this->countModules('inner-footer5')) : ?>
-        <div id="zero-inner-footer-c" class="zero-inner-footer-c">
+        <div id="{$this->template}-inner-footer-c" class="{$this->template}-inner-footer-c">
             <div class="container">
                 <div class="row">
                     <?php echo positions(array('inner-footer5' => 12), 'zero_xhtml'); ?>
@@ -246,7 +246,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
             </div>
         </div>
         <?php endif; ?>
-        <div id="zero-inner-footer-d" class="zero-inner-footer-d">
+        <div id="{$this->template}-inner-footer-d" class="{$this->template}-inner-footer-d">
             <div class="container">
                 <div class="row">
                     <jdoc:include type="modules" name="footer" style="zero_none" />
