@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="template" client="site" version="4.0" method="upgrade">
+<extension type="template" client="site" version="4.0.1" method="upgrade">
 	<name>Zero</name>
 	<creationDate>2021-09-23</creationDate>
 	<author>Uziel Almeida Oliveira by Ponto Mega</author>
@@ -38,7 +38,7 @@
 		<language tag="en-GB">en-GB/tpl_zero.ini</language>
 		<language tag="en-GB">en-GB/tpl_zero.sys.ini</language>
 		<language tag="pt-BR">pt-BR/tpl_zero.ini</language>
-		<language tag="pt-BR">pt-BR/pl_zero.sys.ini</language>
+		<language tag="pt-BR">pt-BR/tpl_zero.sys.ini</language>
 	</languages>
 	<positions>
 		<position>breadcrumb</position>
