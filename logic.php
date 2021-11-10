@@ -21,7 +21,8 @@ $config = Factory::getConfig();
 $col_side = $this->params->get('col_side');
 $footer_side = $this->params->get('footer_side');
 $logo = $this->params->get('logo');
-$siteName = Factory::getConfig()->get('sitename');
+
+$siteName = $config->get('sitename');
 $col_middle_style = '';
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
 
