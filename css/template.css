@@ -102,3 +102,8 @@ footer,
     display: block;
     position: ;
 }
+
+.zero-login {
+    display: flex;
+    align-items: center;
+}
