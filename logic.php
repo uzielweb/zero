@@ -46,8 +46,8 @@ if ($option == 'com_content' && $view == 'article') {
         $image = JUri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
-        if (isset($result[2])) {
-            $image = JUri::root() . $result[2];
+        if (isset($result[0][0])) {
+            $image = JUri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
@@ -105,8 +105,8 @@ if ($option == 'com_content' && $view == 'article') {
         $image = JUri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $match);
-        if (isset($result[2])) {
-            $image = JUri::root() . $result[2];
+        if (isset($result[0][0])) {
+            $image = JUri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
