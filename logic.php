@@ -41,21 +41,21 @@ if ($option == 'com_content' && $view == 'article') {
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = >JUri::root().$images->image_intro;
+        $image = JUri::root() . $images->image_intro;
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = >JUri::root().$images->image_full;
+        $image = JUri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
         if (isset($result[0][0])) {
-            $image = >JUri::root().$result[0][0];
+            $image = JUri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = >JUri::root().$default_image_for_article;
+                $image = JUri::root() . $default_image_for_article;
             }
             // get logo
             else {
-                $image = >JUri::root().$logo;
+                $image = JUri::root() . $logo;
             }
         }
     }
@@ -68,17 +68,17 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = >JUri::root().$category_image;
+        $image = JUri::root() . $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = >JUri::root().$default_image_for_category;
+            $image = JUri::root() . $default_image_for_category;
         }
         // get logo
         else {
-            $image = >JUri::root().$logo;
+            $image = JUri::root() . $logo;
         }
 
     }
@@ -100,21 +100,21 @@ if ($option == 'com_content' && $view == 'article') {
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Twitter meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = >JUri::root().$images->image_intro;
+        $image = JUri::root() . $images->image_intro;
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = >JUri::root().$images->image_full;
+        $image = JUri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
         if (isset($result[0][0])) {
-            $image = >JUri::root().$result[0][0];
+            $image = JUri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = >JUri::root().$default_image_for_article;
+                $image = JUri::root() . $default_image_for_article;
             }
             // get logo
             else {
-                $image = >JUri::root().$logo;
+                $image = JUri::root() . $logo;
             }
         }
     }
@@ -126,15 +126,15 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = >JUri::root().$category_image;
+        $image = JUri::root() . $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = >JUri::root().$default_image_for_category;
+            $image = JUri::root() . $default_image_for_category;
         } else {
-            $image = >JUri::root().$logo;
+            $image = JUri::root() . $logo;
         }
     }
 }
