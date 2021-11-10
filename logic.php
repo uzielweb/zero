@@ -168,10 +168,11 @@ if ($sections) {
             . $item_background_color
             . $item_padding
             . $item_margin . '
-  }
-  ');
+      }
+        ');
     }
-}
+}   
+    
 // generator tag
 $this->setGenerator(null);
 //custom favicon
