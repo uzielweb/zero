@@ -78,12 +78,14 @@
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
+				<!-- Add Joomla -->
 				<field name="logo" type="media" label="TPL_LOGO_LABEL" default="images/logo.png" description="TPL_LOGO_DESC" />
 				<field name="favicon" type="media" label="TPL_FAVICON_LABEL" default="images/favicon.png" description="TPL_FAVICON_DESC" />
 				<field name="type_of_layout" type="list" label="TPL_TYPE_OF_LAYOUT_LABEL" default="bootstrap" description="TPL_TYPE_OF_LAYOUT_DESC">
 					<option value="bootstrap">TPL_BOOTSTRAP</option>
 					<option value="custom">TPL_CUSTOM</option>
 				</field>
+				
 				<field name="default_column" type="list" label="TPL_BOOSTRAP_LIMIT_LABEL" default="col-md-" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_LIMIT_DESC">
 					<option value="col-xl-">XL</option>
 					<option value="col-lg-">LG</option>
@@ -102,7 +104,25 @@
 					<option value="5">5</option>
 					<option value="6">6</option>
 				</field>
-				
+                <!-- fontawesome_from_template, animate_css_from_template, fontawesome_js_from_template, jquery_from_template, default_image_for_article,default_image_for_category -->
+                <field name="fontawesome_from_template" type="list" label="TPL_FONTAWESOME_FROM_TEMPLATE_LABEL" default="0" description="TPL_FONTAWESOME_FROM_TEMPLATE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="animate_css_from_template" type="list" label="TPL_ANIMATE_CSS_FROM_TEMPLATE_LABEL" default="0" description="TPL_ANIMATE_CSS_FROM_TEMPLATE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="fontawesome_js_from_template" type="list" label="TPL_FONTAWESOME_JS_FROM_TEMPLATE_LABEL" default="0" description="TPL_FONTAWESOME_JS_FROM_TEMPLATE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="jquery_from_template" type="list" label="TPL_JQUERY_FROM_TEMPLATE_LABEL" default="0" description="TPL_JQUERY_FROM_TEMPLATE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="default_image_for_article" type="media" label="TPL_DEFAULT_IMAGE_FOR_ARTICLE_LABEL" default="" description="TPL_DEFAULT_IMAGE_FOR_ARTICLE_DESC" />
+				<field name="default_image_for_category" type="media" label="TPL_DEFAULT_IMAGE_FOR_CATEGORY_LABEL" default="" description="TPL_DEFAULT_IMAGE_FOR_CATEGORY_DESC" />
 				<field name="sections" type="subform" multiple="true" formsource="templates/zero/sections.xml" label="SECTIONS" description="RENDER_SECTIONS_PARAMS" />
 
 			</fieldset>

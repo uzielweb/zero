@@ -22,6 +22,133 @@ $col_side = $this->params->get('col_side');
 $footer_side = $this->params->get('footer_side');
 $logo = $this->params->get('logo');
 $col_middle_style = '';
+// Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
+
+$doc->setMetaData('og:title', $this->title, true);
+$doc->setMetaData('og:description', $this->description, true);
+$doc->setMetaData('og:url', $this->baseurl, true);
+
+$doc->setMetaData('og:site_name', $sitename, true);
+$doc->setMetaData('og:locale', $locale, true);
+$doc->setMetaData('og:type', 'website', true);
+
+// check if the current view is Joomla article and add Open Graph meta tags
+
+if ($option == 'com_content' && $view == 'article') {
+    $doc->setMetaData('og:type', 'article', true);
+    // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
+    $images = json_decode($this->item->images);
+    if (isset($images->image_intro) && !empty($images->image_intro)) {
+        $image = $images->image_intro;
+    } elseif (isset($images->image_full) && !empty($images->image_full)) {
+        $image = $images->image_full;
+    } else {
+        preg_match_all('/<img[^>]+>/i', $this->item->introtext.$this->item->fulltext, $result);
+        if (isset($result[0][0])) {
+            $image = $result[0][0];
+        } else {
+            $default_image_for_article = $this->params->get('default_image_for_article');
+            if ($default_image_for_article) {
+                $image = '<img src="'.$default_image_for_article.'" alt="'.$this->item->title.'" />';
+            }
+            // get logo
+            else ($logo) {
+                $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+            }
+        }
+    }
+    $doc->setMetaData('og:image', $image, true);
+  
+    
+}
+// check if the current view is Joomla category and add Open Graph meta tags
+elseif ($option == 'com_content' && $view == 'category') {
+    $doc->setMetaData('og:type', 'article', true);
+    // get category image
+    $category_image = $this->params->get('category_image');
+    if ($category_image) {
+        $image = '<img src="'.$category_image.'" alt="'.$this->item->title.'" />';
+    }
+    // else if get default image for category from template
+    else {
+        $default_image_for_category = $this->params->get('default_image_for_category');
+        if ($default_image_for_category) {
+            $image = '<img src="'.$default_image_for_category.'" alt="'.$this->item->title.'" />';
+        }
+        // get logo
+        else ($logo) {
+            $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+        }
+    }
+}
+// 
+else{
+    $doc->setMetaData('og:type', 'website', true);
+    $doc->setMetaData('og:image', $logo, true);
+}
+
+// add Twitter meta tags
+$doc->setMetaData('twitter:card', 'summary', true);
+$doc->setMetaData('twitter:title', $this->title, true);
+$doc->setMetaData('twitter:description', $this->description, true);
+$doc->setMetaData('twitter:url', $this->baseurl, true);
+// check if the current view is Joomla article and add Twitter meta tags
+if ($option == 'com_content' && $view == 'article') {
+    $doc->setMetaData('twitter:type', 'article', true);
+    // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Twitter meta tags
+    $images = json_decode($this->item->images);
+    if (isset($images->image_intro) && !empty($images->image_intro)) {
+        $image = $images->image_intro;
+    } elseif (isset($images->image_full) && !empty($images->image_full)) {
+        $image = $images->image_full;
+    } else {
+        preg_match_all('/<img[^>]+>/i', $this->item->introtext.$this->item->fulltext, $result);
+        if (isset($result[0][0])) {
+            $image = $result[0][0];
+        } else {
+            $default_image_for_article = $this->params->get('default_image_for_article');
+            if ($default_image_for_article) {
+                $image = '<img src="'.$default_image_for_article.'" alt="'.$this->item->title.'" />';
+            }
+            // get logo
+            else ($logo) {
+                $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+            }
+        }
+    }
+    $doc->setMetaData('twitter:image', $image, true);
+}
+// check if the current view is Joomla category and add Twitter meta tags
+elseif ($option == 'com_content' && $view == 'category') {
+    $doc->setMetaData('twitter:type', 'article', true);
+    // get category image
+    $category_image = $this->params->get('category_image');
+    if ($category_image) {
+        $image = '<img src="'.$category_image.'" alt="'.$this->item->title.'" />';
+    }
+    // else if get default image for category from template
+    else {
+        $default_image_for_category = $this->params->get('default_image_for_category');
+        if ($default_image_for_category) {
+            $image = '<img src="'.$default_image_for_category.'" alt="'.$this->item->title.'" />';
+        }
+        // get logo
+        else ($logo) {
+            $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+        }
+    }
+}
+// 
+else{
+    $doc->setMetaData('twitter:type', 'website', true);
+    $doc->setMetaData('twitter:image', $logo, true);
+}
+
+
+
+// end for social meta tags
+
+
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
 if ($sections) {
@@ -36,7 +163,7 @@ if ($sections) {
         $item_padding = $item->section_padding == '' ? '' : 'padding: ' . $item->section_padding . ';';
         $item_margin = $item->section_margin == '' ? '' : 'margin: ' . $item->section_margin . ';';
         $doc->addStyleDeclaration('
-      #{$this->template}-' . $item->section . '{'
+      #'.$this->template.'-'. $item->section . '{'
             . $item_background
             . $item_background_color
             . $item_padding
@@ -63,7 +190,7 @@ $scripts = $headData['scripts'];
 //unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
 
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
-unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
+//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 
 $headData['scripts'] = $scripts;
@@ -81,7 +208,10 @@ if ($defaultmode == 'bootstrap') {
     $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
 }
 $doc->addScript($tpath . '/js/main.js');
-$doc->addScript($tpath . '/js/fontawesome.min.js');
+if ($params->get('fontawesome_js_from_template', 0) == 1) {
+    $doc->addScript($tpath . '/js/fontawesome.min.js');
+}
+
 // CSS
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
 if ($defaultmode == 'bootstrap') {
