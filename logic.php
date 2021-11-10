@@ -90,7 +90,7 @@ else {
 }
 
 // add Twitter meta tags
-$doc->setMetaData('twitter:card', 'summary', 'property');
+$doc->setMetaData('twitter:card', 'summary', 'name');
 $doc->setMetaData('twitter:title', $this->title, 'property');
 $doc->setMetaData('twitter:description', $this->description, 'property');
 $doc->setMetaData('twitter:url', $this->baseurl, 'property');
