@@ -1,64 +1,6 @@
-/*CSS EXAMPLE*/
-
-
-/*
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Roboto+Condensed');
-body, html{
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
+img {
+    max-width: 100%;
 }
-#pm-logo {
-	padding: 5px 0;
-}
-.container{
-  width: 100%;
-  max-width: calc(100% - 30px);
-  display: table;
-  margin: 0 auto;
-}
-.row{
-  display: flex;
-}
-input{
-  border: 0px;
-  padding: 10px;
-  background: #fdfdfd;
-}
-body{
-    font-family: "Open Sans";
-  	font-size: 13px;
-}
-h1,h2,h3,h4,h5,h6{
-  margin: 0px;
-}
-*{
-    box-sizing: border-box;
-}
-.side-left{
-    float: left;
-    display: table-cell;
-}
-.main-section{
-    display: table;
-    float: none;
-    clear: both;
-}
-
-.main-content{
-    float: left;
-    display: table-cell;
-
-}
-.side-right{
-    float: right;
-    display: table-cell;
-}
-
-*/
-
-
-/* SECTIONS CUSTOM BACKGROUNDS DEFAULT ADJUSTMENT */
 
 header,
 section,
