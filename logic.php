@@ -43,23 +43,22 @@ if ($option == 'com_content' && $view == 'article') {
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
         $image = $images->image_full;
     } else {
-        preg_match_all('/<img[^>]+>/i', $this->item->introtext.$this->item->fulltext, $result);
+        preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
         if (isset($result[0][0])) {
             $image = $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = '<img src="'.$default_image_for_article.'" alt="'.$this->item->title.'" />';
+                $image = '<img src="' . $default_image_for_article . '" alt="' . $this->item->title . '" />';
             }
             // get logo
-            else ($logo) {
-                $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+            else {
+                $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
             }
         }
     }
     $doc->setMetaData('og:image', $image, true);
-  
-    
+
 }
 // check if the current view is Joomla category and add Open Graph meta tags
 elseif ($option == 'com_content' && $view == 'category') {
@@ -67,22 +66,19 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = '<img src="'.$category_image.'" alt="'.$this->item->title.'" />';
+        $image = '<img src="' . $category_image . '" alt="' . $this->item->title . '" />';
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = '<img src="'.$default_image_for_category.'" alt="'.$this->item->title.'" />';
+            $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
         }
-        // get logo
-        else ($logo) {
-            $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
-        }
+
     }
 }
-// 
-else{
+//
+else {
     $doc->setMetaData('og:type', 'website', true);
     $doc->setMetaData('og:image', $logo, true);
 }
@@ -102,17 +98,17 @@ if ($option == 'com_content' && $view == 'article') {
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
         $image = $images->image_full;
     } else {
-        preg_match_all('/<img[^>]+>/i', $this->item->introtext.$this->item->fulltext, $result);
+        preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
         if (isset($result[0][0])) {
             $image = $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = '<img src="'.$default_image_for_article.'" alt="'.$this->item->title.'" />';
+                $image = '<img src="' . $default_image_for_article . '" alt="' . $this->item->title . '" />';
             }
             // get logo
-            else ($logo) {
-                $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+            else {
+                $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
             }
         }
     }
@@ -124,30 +120,25 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = '<img src="'.$category_image.'" alt="'.$this->item->title.'" />';
+        $image = '<img src="' . $category_image . '" alt="' . $this->item->title . '" />';
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = '<img src="'.$default_image_for_category.'" alt="'.$this->item->title.'" />';
-        }
-        // get logo
-        else ($logo) {
-            $image = '<img src="'.$logo.'" alt="'.$this->item->title.'" />';
+            $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
+        } else {
+            $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
         }
     }
 }
-// 
-else{
+//
+else {
     $doc->setMetaData('twitter:type', 'website', true);
     $doc->setMetaData('twitter:image', $logo, true);
 }
 
-
-
 // end for social meta tags
-
 
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
@@ -163,7 +154,7 @@ if ($sections) {
         $item_padding = $item->section_padding == '' ? '' : 'padding: ' . $item->section_padding . ';';
         $item_margin = $item->section_margin == '' ? '' : 'margin: ' . $item->section_margin . ';';
         $doc->addStyleDeclaration('
-      #'.$this->template.'-'. $item->section . '{'
+      #' . $this->template . '-' . $item->section . '{'
             . $item_background
             . $item_background_color
             . $item_padding
@@ -171,8 +162,8 @@ if ($sections) {
       }
         ');
     }
-}   
-    
+}
+
 // generator tag
 $this->setGenerator(null);
 //custom favicon
