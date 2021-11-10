@@ -51,11 +51,11 @@ if ($option == 'com_content' && $view == 'article') {
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = '<img src="' . $default_image_for_article . '" alt="' . $this->item->title . '" />';
+                $image = $default_image_for_article;
             }
             // get logo
             else {
-                $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
+                $image = $logo;
             }
         }
     }
@@ -68,17 +68,17 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = '<img src="' . $category_image . '" alt="' . $this->item->title . '" />';
+        $image = $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
+            $image = $default_image_for_category;
         }
         // get logo
         else {
-            $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
+            $image = $logo;
         }
 
     }
@@ -110,11 +110,11 @@ if ($option == 'com_content' && $view == 'article') {
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = '<img src="' . $default_image_for_article . '" alt="' . $this->item->title . '" />';
+                $image = $default_image_for_article;
             }
             // get logo
             else {
-                $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
+                $image = $logo;
             }
         }
     }
@@ -126,15 +126,15 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = '<img src="' . $category_image . '" alt="' . $this->item->title . '" />';
+        $image = $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
+            $image = $default_image_for_category;
         } else {
-            $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
+            $image = $logo;
         }
     }
 }
