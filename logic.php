@@ -26,18 +26,18 @@ $siteName = $config->get('sitename');
 $col_middle_style = '';
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
 
-$doc->setMetaData('og:title', $this->title, true);
-$doc->setMetaData('og:description', $this->description, true);
-$doc->setMetaData('og:url', $this->baseurl, true);
+$doc->setMetaData('og:title', $this->title, 'property');
+$doc->setMetaData('og:description', $this->description, 'property');
+$doc->setMetaData('og:url', $this->baseurl, 'property');
 
-$doc->setMetaData('og:site_name', $sitename, true);
-$doc->setMetaData('og:locale', $locale, true);
-$doc->setMetaData('og:type', 'website', true);
+$doc->setMetaData('og:site_name', $sitename, 'property');
+$doc->setMetaData('og:locale', $locale, 'property');
+$doc->setMetaData('og:type', 'website', 'property');
 
 // check if the current view is Joomla article and add Open Graph meta tags
 
 if ($option == 'com_content' && $view == 'article') {
-    $doc->setMetaData('og:type', 'article', true);
+    $doc->setMetaData('og:type', 'article', 'property');
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
@@ -59,12 +59,12 @@ if ($option == 'com_content' && $view == 'article') {
             }
         }
     }
-    $doc->setMetaData('og:image', $image, true);
+    $doc->setMetaData('og:image', $image, 'property');
 
 }
 // check if the current view is Joomla category and add Open Graph meta tags
 elseif ($option == 'com_content' && $view == 'category') {
-    $doc->setMetaData('og:type', 'article', true);
+    $doc->setMetaData('og:type', 'article', 'property');
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
@@ -85,18 +85,18 @@ elseif ($option == 'com_content' && $view == 'category') {
 }
 //
 else {
-    $doc->setMetaData('og:type', 'website', true);
-    $doc->setMetaData('og:image', $logo, true);
+    $doc->setMetaData('og:type', 'website', 'property');
+    $doc->setMetaData('og:image', $logo, 'property');
 }
 
 // add Twitter meta tags
-$doc->setMetaData('twitter:card', 'summary', true);
-$doc->setMetaData('twitter:title', $this->title, true);
-$doc->setMetaData('twitter:description', $this->description, true);
-$doc->setMetaData('twitter:url', $this->baseurl, true);
+$doc->setMetaData('twitter:card', 'summary', 'property');
+$doc->setMetaData('twitter:title', $this->title, 'property');
+$doc->setMetaData('twitter:description', $this->description, 'property');
+$doc->setMetaData('twitter:url', $this->baseurl, 'property');
 // check if the current view is Joomla article and add Twitter meta tags
 if ($option == 'com_content' && $view == 'article') {
-    $doc->setMetaData('twitter:type', 'article', true);
+    $doc->setMetaData('twitter:type', 'article', 'property');
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Twitter meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
@@ -118,11 +118,11 @@ if ($option == 'com_content' && $view == 'article') {
             }
         }
     }
-    $doc->setMetaData('twitter:image', $image, true);
+    $doc->setMetaData('twitter:image', $image, 'property');
 }
 // check if the current view is Joomla category and add Twitter meta tags
 elseif ($option == 'com_content' && $view == 'category') {
-    $doc->setMetaData('twitter:type', 'article', true);
+    $doc->setMetaData('twitter:type', 'article', 'property');
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
@@ -140,8 +140,8 @@ elseif ($option == 'com_content' && $view == 'category') {
 }
 //
 else {
-    $doc->setMetaData('twitter:type', 'website', true);
-    $doc->setMetaData('twitter:image', $logo, true);
+    $doc->setMetaData('twitter:type', 'website', 'property');
+    $doc->setMetaData('twitter:image', $logo, 'property');
 }
 
 // end for social meta tags
