@@ -21,6 +21,7 @@ $config = Factory::getConfig();
 $col_side = $this->params->get('col_side');
 $footer_side = $this->params->get('footer_side');
 $logo = $this->params->get('logo');
+$siteName = Factory::getConfig()->get('sitename');
 $col_middle_style = '';
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
 
@@ -76,7 +77,7 @@ elseif ($option == 'com_content' && $view == 'category') {
         }
         // get logo
         else {
-            $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
+            $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
         }
 
     }
@@ -112,7 +113,7 @@ if ($option == 'com_content' && $view == 'article') {
             }
             // get logo
             else {
-                $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
+                $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
             }
         }
     }
@@ -132,7 +133,7 @@ elseif ($option == 'com_content' && $view == 'category') {
         if ($default_image_for_category) {
             $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
         } else {
-            $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
+            $image = '<img src="' . $logo . '" alt="' . $siteName . '" />';
         }
     }
 }
@@ -247,6 +248,7 @@ function positions($position, $style)
 {
     $app = Factory::getApplication('site');
     $template = $app->getTemplate(true);
+    $defaultmode = $template->params->get('default_mode', 'bootstrap');
     $default_column = $template->params->get('default_column ', 'col-md-');
     // Default width - for one column
     $col_middle_boot_width = $default_column . '12';
