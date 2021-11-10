@@ -74,6 +74,10 @@ elseif ($option == 'com_content' && $view == 'category') {
         if ($default_image_for_category) {
             $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
         }
+        // get logo
+        else {
+            $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
+        }
 
     }
 }
@@ -108,7 +112,7 @@ if ($option == 'com_content' && $view == 'article') {
             }
             // get logo
             else {
-                $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
+                $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
             }
         }
     }
@@ -128,7 +132,7 @@ elseif ($option == 'com_content' && $view == 'category') {
         if ($default_image_for_category) {
             $image = '<img src="' . $default_image_for_category . '" alt="' . $this->item->title . '" />';
         } else {
-            $image = '<img src="' . $logo . '" alt="' . $this->item->title . '" />';
+            $image = '<img src="' . $logo . '" alt="' . $this->siteName . '" />';
         }
     }
 }
