@@ -1,17 +1,19 @@
 <?php
 // variables
-use Joomla\CMS\Factory;
+use Joomla\CMS\Factory as Factory;
+use Joomla\CMS\HTML\HTMLHelper as HTMLHelper;
+use Joomla\CMS\Language\Text as Text;
+use Joomla\CMS\Uri\Uri as Uri;
+
 $app = Factory::getApplication();
 $doc = Factory::getDocument();
-
-$app = Factory::getApplication('site');
 $template = $app->getTemplate(true);
 $defaultmode = $template->params->get('type_of_layout', 'bootstrap');
 
 $menu = $app->getMenu();
 $active = $app->getMenu()->getActive();
-$params = $app->getParams();
-$pageclass = $params->get('pageclass_sfx');
+$templateParams = $app->getParams();
+$pageclass = $templateParams->get('pageclass_sfx');
 $tpath = $this->baseurl . '/templates/' . $this->template;
 $jinput = Factory::getApplication()->input;
 $option = $jinput->get('option');
@@ -21,8 +23,12 @@ $config = Factory::getConfig();
 $col_side = $this->params->get('col_side');
 $footer_side = $this->params->get('footer_side');
 $logo = $this->params->get('logo');
+$sitename = $config->get('sitename');
+//  Joomla Language
+$lang = Factory::getLanguage();
+$locale = $lang->get('tag');
+$templateParams = $app->getTemplate(true)->params;
 
-$siteName = $config->get('sitename');
 $col_middle_style = '';
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
 
@@ -41,21 +47,21 @@ if ($option == 'com_content' && $view == 'article') {
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = JUri::root() . $images->image_intro;
+        $image = Uri::root() . $images->image_intro;
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = JUri::root() . $images->image_full;
+        $image = Uri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
         if (isset($result[0][0])) {
-            $image = JUri::root() . $result[0][0];
+            $image = Uri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = JUri::root() . $default_image_for_article;
+                $image = Uri::root() . $default_image_for_article;
             }
             // get logo
             else {
-                $image = JUri::root() . $logo;
+                $image = Uri::root() . $logo;
             }
         }
     }
@@ -68,17 +74,17 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = JUri::root() . $category_image;
+        $image = Uri::root() . $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = JUri::root() . $default_image_for_category;
+            $image = Uri::root() . $default_image_for_category;
         }
         // get logo
         else {
-            $image = JUri::root() . $logo;
+            $image = Uri::root() . $logo;
         }
 
     }
@@ -100,21 +106,21 @@ if ($option == 'com_content' && $view == 'article') {
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Twitter meta tags
     $images = json_decode($this->item->images);
     if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = JUri::root() . $images->image_intro;
+        $image = Uri::root() . $images->image_intro;
     } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = JUri::root() . $images->image_full;
+        $image = Uri::root() . $images->image_full;
     } else {
         preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $match);
         if (isset($result[0][0])) {
-            $image = JUri::root() . $result[0][0];
+            $image = Uri::root() . $result[0][0];
         } else {
             $default_image_for_article = $this->params->get('default_image_for_article');
             if ($default_image_for_article) {
-                $image = JUri::root() . $default_image_for_article;
+                $image = Uri::root() . $default_image_for_article;
             }
             // get logo
             else {
-                $image = JUri::root() . $logo;
+                $image = Uri::root() . $logo;
             }
         }
     }
@@ -126,15 +132,15 @@ elseif ($option == 'com_content' && $view == 'category') {
     // get category image
     $category_image = $this->params->get('category_image');
     if ($category_image) {
-        $image = JUri::root() . $category_image;
+        $image = Uri::root() . $category_image;
     }
     // else if get default image for category from template
     else {
         $default_image_for_category = $this->params->get('default_image_for_category');
         if ($default_image_for_category) {
-            $image = JUri::root() . $default_image_for_category;
+            $image = Uri::root() . $default_image_for_category;
         } else {
-            $image = JUri::root() . $logo;
+            $image = Uri::root() . $logo;
         }
     }
 }
@@ -155,7 +161,7 @@ if ($sections) {
         //$item->section_background_color;
         //$item->section_padding;
         //$item->section_margin;
-        $item_background = $item->section_background == '' ? '' : 'background-image: url(\'' . JUri::root() . $item->section_background . '\');';
+        $item_background = $item->section_background == '' ? '' : 'background-image: url(\'' . Uri::root() . $item->section_background . '\');';
         $item_background_color = $item->section_background_color == '' ? '' : 'background-color: ' . $item->section_background_color . ';';
         $item_padding = $item->section_padding == '' ? '' : 'padding: ' . $item->section_padding . ';';
         $item_margin = $item->section_margin == '' ? '' : 'margin: ' . $item->section_margin . ';';
@@ -174,55 +180,75 @@ if ($sections) {
 $this->setGenerator(null);
 //custom favicon
 $this->addFavicon($this->baseurl . '/' . $template->params->get('favicon'), $tpath . 'images/favicon.ico');
-// loading default bootstrap and jquery from Joomla to apply changes
-JHtml::_('bootstrap.framework');
-JHtml::_('jquery.framework');
+
 //unset scripts
 $headData = $doc->getHeadData();
 $scripts = $headData['scripts'];
 //scripts to remove, customise as required like mootools-core.js, mootools-more.js, jquery.min.js,jquery-noconflict.js,bootstrap.min.js,jquery-migrate.min.js
-//unset($scripts[JUri::root(true) . '/media/system/js/mootools-core.js']);
-//unset($scripts[JUri::root(true) . '/media/system/js/mootools-more.js']);
-//unset($scripts[JUri::root(true) . '/media/system/js/core.js']);
-//unset($scripts[JUri::root(true) . '/media/system/js/modal.js']);
-//unset($scripts[JUri::root(true) . '/media/system/js/caption.js']);
+//unset($scripts[Uri::root(true) . '/media/system/js/mootools-core.js']);
+//unset($scripts[Uri::root(true) . '/media/system/js/mootools-more.js']);
+//unset($scripts[Uri::root(true) . '/media/system/js/core.js']);
+//unset($scripts[Uri::root(true) . '/media/system/js/modal.js']);
+//unset($scripts[Uri::root(true) . '/media/system/js/caption.js']);
 
-//unset($scripts[JUri::root(true) . '/media/jui/js/jquery-noconflict.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/bootstrap.min.js']);
-//unset($scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
+//unset($scripts[Uri::root(true) . '/media/jui/js/jquery-noconflict.js']);
+//unset($scripts[Uri::root(true) . '/media/jui/js/bootstrap.min.js']);
+//unset($scripts[Uri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
 
 $headData['scripts'] = $scripts;
 
 $doc->setHeadData($headData);
 // JS
 // if load jquery from template, remove jquery from Joomla
-if ($this->params->get('jquery_from_template', 0) == 1) {
-    $doc->addScript($tpath . '/js/jquery-3.3.1.min.js');
-    unset($scripts[JUri::root(true) . '/media/jui/js/jquery.min.js']);
+if ($this->params->get('jquery_from_template', '0') == '1') {
+    $doc->addScript($tpath . '/js/jquery-3.6.0.min.js');
+    unset($scripts[Uri::root(true) . '/media/vendor/jquery/js/jquery.min.js']);
+}
+else{
+
+    JHtml::_('jquery.framework');
 }
 
 if ($defaultmode == 'bootstrap') {
     // if load bootstrap from template
-    $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
+    if ($this->params->get('bootstrap_from_template', '0') == '1') {
+        $doc->addScript($tpath . '/js/bootstrap.min.js');
+        $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
+        //  add popper 
+        unset($scripts[Uri::root(true) . '/media/vendor/bootstrap/js/bootstrap.min.js']);
+        unset($scripts[Uri::root(true) . '/media/vendor/bootstrap/js/bootstrap.bundle.min.js']);
+        $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
+
+    }
+    else{
+        JHtml::_('bootstrap.framework');
+        $doc->addStyleSheet(Uri::root(true) . '/media/vendor/bootstrap/css/bootstrap.min.css');
+
+    }
 }
 $doc->addScript($tpath . '/js/main.js');
-if ($params->get('fontawesome_js_from_template', 0) == 1) {
-    $doc->addScript($tpath . '/js/fontawesome.min.js');
-}
+
 
 // CSS
+// chec if icomoon exist
+if (file_exists(JPATH_ROOT . '/media/jui/css/icomoon.css')) {
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
-if ($defaultmode == 'bootstrap') {
-    $doc->addStyleSheet(JUri::root(true) . '/media/vendor/bootstrap/css/bootstrap.min.css');
-
 }
+
 // if load fontawesome from template
-if ($params->get('fontawesome_from_template', 0) == 1) {
+if ($templateParams->get('fontawesome', 'css_from_template') == 'css_from_template') {
     $doc->addStyleSheet($tpath . '/css/all.min.css');
 }
+elseif ($templateParams->get('fontawesome', 'css_from_template') == 'js_from_template') {
+    $doc->addScript($tpath . '/js/all.min.js');
+}
+elseif($templateParams->get('fontawesome', 'css_from_template') == 'from_joomla'){
+    $doc->addStyleSheet($this->baseurl . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
+}
+
 // load animate css from template
-if ($params->get('animate_css_from_template', 0) == 1) {
-    $doc->addStyleSheet($tpath . '/css/animate.css');
+if ($templateParams->get('animate_css_from_template', '0') == '1') {
+    $doc->addStyleSheet($tpath . '/css/animate.min.css');
 }
 $doc->addStyleSheet($tpath . '/css/template.css');
 // check if custom.css exists
