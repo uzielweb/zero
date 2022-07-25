@@ -1,20 +1,18 @@
 <?php
 // variables
 use Joomla\CMS\Factory as Factory;
-use Joomla\CMS\HTML\HTMLHelper as HTMLHelper;
-use Joomla\CMS\Language\Text as Text;
 use Joomla\CMS\Uri\Uri as Uri;
-
 $app = Factory::getApplication();
 $doc = Factory::getDocument();
 $template = $app->getTemplate(true);
 $defaultmode = $template->params->get('type_of_layout', 'bootstrap');
-
 $menu = $app->getMenu();
-$active = $app->getMenu()->getActive();
-$templateParams = $app->getParams();
-$pageclass = $templateParams->get('pageclass_sfx');
-$tpath = $this->baseurl . '/templates/' . $this->template;
+$active = $menu->getActive();
+$active_id = isset($active) ? $active->id : $menu->getDefault()->id;
+$appParams = $app->getParams();
+$menuParams = $active->getParams();
+$pageclass = $menuParams ? $menuParams->get('pageclass_sfx') : '';
+$tpath = Uri::root(true) . '/templates/' . $this->template;
 $jinput = Factory::getApplication()->input;
 $option = $jinput->get('option');
 $view = $jinput->get('view');
@@ -28,20 +26,20 @@ $sitename = $config->get('sitename');
 $lang = Factory::getLanguage();
 $locale = $lang->get('tag');
 $templateParams = $app->getTemplate(true)->params;
-
+//  Check if current Joomla page is a homepage
+$ishome = $active->home ? 'is-home ' : 'internal-page ';
+$customHeaderCode = $templateParams->get('customheadercode', '');
+$customAfterBodyCode = $templateParams->get('customafterbodycode', '');
+$customFooterCode = $templateParams->get('customfootercode', '');
 $col_middle_style = '';
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
-
 $doc->setMetaData('og:title', $this->title, 'property');
 $doc->setMetaData('og:description', $this->description, 'property');
 $doc->setMetaData('og:url', $this->baseurl, 'property');
-
 $doc->setMetaData('og:site_name', $sitename, 'property');
 $doc->setMetaData('og:locale', $locale, 'property');
 $doc->setMetaData('og:type', 'website', 'property');
-
 // check if the current view is Joomla article and add Open Graph meta tags
-
 if ($option == 'com_content' && $view == 'article') {
     $doc->setMetaData('og:type', 'article', 'property');
     // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
@@ -66,7 +64,6 @@ if ($option == 'com_content' && $view == 'article') {
         }
     }
     $doc->setMetaData('og:image', $image, 'property');
-
 }
 // check if the current view is Joomla category and add Open Graph meta tags
 elseif ($option == 'com_content' && $view == 'category') {
@@ -86,7 +83,6 @@ elseif ($option == 'com_content' && $view == 'category') {
         else {
             $image = Uri::root() . $logo;
         }
-
     }
 }
 //
@@ -94,7 +90,6 @@ else {
     $doc->setMetaData('og:type', 'website', 'property');
     $doc->setMetaData('og:image', $logo, 'property');
 }
-
 // add Twitter meta tags
 $doc->setMetaData('twitter:card', 'summary', 'name');
 $doc->setMetaData('twitter:title', $this->title, 'property');
@@ -149,9 +144,7 @@ else {
     $doc->setMetaData('twitter:type', 'website', 'property');
     $doc->setMetaData('twitter:image', $logo, 'property');
 }
-
 // end for social meta tags
-
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
 if ($sections) {
@@ -175,12 +168,10 @@ if ($sections) {
         ');
     }
 }
-
 // generator tag
 $this->setGenerator(null);
 //custom favicon
-$this->addFavicon($this->baseurl . '/' . $template->params->get('favicon'), $tpath . 'images/favicon.ico');
-
+$this->addFavicon(Uri::root(true) . '/' . $template->params->get('favicon'), $tpath . 'images/favicon.ico');
 //unset scripts
 $headData = $doc->getHeadData();
 $scripts = $headData['scripts'];
@@ -190,78 +181,89 @@ $scripts = $headData['scripts'];
 //unset($scripts[Uri::root(true) . '/media/system/js/core.js']);
 //unset($scripts[Uri::root(true) . '/media/system/js/modal.js']);
 //unset($scripts[Uri::root(true) . '/media/system/js/caption.js']);
-
 //unset($scripts[Uri::root(true) . '/media/jui/js/jquery-noconflict.js']);
 //unset($scripts[Uri::root(true) . '/media/jui/js/bootstrap.min.js']);
 //unset($scripts[Uri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
-
 $headData['scripts'] = $scripts;
-
 $doc->setHeadData($headData);
 // JS
 // if load jquery from template, remove jquery from Joomla
 if ($this->params->get('jquery_from_template', '0') == '1') {
     $doc->addScript($tpath . '/js/jquery-3.6.0.min.js');
     unset($scripts[Uri::root(true) . '/media/vendor/jquery/js/jquery.min.js']);
+} else {
+    // jquery.framework from Joomla
+    $doc->addScript(Uri::root(true) . '/media/vendor/jquery/js/jquery.min.js');
 }
-else{
-
-    JHtml::_('jquery.framework');
-}
-
 if ($defaultmode == 'bootstrap') {
     // if load bootstrap from template
     if ($this->params->get('bootstrap_from_template', '0') == '1') {
-        $doc->addScript($tpath . '/js/bootstrap.min.js');
+        $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
         $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
-        //  add popper 
+        //  add popper
+        // $doc->addScript($tpath . '/js/bootstrap.min.js');
+        // $doc->addScript($tpath . '/js/popper.min.js');
         unset($scripts[Uri::root(true) . '/media/vendor/bootstrap/js/bootstrap.min.js']);
         unset($scripts[Uri::root(true) . '/media/vendor/bootstrap/js/bootstrap.bundle.min.js']);
-        $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
-
-    }
-    else{
-        JHtml::_('bootstrap.framework');
+        unset($scripts[Uri::root(true) . 'media/jui/js/bootstrap.min.js']);
+    } else {
+        // bootstrap.framework from Joomla
         $doc->addStyleSheet(Uri::root(true) . '/media/vendor/bootstrap/css/bootstrap.min.css');
-
     }
 }
 $doc->addScript($tpath . '/js/main.js');
-
-
 // CSS
 // chec if icomoon exist
 if (file_exists(JPATH_ROOT . '/media/jui/css/icomoon.css')) {
-$doc->addStyleSheet($this->baseurl . '/media/jui/css/icomoon.css');
+    $doc->addStyleSheet(Uri::root(true) . '/media/jui/css/icomoon.css');
 }
-
 // if load fontawesome from template
 if ($templateParams->get('fontawesome', 'css_from_template') == 'css_from_template') {
     $doc->addStyleSheet($tpath . '/css/all.min.css');
-}
-elseif ($templateParams->get('fontawesome', 'css_from_template') == 'js_from_template') {
+} elseif ($templateParams->get('fontawesome', 'css_from_template') == 'js_from_template') {
     $doc->addScript($tpath . '/js/all.min.js');
+} elseif ($templateParams->get('fontawesome', 'css_from_template') == 'from_joomla') {
+    $doc->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
 }
-elseif($templateParams->get('fontawesome', 'css_from_template') == 'from_joomla'){
-    $doc->addStyleSheet($this->baseurl . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
+// load icomoon.css
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/icomoon.css')) {
+    $doc->addStyleSheet($tpath . '/css/icomoon.css');
 }
-
+// load PPAFonts
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/PPAFonts.css')) {
+    $customcsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/PPAFonts.css'));
+    $doc->addStyleSheet($tpath . '/css/PPAFonts.css?' . $customcsstime);
+}
+// load globo.css
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/globo.css')) {
+    $customcsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/globo.css'));
+    $doc->addStyleSheet($tpath . '/css/globo.css?' . $customcsstime);
+}
 // load animate css from template
 if ($templateParams->get('animate_css_from_template', '0') == '1') {
     $doc->addStyleSheet($tpath . '/css/animate.min.css');
 }
-$doc->addStyleSheet($tpath . '/css/template.css');
+$templatecsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/template.css'));
+$doc->addStyleSheet($tpath . '/css/template.css?' . $templatecsstime);
 // check if custom.css exists
-if (file_exists($tpath . '/css/custom.css')) {
-    $doc->addStyleSheet($tpath . '/css/custom.css');
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/custom.css')) {
+    $customcsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/custom.css'));
+    $doc->addStyleSheet($tpath . '/css/custom.css?' . $customcsstime);
+}
+// load efeitos.css
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/efeitos.css')) {
+    $efeitoscsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/efeitos.css'));
+    $doc->addStyleSheet($tpath . '/css/efeitos.css?' . $efeitoscsstime);
 }
 // check if responsive.css exists
-if (file_exists($tpath . '/css/responsive.css')) {
-    $doc->addStyleSheet($tpath . '/css/responsive.css');
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/responsive.css')) {
+    $responsivecsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/responsive.css'));
+    $doc->addStyleSheet($tpath . '/css/responsive.css?' . $responsivecsstime);
 }
 if ($defaultmode == 'bootstrap') {
     $default_column = $template->params->get('default_column', 'col-md-');
     $col_side_boot_width = ' ' . $default_column . $col_side;
+    $col_side_style = '';
     // Default width - for one column
     $col_middle_boot_width = ' ' . $default_column . '12';
     if (($this->countModules('left')) and ($this->countModules('right'))) {
@@ -269,6 +271,19 @@ if ($defaultmode == 'bootstrap') {
     }
     if ((($this->countModules('left')) and !($this->countModules('right'))) or (!($this->countModules('left')) and ($this->countModules('right')))) {
         $col_middle_boot_width = ' ' . $default_column . (12 - $col_side);
+    }
+}
+if ($defaultmode == 'custom') {
+    $default_column = '';
+    $col_side_boot_width = '';
+    $col_side_style = ' style="width: ' . (100 / 12 * $col_side) . '%"';
+    // Default width - for one column
+    $col_middle_boot_width = ' ' . $default_column . '12';
+    if (($this->countModules('left')) and ($this->countModules('right'))) {
+        $col_middle_style = ' style="width: ' . (100 / 12 * 2 * $col_side) . '%"';
+    }
+    if ((($this->countModules('left')) and !($this->countModules('right'))) or (!($this->countModules('left')) and ($this->countModules('right')))) {
+        $col_middle_style = ' style="width: ' . (100 / 12 * (12 - $col_side)) . '%"';
     }
 }
 function positions($position, $style)
@@ -349,7 +364,7 @@ function positions($position, $style)
             }
             // For Custom Width use
             if (Factory::getDocument()->params->get('type_of_layout') == "custom") {
-                echo '<div class="' . $name . ' ' . '" style="float:left; width:' . $width . '%"><jdoc:include type="modules" name="' . $name . '" style="' . $style . '" /></div>';
+                echo '<div class="' . $name . ' ' . '" style="width:' . $width . '%"><jdoc:include type="modules" name="' . $name . '" style="' . $style . '" /></div>';
             }
         }
     }
