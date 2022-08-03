@@ -9,8 +9,10 @@ $defaultmode = $template->params->get('type_of_layout', 'bootstrap');
 $menu = $app->getMenu();
 $active = $menu->getActive();
 $active_id = isset($active) ? $active->id : $menu->getDefault()->id;
-$appParams = $app->getParams();
-$menuParams = $active->getParams();
+if ($active != null) {
+    $appParams = $app->getParams();
+    $menuParams = $active->getParams();
+}
 $pageclass = $menuParams ? $menuParams->get('pageclass_sfx') : '';
 $tpath = Uri::root(true) . '/templates/' . $this->template;
 $jinput = Factory::getApplication()->input;
@@ -26,124 +28,137 @@ $sitename = $config->get('sitename');
 $lang = Factory::getLanguage();
 $locale = $lang->get('tag');
 $templateParams = $app->getTemplate(true)->params;
-//  Check if current Joomla page is a homepage
-$ishome = $active->home ? 'is-home ' : 'internal-page ';
 $customHeaderCode = $templateParams->get('customheadercode', '');
 $customAfterBodyCode = $templateParams->get('customafterbodycode', '');
 $customFooterCode = $templateParams->get('customfootercode', '');
+$customcss = $templateParams->get('customcss', '');
+//  Check if current Joomla page is a homepage
+$ishome = $active->home ? 'is-home ' : 'internal-page ';
 $col_middle_style = '';
+$openGraphEnabled = $templateParams->get('opengraph_enabled', '1');
+$defaultOpenGraphImage = JUri::base() . $templateParams->get('default_opengraph_image', '');
 // Social Meta Tags for Open Graph, Twitter, Facebook, Pinterest, LinkedIn
-$doc->setMetaData('og:title', $this->title, 'property');
-$doc->setMetaData('og:description', $this->description, 'property');
-$doc->setMetaData('og:url', $this->baseurl, 'property');
-$doc->setMetaData('og:site_name', $sitename, 'property');
-$doc->setMetaData('og:locale', $locale, 'property');
-$doc->setMetaData('og:type', 'website', 'property');
+
 // check if the current view is Joomla article and add Open Graph meta tags
-if ($option == 'com_content' && $view == 'article') {
-    $doc->setMetaData('og:type', 'article', 'property');
-    // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
-    $images = json_decode($this->item->images);
-    if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = Uri::root() . $images->image_intro;
-    } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = Uri::root() . $images->image_full;
-    } else {
-        preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
-        if (isset($result[0][0])) {
-            $image = Uri::root() . $result[0][0];
-        } else {
-            $default_image_for_article = $this->params->get('default_image_for_article');
-            if ($default_image_for_article) {
-                $image = Uri::root() . $default_image_for_article;
-            }
-            // get logo
-            else {
-                $image = Uri::root() . $logo;
-            }
-        }
-    }
-    $doc->setMetaData('og:image', $image, 'property');
-}
-// check if the current view is Joomla category and add Open Graph meta tags
-elseif ($option == 'com_content' && $view == 'category') {
-    $doc->setMetaData('og:type', 'article', 'property');
-    // get category image
-    $category_image = $this->params->get('category_image');
-    if ($category_image) {
-        $image = Uri::root() . $category_image;
-    }
-    // else if get default image for category from template
-    else {
-        $default_image_for_category = $this->params->get('default_image_for_category');
-        if ($default_image_for_category) {
-            $image = Uri::root() . $default_image_for_category;
-        }
-        // get logo
-        else {
-            $image = Uri::root() . $logo;
-        }
-    }
-}
-//
-else {
+if ($openGraphEnabled == '1') {
+    echo $defaultOpenGraphImage ? '' : JText::_('TPL_ENABLE_OPEN_GRAPH_IMAGE');
+    $doc->setMetaData('og:description', $this->description, 'property');
+    $doc->setMetaData('og:url', $this->baseurl, 'property');
+    $doc->setMetaData('og:site_name', $sitename, 'property');
+    $doc->setMetaData('og:locale', $locale, 'property');
     $doc->setMetaData('og:type', 'website', 'property');
-    $doc->setMetaData('og:image', $logo, 'property');
-}
-// add Twitter meta tags
-$doc->setMetaData('twitter:card', 'summary', 'name');
-$doc->setMetaData('twitter:title', $this->title, 'property');
-$doc->setMetaData('twitter:description', $this->description, 'property');
-$doc->setMetaData('twitter:url', $this->baseurl, 'property');
-// check if the current view is Joomla article and add Twitter meta tags
-if ($option == 'com_content' && $view == 'article') {
-    $doc->setMetaData('twitter:type', 'article', 'property');
-    // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Twitter meta tags
-    $images = json_decode($this->item->images);
-    if (isset($images->image_intro) && !empty($images->image_intro)) {
-        $image = Uri::root() . $images->image_intro;
-    } elseif (isset($images->image_full) && !empty($images->image_full)) {
-        $image = Uri::root() . $images->image_full;
-    } else {
-        preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $match);
-        if (isset($result[0][0])) {
-            $image = Uri::root() . $result[0][0];
+    $doc->setMetaData('og:title', $this->title, 'property');
+    $doc->setMetaData('og:image', $defaultOpenGraphImage, 'property');
+    if ($option == 'com_content' && $view == 'article') {
+        $doc->setMetaData('og:type', 'article', 'property');
+        // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
+        $images = json_decode($this->item->images);
+        if (isset($images->image_intro) && !empty($images->image_intro)) {
+            $image = Uri::root() . $images->image_intro;
+        } elseif (isset($images->image_full) && !empty($images->image_full)) {
+            $image = Uri::root() . $images->image_full;
         } else {
-            $default_image_for_article = $this->params->get('default_image_for_article');
-            if ($default_image_for_article) {
-                $image = Uri::root() . $default_image_for_article;
+            preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
+            if (isset($result[0][0])) {
+                $image = Uri::root() . $result[0][0];
+            } else {
+                $default_image_for_article = $this->params->get('default_image_for_article');
+                if ($default_image_for_article) {
+                    $image = Uri::root() . $default_image_for_article;
+                }
+                // get logo
+                else {
+                    $image = Uri::root() . $defaultOpenGraphImage;
+                }
+            }
+        }
+        $doc->setMetaData('og:image', $image, 'property');
+    }
+    // check if the current view is Joomla category and add Open Graph meta tags
+    elseif ($option == 'com_content' && $view == 'category') {
+        $doc->setMetaData('og:type', 'article', 'property');
+        // get category image
+        $category_image = $this->params->get('category_image');
+        if ($category_image) {
+            $image = Uri::root() . $category_image;
+        }
+        // else if get default image for category from template
+        else {
+            $default_image_for_category = $this->params->get('default_image_for_category');
+            if ($default_image_for_category) {
+                $image = Uri::root() . $default_image_for_category;
             }
             // get logo
             else {
-                $image = Uri::root() . $logo;
+                $image = Uri::root() . $defaultOpenGraphImage;
             }
         }
     }
-    $doc->setMetaData('twitter:image', $image, 'property');
-}
-// check if the current view is Joomla category and add Twitter meta tags
-elseif ($option == 'com_content' && $view == 'category') {
-    $doc->setMetaData('twitter:type', 'article', 'property');
-    // get category image
-    $category_image = $this->params->get('category_image');
-    if ($category_image) {
-        $image = Uri::root() . $category_image;
-    }
-    // else if get default image for category from template
+    //
     else {
-        $default_image_for_category = $this->params->get('default_image_for_category');
-        if ($default_image_for_category) {
-            $image = Uri::root() . $default_image_for_category;
+        $doc->setMetaData('og:type', 'website', 'property');
+        $doc->setMetaData('og:image', $defaultOpenGraphImage, 'property');
+    }
+    // add Twitter meta tags
+    $doc->setMetaData('twitter:card', 'summary', 'property');
+    $doc->setMetaData('twitter:site', '@' . $sitename, 'property');
+    $doc->setMetaData('twitter:title', $this->title, 'property');
+    $doc->setMetaData('twitter:description', $this->description, 'property');
+    $doc->setMetaData('twitter:image', $defaultOpenGraphImage, 'property');
+    $doc->setMetaData('twitter:type', 'website', 'property');
+
+    if ($option == 'com_content' && $view == 'article') {
+        $doc->setMetaData('twitter:type', 'article', 'property');
+        // check if has image_intro, else check if has image_full, else get first image from article, else get default image for articles from template... after set Open Graph meta tags
+        $images = json_decode($this->item->images);
+        if (isset($images->image_intro) && !empty($images->image_intro)) {
+            $image = Uri::root() . $images->image_intro;
+        } elseif (isset($images->image_full) && !empty($images->image_full)) {
+            $image = Uri::root() . $images->image_full;
         } else {
-            $image = Uri::root() . $logo;
+            preg_match_all('/<img[^>]+>/i', $this->item->introtext . $this->item->fulltext, $result);
+            if (isset($result[0][0])) {
+                $image = Uri::root() . $result[0][0];
+            } else {
+                $default_image_for_article = $this->params->get('default_image_for_article');
+                if ($default_image_for_article) {
+                    $image = Uri::root() . $default_image_for_article;
+                }
+                // get logo
+                else {
+                    $image = Uri::root() . $defaultOpenGraphImage;
+                }
+            }
+        }
+        $doc->setMetaData('twitter:image', $image, 'property');
+    }
+    // check if the current view is Joomla category and add Open Graph meta tags
+    elseif ($option == 'com_content' && $view == 'category') {
+        $doc->setMetaData('twitter:type', 'article', 'property');
+        // get category image
+        $category_image = $this->params->get('category_image');
+        if ($category_image) {
+            $image = Uri::root() . $category_image;
+        }
+        // else if get default image for category from template
+        else {
+            $default_image_for_category = $this->params->get('default_image_for_category');
+            if ($default_image_for_category) {
+                $image = Uri::root() . $default_image_for_category;
+            }
+            // get logo
+            else {
+                $image = Uri::root() . $defaultOpenGraphImage;
+            }
         }
     }
+    //
+    else {
+        $doc->setMetaData('twitter:type', 'website', 'property');
+        $doc->setMetaData('twitter:image', $defaultOpenGraphImage, 'property');
+    }
 }
-//
-else {
-    $doc->setMetaData('twitter:type', 'website', 'property');
-    $doc->setMetaData('twitter:image', $logo, 'property');
-}
+
 // end for social meta tags
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
@@ -259,6 +274,9 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/responsive.css')) {
     $responsivecsstime = date('dmYHis', filemtime($_SERVER['DOCUMENT_ROOT'] . '/templates/' . $this->template . '/css/responsive.css'));
     $doc->addStyleSheet($tpath . '/css/responsive.css?' . $responsivecsstime);
+}
+if ($customcss != '') {
+    $doc->addStyleDeclaration($customcss);
 }
 if ($defaultmode == 'bootstrap') {
     $default_column = $template->params->get('default_column', 'col-md-');
