@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="template" client="site" version="4.0.3" method="upgrade">
 	<name>Zero</name>
-	<creationDate>2021-09-23</creationDate>
+	<creationDate>2022-08-11</creationDate>
 	<author>Uziel Almeida Oliveira by Ponto Mega</author>
 	<authorEmail>contato@pontomega.com.br</authorEmail>
 	<authorUrl>https://www.pontomega.com.br</authorUrl>
-	<copyright>Ponto Mega - 2021</copyright>
+	<copyright>Ponto Mega - 2022</copyright>
 	<license>GNU/GPL</license>
-	<version>4.1.0</version>
+	<version>4.2.0</version>
 	<description>
-		<![CDATA[ <h1>ZERO Joomla Template - version 4.1.0</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
+		<![CDATA[ <h1>ZERO Joomla Template - version 4.2.0</h1><p>Criado por <a href="http://www.pontomega.com.br" target="_blank">Ponto Mega | pontomega.com.br</a>.</p> ]]>
 	</description>
 	<updateservers>
-        <server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>
-    </updateservers>
+		<server type="extension" priority="1" name="zero">https://raw.githubusercontent.com/uzielweb/zero/master/zero_updates.xml</server>
+	</updateservers>
 	<files>
 		<!-- no need to change -->
 		<folder>css</folder>
@@ -79,14 +79,13 @@
 		<fields name="params">
 			<fieldset name="advanced">
 				<!-- Add Joomla -->
-				<field name="logo" type="media" label="TPL_LOGO_LABEL" default="images/logo.png" description="TPL_LOGO_DESC" />
-				<field name="favicon" type="media" label="TPL_FAVICON_LABEL" default="images/favicon.png" description="TPL_FAVICON_DESC" />
+				<field name="logo" type="media" label="TPL_LOGO_LABEL" default="" description="TPL_LOGO_DESC" />
+				<field name="favicon" type="media" label="TPL_FAVICON_LABEL" default="" description="TPL_FAVICON_DESC" />
 				<field name="type_of_layout" type="list" label="TPL_TYPE_OF_LAYOUT_LABEL" default="bootstrap" description="TPL_TYPE_OF_LAYOUT_DESC">
 					<option value="bootstrap">TPL_BOOTSTRAP</option>
 					<option value="custom">TPL_CUSTOM</option>
 				</field>
-				
-				<field name="default_column" type="list" label="TPL_BOOSTRAP_LIMIT_LABEL" default="col-md-" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_LIMIT_DESC">
+				<field name="default_column" type="list" label="TPL_BOOSTRAP_LIMIT_LABEL" default="col-lg-" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_LIMIT_DESC">
 					<option value="col-xl-">XL</option>
 					<option value="col-lg-">LG</option>
 					<option value="col-md-">MD</option>
@@ -104,22 +103,18 @@
 					<option value="5">5</option>
 					<option value="6">6</option>
 				</field>
-                <!-- fontawesome_from_template, animate_css_from_template, fontawesome_js_from_template, jquery_from_template, default_image_for_article,default_image_for_category -->
-            
+				<!-- fontawesome_from_template, animate_css_from_template, fontawesome_js_from_template, jquery_from_template, default_image_for_article,default_image_for_category -->
 				<field name="animate_css_from_template" type="list" label="TPL_ANIMATE_CSS_FROM_TEMPLATE_LABEL" default="0" description="TPL_ANIMATE_CSS_FROM_TEMPLATE_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
 				<field name="fontawesome" type="list" label="TPL_FONTAWESOME_LABEL" default="from_joomla" description="TPL_FONTAWESOME_DESC">
 					<!--  css_fromtemplate, js_fromtemplate, from_joomla -->
-					<option value="css_fromtemplate">TPL_FONTAWESOME_CSS_FROM_TEMPLATE</option>
-					<option value="js_fromtemplate">TPL_FONTAWESOME_JS_FROM_TEMPLATE</option>
+					<option value="css_from_template">TPL_FONTAWESOME_CSS_FROM_TEMPLATE</option>
+					<option value="js_from_template">TPL_FONTAWESOME_JS_FROM_TEMPLATE</option>
 					<option value="from_joomla">TPL_FONTAWESOME_FROM_JOOMLA</option>
 					<option value="0">JNONE</option>
-
-				
 				</field>
-				
 				<field name="jquery_from_template" type="list" label="TPL_JQUERY_FROM_TEMPLATE_LABEL" default="0" description="TPL_JQUERY_FROM_TEMPLATE_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
@@ -131,11 +126,24 @@
 				</field>
 				<field name="default_image_for_article" type="media" label="TPL_DEFAULT_IMAGE_FOR_ARTICLE_LABEL" default="" description="TPL_DEFAULT_IMAGE_FOR_ARTICLE_DESC" />
 				<field name="default_image_for_category" type="media" label="TPL_DEFAULT_IMAGE_FOR_CATEGORY_LABEL" default="" description="TPL_DEFAULT_IMAGE_FOR_CATEGORY_DESC" />
-				<field name="sections" type="subform" multiple="true" formsource="templates/zero/sections.xml" label="SECTIONS" description="RENDER_SECTIONS_PARAMS" />
+				<field name="sections" type="subform" multiple="true" formsource="templates/ppa2022/sections.xml" label="SECTIONS" description="RENDER_SECTIONS_PARAMS" />
+			</fieldset>
+			<fieldset name="custom" label="TPL_CUSTOM_CODE_LABEL" description="TPL_CUSTOM_CODE_DESC">
+				<field name="customheadercode" type="editor" editor="codemirror" label="TPL_CUSTOM_HEADER_CODE_LABEL" description="TPL_CUSTOM_HEADER_CODE_DESC" filter="raw" />
+				<field name="customafterbodycode" type="editor" editor="codemirror" label="TPL_CUSTOM_AFTER_BODY_CODE_LABEL" description="TPL_CUSTOM_AFTER_BODY_CODE_DESC" filter="raw" />
+				<field name="customfootercode" type="editor" editor="codemirror" label="TPL_CUSTOM_FOOTER_CODE_LABEL" description="TPL_CUSTOM_FOOTER_CODE_DESC" filter="raw" />
+				<field name="customcss" type="editor" editor="codemirror" label="TPL_CUSTOM_CSS_LABEL" description="TPL_CUSTOM_CSS_DESC" filter="raw" />
+			</fieldset>
+			<fieldset name="opengraph" label="TPL_OPENGRAPH_LABEL" description="TPL_OPENGRAPH_DESC">
+				<field name="opengraph_enabled" type="list" label="TPL_OPENGRAPH_ENABLED_LABEL" default="1" description="TPL_OPENGRAPH_ENABLED_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="default_opengraph_image" type="media" label="TPL_OPENGRAPH_IMAGE_LABEL" description="TPL_OPENGRAPH_IMAGE_DESC" />
 
 			</fieldset>
 		</fields>
 	</config>
-
 
 </extension>
