@@ -57,8 +57,15 @@
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
+				<!--  custom body background -->
+				<field name="custom_body_background" type="media" label="TPL_CUSTOM_BODY_BACKGROUND_LABEL" default="" description="TPL_CUSTOM_BODY_BACKGROUND_DESC" />
+				<!--  custom body background color -->
+				<field name="custom_body_background_color" type="color" label="TPL_CUSTOM_BODY_BACKGROUND_COLOR_LABEL" default="" description="TPL_CUSTOM_BODY_BACKGROUND_COLOR_DESC" />
+				
 				<!-- Add Joomla -->
 				<field name="logo" type="media" label="TPL_LOGO_LABEL" default="" description="TPL_LOGO_DESC" />
+				<field name="logo_alt" type="text" label="TPL_LOGO_ALT_LABEL" default="" description="TPL_LOGO_ALT_DESC" />
+				<field name="custom_logo_link" type="text" label="TPL_LOGO_LINK_LABEL" default="" description="TPL_LOGO_LINK_DESC" />
 				<field name="favicon" type="media" label="TPL_FAVICON_LABEL" default="" description="TPL_FAVICON_DESC" />
 				<field name="type_of_layout" type="list" label="TPL_TYPE_OF_LAYOUT_LABEL" default="bootstrap" description="TPL_TYPE_OF_LAYOUT_DESC">
 					<option value="bootstrap">TPL_BOOTSTRAP</option>
@@ -66,7 +73,7 @@
 				</field>
 				<!-- fluid -->
 				<field name="fluid" type="list" label="TPL_FLUID_LABEL" default="container" showon="type_of_layout:bootstrap" description="TPL_FLUID_DESC">
-					<option value="">TPL_CONTAINER</option>
+					<option value="">TPL_CONTAINER_DEFAULT</option>
 					<option value="-fluid">TPL_CONTAINER_FLUID</option>
 				</field>
 				<field name="default_column" type="list" label="TPL_BOOSTRAP_LIMIT_LABEL" default="col-lg-" showon="type_of_layout:bootstrap" description="TPL_BOOSTRAP_LIMIT_DESC">
@@ -133,6 +140,8 @@
 				</field>
 			</fieldset>
 			<fieldset name="custom" label="TPL_CUSTOM_CODE_LABEL" description="TPL_CUSTOM_CODE_DESC">
+			<field name="custom_header_top" type="editor" label="TPL_CUSTOM_HEADER_TOP_LABEL" default="" description="TPL_CUSTOM_HEADER_TOP_DESC" filter="raw" />
+				<field name="custom_header_bottom" type="editor" label="TPL_CUSTOM_HEADER_BOTTOM_LABEL" default="" description="TPL_CUSTOM_HEADER_BOTTOM_DESC" filter="raw" />
 				<field name="customheadercode" type="editor" editor="codemirror" label="TPL_CUSTOM_HEADER_CODE_LABEL" description="TPL_CUSTOM_HEADER_CODE_DESC" filter="raw" />
 				<field name="customafterbodycode" type="editor" editor="codemirror" label="TPL_CUSTOM_AFTER_BODY_CODE_LABEL" description="TPL_CUSTOM_AFTER_BODY_CODE_DESC" filter="raw" />
 				<field name="customfootercode" type="editor" editor="codemirror" label="TPL_CUSTOM_FOOTER_CODE_LABEL" description="TPL_CUSTOM_FOOTER_CODE_DESC" filter="raw" />

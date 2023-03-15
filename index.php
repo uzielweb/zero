@@ -15,15 +15,26 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <jdoc:include type="head" />
     <?php echo $customheadercode; ?>
 </head>
-<body class="<?php echo $bodyClass; ?>">
-<?php if ($this->countModules('logo') || $this->countModules('menu') || $this->countModules('search')): ?>
+<body class="<?php echo $bodyClass; ?> testez">
+<?php if ($customHeaderTop || $customHeaderBottom || $logo || $this->countModules('menu') || $this->countModules('search')): ?>
     <header class="header">
+        <?php if ($customHeaderTop): ?>
+            <div class="header-top">
+                <div class="container<?php echo $fluid; ?>">
+                    <div class="row">
+                        <div class="col-12">
+                            <?php echo $customHeaderTop; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="container<?php echo $fluid; ?>">
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="<?php echo $this->baseurl; ?>/">
+                            <a class="navbar-brand" href="<?php echo $customLogoLink ? $customLogoLink : $this->baseurl; ?>">
                                 <?php if ($logo) : ?>
                                     <img src="<?php echo $logo; ?>" alt="<?php echo $sitename; ?>" width="<?php echo $logowidth; ?>" height="<?php echo $logoheight; ?>" />
                                 <?php else : ?>
@@ -47,6 +58,17 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
                 </div>
             </div>
         </div>
+        <?php if ($customHeaderBottom): ?>
+            <div class="header-bottom">
+                <div class="container<?php echo $fluid; ?>">
+                    <div class="row">
+                        <div class="col-12">
+                            <?php echo $customHeaderBottom; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </header>
 <?php endif; ?>
     <main class="main">

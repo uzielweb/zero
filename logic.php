@@ -2,35 +2,44 @@
 // variables
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 $app = Factory::getApplication();
 $doc = $app->getDocument();
 $template = $app->getTemplate(true);
 $headData = $doc->getHeadData();
-$params = $template->params;
+$templateParams = $template->params;
+$customHeaderTop = JHTML::_('content.prepare', $templateParams->get('custom_header_top'));
+$customHeaderBottom = JHTML::_('content.prepare', $templateParams->get('custom_header_bottom'));
+$customLogoLink = $templateParams->get('custom_logo_link', '');
+$custom_body_background = $templateParams->get('custom_body_background', '') ? 'background-image: url(' . Uri::base('true') . '/' . $templateParams->get('custom_body_background', '') . ');' : '';
+$custom_body_background_color = $templateParams->get('custom_body_background_color', '') ? 'background-color: ' . $templateParams->get('custom_body_background_color', '') . ';' : '';
+
 $tpath = $this->baseurl . '/templates/' . $this->template;
-$logo = $params->get('logo', '');
-$logosize = $logo ? getimagesize(JUri::base('true') . $logo) : '';
+$logo = $templateParams->get('logo', '');
+$logosize = $logo ? getimagesize(Uri::base('true').'/' . $logo) : '';
 $logowidth = $logosize ? $logosize[0] : '';
 $logoheight = $logosize ? $logosize[1] : '';
-$favicon = $params->get('favicon', '');
-$type_of_layout = $params->get('type_of_layout', 'custom');
-$default_column = $params->get('default_column', 'col-lg');
-$proportional_equal = $params->get('proportional_equal', 'equal');
-$col_side = $params->get('col_side', '-3');
-$animate_css_from_template = $params->get('animate_css_from_template', '1');
-$fontawesome = $params->get('fontawesome', 'css_from_template');
-$jquery_from_template = $params->get('jquery_from_template', '1');
-$bootstrap_from_template = $params->get('bootstrap_from_template', '1');
-$default_image_for_article = $params->get('default_image_for_article', '');
-$default_image_for_category = $params->get('default_image_for_category', '');
-$fluid = $params->get('-fluid', '');
-$sections = $params->get('sections', '');
-$customheadercode = $params->get('customheadercode', '');
-$customafterbodycode = $params->get('customafterbodycode', '');
-$customfootercode = $params->get('customfootercode', '');
-$customcss = $params->get('customcss', '');
-$opengraph_enabled = $params->get('opengraph_enabled', '1');
-$default_opengraph_image = $params->get('default_opengraph_image', '');
+$favicon = $templateParams->get('favicon', '');
+$type_of_layout = $templateParams->get('type_of_layout', 'custom');
+$default_column = $templateParams->get('default_column', 'col-lg');
+$proportional_equal = $templateParams->get('proportional_equal', 'equal');
+$col_side = $templateParams->get('col_side', '-3');
+$animate_css_from_template = $templateParams->get('animate_css_from_template', '1');
+$fontawesome = $templateParams->get('fontawesome', 'css_from_template');
+$jquery_from_template = $templateParams->get('jquery_from_template', '1');
+$bootstrap_from_template = $templateParams->get('bootstrap_from_template', '1');
+$default_image_for_article = $templateParams->get('default_image_for_article', '');
+$default_image_for_category = $templateParams->get('default_image_for_category', '');
+$fluid = $templateParams->get('-fluid', '');
+$sections = $templateParams->get('sections', '');
+$customheadercode = $templateParams->get('customheadercode', '');
+$customafterbodycode = $templateParams->get('customafterbodycode', '');
+$customfootercode = $templateParams->get('customfootercode', '');
+$customcss = $templateParams->get('customcss', '');
+$customcss .= $custom_body_background || $custom_body_background_color ? 'body{' . $custom_body_background . $custom_body_background_color . '}' : '';
+
+$opengraph_enabled = $templateParams->get('opengraph_enabled', '1');
+$default_opengraph_image = $templateParams->get('default_opengraph_image', '');
 $view = $app->input->get('view');
 $layout = $app->input->get('layout');
 $task = $app->input->get('task');
@@ -54,7 +63,7 @@ if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/bootstrap.min.css')
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/all.min.css') && $fontawesome == 'css_from_template') {
     $doc->addStyleSheet($tpath . '/css/all.min.css');
 }
-if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/all.min.css') && $fontawesome == 'js_from_template') {
+if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/all.min.js') && $fontawesome == 'js_from_template') {
     $doc->addStyleSheet($tpath . '/js/all.min.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/animate.min.css') && $animate_css_from_template == 1) {
@@ -143,7 +152,7 @@ if ($opengraph_enabled == 1) {
     }
 }
 if ($favicon) {
-    $doc->addFavicon(Uri::base('true') . $favicon);
+    $doc->addFavicon(Uri::base('true'). '/'. $favicon);
 }
 // remove generator
 $this->setGenerator(null);
