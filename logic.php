@@ -7,6 +7,7 @@ $doc = $app->getDocument();
 $template = $app->getTemplate(true);
 $headData = $doc->getHeadData();
 $params = $template->params;
+$tpath = $this->baseurl . '/templates/' . $this->template;
 $logo = $params->get('logo', '');
 $logosize = $logo ? getimagesize(JUri::base('true') . $logo) : '';
 $logowidth = $logosize ? $logosize[0] : '';
@@ -37,36 +38,36 @@ $itemid = $app->input->get('Itemid');
 $option = $app->input->get('option');
 $pageclass = $app->input->get('pageclass_sfx');
 $active = $app->getMenu()->getActive();
-$ishome = ($active == $app->getMenu()->getDefault()) ? 'is-home' : 'not-home';
+$ishome = ($active == $app->getMenu()->getDefault()) ? 'is-home-page' : 'internal-page';
 $language = Factory::getLanguage();
 $langtag = $language->getTag();
 $bodyClass = $ishome . ' language-'.$this->language. ' option-' . str_replace('com_', '', $option) . ' view-' . $view . ' layout-' . ($layout ? $layout : 'default') . ' task-' . ($task ? $task : 'default') . ' itemid-' . $itemid . $pageclass;
 $sitename = $app->get('sitename');
 $doc->setMetaData('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=1');
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/bootstrap.min.css') && $bootstrap_from_template == 1 && $type_of_layout == 'bootstrap') {
-    $doc->addStyleSheet(Uri::base('true') . 'templates/' . $this->template . '/css/bootstrap.min.css');
-    $doc->addScript(Uri::base('true') . 'templates/' . $this->template . '/js/bootstrap.bundle.min.js');
+    $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
+    $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/all.min.css') && $fontawesome == 'css_from_template') {
-    $doc->addStyleSheet(Uri::base('true') . 'templates/' . $this->template . '/css/all.min.css');
+    $doc->addStyleSheet($tpath . '/css/all.min.css');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/animate.min.css') && $animate_css_from_template == 1) {
-    $doc->addStyleSheet(Uri::base('true') . 'templates/' . $this->template . '/css/animate.min.css');
+    $doc->addStyleSheet($tpath . '/css/animate.min.css');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/template.css')) {
-    $doc->addStyleSheet(Uri::base('true') . 'templates/' . $this->template . '/css/template.css');
+    $doc->addStyleSheet($tpath . '/css/template.css');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/custom.css')) {
-    $doc->addStyleSheet(Uri::base('true') . 'templates/' . $this->template . '/css/custom.css');
+    $doc->addStyleSheet($tpath . '/css/custom.css');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/jquery.min.js') && $jquery_from_template == 1) {
-    $doc->addScript(Uri::base('true') . 'templates/' . $this->template . '/js/jquery.min.js');
+    $doc->addScript($tpath . '/js/jquery.min.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/template.js')) {
-    $doc->addScript(Uri::base('true') . 'templates/' . $this->template . '/js/template.js');
+    $doc->addScript($tpath . '/js/template.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/custom.js')) {
-    $doc->addScript(Uri::base('true') . 'templates/' . $this->template . '/js/custom.js');
+    $doc->addScript($tpath . '/js/custom.js');
 }
 if ($customcss) {
     $doc->addStyleDeclaration($customcss);
