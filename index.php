@@ -41,18 +41,19 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
                                     <?php echo htmlspecialchars($sitename); ?>
                                 <?php endif; ?>
                             </a>
+                            <?php if ($this->countModules('menu')) :?>
                             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                                <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                                <div class="offcanvas-header">                                  
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
                                     <jdoc:include type="modules" name="menu" style="none" />
                                 </div>
                             </div>
+                            <?php endif; ?>
                         </div>
                     </nav>
                 </div>
