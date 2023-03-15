@@ -44,12 +44,18 @@ $langtag = $language->getTag();
 $bodyClass = $ishome . ' language-'.$this->language. ' option-' . str_replace('com_', '', $option) . ' view-' . $view . ' layout-' . ($layout ? $layout : 'default') . ' task-' . ($task ? $task : 'default') . ' itemid-' . $itemid . $pageclass;
 $sitename = $app->get('sitename');
 $doc->setMetaData('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=1');
+if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/jquery.min.js') && $jquery_from_template == 1) {
+    $doc->addScript($tpath . '/js/jquery.min.js');
+}
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/bootstrap.min.css') && $bootstrap_from_template == 1 && $type_of_layout == 'bootstrap') {
     $doc->addStyleSheet($tpath . '/css/bootstrap.min.css');
     $doc->addScript($tpath . '/js/bootstrap.bundle.min.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/all.min.css') && $fontawesome == 'css_from_template') {
     $doc->addStyleSheet($tpath . '/css/all.min.css');
+}
+if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/all.min.css') && $fontawesome == 'js_from_template') {
+    $doc->addStyleSheet($tpath . '/js/all.min.js');
 }
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/animate.min.css') && $animate_css_from_template == 1) {
     $doc->addStyleSheet($tpath . '/css/animate.min.css');
@@ -60,9 +66,7 @@ if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/template.css')) {
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/custom.css')) {
     $doc->addStyleSheet($tpath . '/css/custom.css');
 }
-if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/jquery.min.js') && $jquery_from_template == 1) {
-    $doc->addScript($tpath . '/js/jquery.min.js');
-}
+
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/template.js')) {
     $doc->addScript($tpath . '/js/template.js');
 }
