@@ -2,7 +2,6 @@
 // variables
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\HTML\HTMLHelper;
 $app = Factory::getApplication();
 $doc = $app->getDocument();
 $template = $app->getTemplate(true);
@@ -13,10 +12,9 @@ $customHeaderBottom = JHTML::_('content.prepare', $templateParams->get('custom_h
 $customLogoLink = $templateParams->get('custom_logo_link', '');
 $custom_body_background = $templateParams->get('custom_body_background', '') ? 'background-image: url(' . Uri::base('true') . '/' . $templateParams->get('custom_body_background', '') . ');' : '';
 $custom_body_background_color = $templateParams->get('custom_body_background_color', '') ? 'background-color: ' . $templateParams->get('custom_body_background_color', '') . ';' : '';
-
 $tpath = $this->baseurl . '/templates/' . $this->template;
 $logo = $templateParams->get('logo', '');
-$logosize = $logo ? getimagesize(Uri::base('true').'/' . $logo) : '';
+$logosize = $logo ? getimagesize(Uri::base('true') . '/' . $logo) : '';
 $logowidth = $logosize ? $logosize[0] : '';
 $logoheight = $logosize ? $logosize[1] : '';
 $favicon = $templateParams->get('favicon', '');
@@ -37,7 +35,6 @@ $customafterbodycode = $templateParams->get('customafterbodycode', '');
 $customfootercode = $templateParams->get('customfootercode', '');
 $customcss = $templateParams->get('customcss', '');
 $customcss .= $custom_body_background || $custom_body_background_color ? 'body{' . $custom_body_background . $custom_body_background_color . '}' : '';
-
 $opengraph_enabled = $templateParams->get('opengraph_enabled', '1');
 $default_opengraph_image = $templateParams->get('default_opengraph_image', '');
 $view = $app->input->get('view');
@@ -50,7 +47,7 @@ $active = $app->getMenu()->getActive();
 $ishome = ($active == $app->getMenu()->getDefault()) ? 'is-home-page' : 'internal-page';
 $language = Factory::getLanguage();
 $langtag = $language->getTag();
-$bodyClass = $ishome . ' language-'.$this->language. ' option-' . str_replace('com_', '', $option) . ' view-' . $view . ' layout-' . ($layout ? $layout : 'default') . ' task-' . ($task ? $task : 'default') . ' itemid-' . $itemid . $pageclass;
+$bodyClass = $ishome . ' language-' . $this->language . ' option-' . str_replace('com_', '', $option) . ' view-' . $view . ' layout-' . ($layout ? $layout : 'default') . ' task-' . ($task ? $task : 'default') . ' itemid-' . $itemid . $pageclass;
 $sitename = $app->get('sitename');
 $doc->setMetaData('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=1');
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/jquery.min.js') && $jquery_from_template == 1) {
@@ -72,10 +69,12 @@ if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/animate.min.css') &
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/template.css')) {
     $doc->addStyleSheet($tpath . '/css/template.css');
 }
+if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/responsive.css')) {
+    $doc->addStyleSheet($tpath . '/css/responsive.css');
+}
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/css/custom.css')) {
     $doc->addStyleSheet($tpath . '/css/custom.css');
 }
-
 if (file_exists(JPATH_THEMES . '/' . $this->template . '/js/template.js')) {
     $doc->addScript($tpath . '/js/template.js');
 }
@@ -152,11 +151,10 @@ if ($opengraph_enabled == 1) {
     }
 }
 if ($favicon) {
-    $doc->addFavicon(Uri::base('true'). '/'. $favicon);
+    $doc->addFavicon(Uri::base('true') . '/' . $favicon);
 }
 // remove generator
 $this->setGenerator(null);
-
 //Sections Custom StyleSheet. Please configure in Joomla Template Administration as you need
 $sections = $template->params->get('sections', '');
 if ($sections) {
@@ -180,7 +178,6 @@ if ($sections) {
         ');
     }
 }
-
 function positions($position, $style)
 {
     $app = Factory::getApplication('site');
