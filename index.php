@@ -15,7 +15,7 @@ include_once JPATH_THEMES . '/' . $this->template . '/logic.php';
     <jdoc:include type="head" />
     <?php echo $customheadercode; ?>
 </head>
-<body class="<?php echo $bodyClass; ?> testez">
+<body class="<?php echo $bodyClass; ?>">
 <?php if ($customHeaderTop || $customHeaderBottom || $logo || $this->countModules('menu') || $this->countModules('search')): ?>
     <header class="header">
         <?php if ($customHeaderTop): ?>
