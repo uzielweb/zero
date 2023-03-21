@@ -35,10 +35,10 @@
 		<filename>sections.xml</filename>
 	</files>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/tpl_zero.ini</language>
-		<language tag="en-GB">en-GB/tpl_zero.sys.ini</language>
-		<language tag="pt-BR">pt-BR/tpl_zero.ini</language>
-		<language tag="pt-BR">pt-BR/tpl_zero.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_zero.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_zero.sys.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.tpl_zero.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.tpl_zero.sys.ini</language>
 	</languages>
 	<positions>
 		<position>top</position>
