@@ -1,0 +1,260 @@
+/* ERROR
+   ========================================================================== */
+
+html,
+body {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+body {
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container and Card Styling */
+.container {
+  max-width: 900px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+/* Error Container */
+.error-container {
+  padding: 1rem;
+}
+
+/* Error Header Section */
+.error-header {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.error-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(220,53,69,0.2), rgba(220,53,69,1), rgba(220,53,69,0.2));
+  border-radius: 2px;
+}
+
+/* Error Icon */
+.error-icon {
+  font-size: 60px;
+  color: #dc3545;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.error-icon::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(220,53,69,0.08);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.error-icon svg, .error-icon i {
+  height: 60px;
+  width: 60px;
+  filter: drop-shadow(0 2px 3px rgba(220,53,69,0.3));
+}
+
+/* Error Code */
+.error-code {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #dc3545;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+}
+
+/* Error Message */
+.error-message {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #343a40;
+  margin-bottom: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Error Details List */
+.mb-4 .fw-bold {
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+ol.text-start {
+  color: #6c757d;
+  padding-left: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+ol.text-start li {
+  margin-bottom: 0.5rem;
+}
+
+ol.text-start strong {
+  color: #495057;
+}
+
+/* Error Actions */
+.error-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  margin: 0 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+  color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
+  color: #fff;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: #5c636a;
+  border-color: #565e64;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+  color: #fff;
+}
+
+.btn svg, .btn i {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Debug Information */
+.alert-info {
+  background-color: #cff4fc;
+  border-color: #b6effb;
+  color: #055160;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .error-code {
+    font-size: 3.5rem;
+  }
+  
+  .error-message {
+    font-size: 1.25rem;
+  }
+  
+  .error-icon {
+    font-size: 48px;
+  }
+  
+  .error-icon svg {
+    height: 48px;
+    width: 48px;
+  }
+  
+  .btn {
+    padding: 0.5rem 1.25rem;
+    margin: 0.5rem;
+  }
+  
+  .error-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .error-header::after {
+    width: 60px;
+  }
+  
+  .error-icon::before {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .error-code {
+    font-size: 3rem;
+  }
+  
+  .error-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    margin: 0.5rem;
+    min-width: 200px;
+  }
+  
+  .error-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
